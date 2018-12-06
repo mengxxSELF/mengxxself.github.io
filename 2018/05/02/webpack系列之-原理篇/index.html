@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本系列将会从原理、开发、优化、对比四个方面给大家介绍webpack的工作流程。【默认是以webpack v3为例子】">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack系列之-原理篇">
+<meta property="og:url" content="http://yoursite.com/2018/05/02/webpack系列之-原理篇/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本系列将会从原理、开发、优化、对比四个方面给大家介绍webpack的工作流程。【默认是以webpack v3为例子】">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/box.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/process.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/template.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/template2.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/myw.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack-code/wp.png">
+<meta property="og:updated_time" content="2018-05-11T12:28:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack系列之-原理篇">
+<meta name="twitter:description" content="本系列将会从原理、开发、优化、对比四个方面给大家介绍webpack的工作流程。【默认是以webpack v3为例子】">
+<meta name="twitter:image" content="http://yoursite.com/img/webpack-code/box.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/02/webpack系列之-原理篇/">
+
+
+
+
+
+  <title>webpack系列之-原理篇 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/02/webpack系列之-原理篇/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack系列之-原理篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-02T12:15:50+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本系列将会从原理、开发、优化、对比四个方面给大家介绍webpack的工作流程。【默认是以webpack v3为例子】</p>
+<a id="more"></a>
+<h2 id="储备知识"><a href="#储备知识" class="headerlink" title="储备知识"></a>储备知识</h2><h3 id="CommonJS-规范"><a href="#CommonJS-规范" class="headerlink" title="CommonJS 规范"></a>CommonJS 规范</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 模块引入</span><br><span class="line">let moduleA = require(&apos;./a.js)</span><br><span class="line"></span><br><span class="line">// 模块导出</span><br><span class="line">module.exports = () =&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="es6规范"><a href="#es6规范" class="headerlink" title="es6规范"></a>es6规范</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 模块引入</span><br><span class="line"></span><br><span class="line">let &#123;moduleA&#125; from &apos;./a.js&apos;</span><br><span class="line"></span><br><span class="line">// 模块导出</span><br><span class="line"></span><br><span class="line">export default () =&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="黑盒体验"><a href="#黑盒体验" class="headerlink" title="黑盒体验"></a>黑盒体验</h2><p>我们可以把webpack看做一个黑盒，只要会用就可以。先来体验一次很简单的webpack打包过程</p>
+<p><img src="/img/webpack-code/box.png" alt="webpack"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">'./index.js'</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">'index.js'</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">'public'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启动编译，在命令行输入 node_modules/.bin/webpack 就可看到一次打包过程</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w6/code/webpack/webpack1/COPY/index1.js" target="_blank" rel="noopener">查看打包结果</a></p>
+<h3 id="关于如何启动webpack"><a href="#关于如何启动webpack" class="headerlink" title="关于如何启动webpack"></a>关于如何启动webpack</h3><p>如果是全局安装了webpack，可以在命令行直接输入 webpack</p>
+<p>如果只是项目文件夹安装，需要输入 node_modules/.bin/webpack</p>
+<ul>
+<li>npx</li>
+</ul>
+<p>在 npmV5版本 会赠送一个npx</p>
+<p>npx 会自动查找当前依赖包中的可执行文件，如果找不到，就会去 PATH 里找。如果依然找不到，就会帮你安装</p>
+<p>所以也可以通过npx执行webpack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack</span><br></pre></td></tr></table></figure>
+<h2 id="require方法"><a href="#require方法" class="headerlink" title="require方法"></a>require方法</h2><p>实现一个require方法</p>
+<p>common.js的规范中 引入一个模块需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let getA = require(&apos;./a&apos;)</span><br></pre></td></tr></table></figure>
+<p>自己写一个require方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="comment">// 查找module</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myReq</span> (<span class="params">myModule</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 读取文件信息</span></span><br><span class="line">  <span class="keyword">let</span> cont = fs.readFileSync(myModule, <span class="string">'utf-8'</span>)</span><br><span class="line">  <span class="comment">/* function (exports, require, module, __filename, __dirname) &#123;</span></span><br><span class="line"><span class="comment">    moduel.exports = &#123;a: 'apple'&#125;</span></span><br><span class="line"><span class="comment">    return moduel.exports</span></span><br><span class="line"><span class="comment">  &#125; */</span></span><br><span class="line">  <span class="keyword">let</span> nodeFn = <span class="keyword">new</span> <span class="built_in">Function</span>(<span class="string">'exports'</span>, <span class="string">'require'</span>, <span class="string">'module'</span>, <span class="string">'__filename'</span>, <span class="string">'__dirname'</span>, cont + <span class="string">'return module.exports'</span>)</span><br><span class="line">  <span class="keyword">let</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">    exports: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> nodeFn(<span class="built_in">module</span>.exports, myReq, <span class="built_in">module</span>, __filename, __dirname)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// let getA = require('./a')</span></span><br><span class="line"><span class="keyword">let</span> getA = myReq(<span class="string">'./a.js'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(getA, <span class="string">'getA'</span>)</span><br></pre></td></tr></table></figure>
+<p>思路：读取文件内容，根据node的封装规范，传入几个必须的参数即可。</p>
+<ul>
+<li>删减 webpack 编译后的文件</li>
+</ul>
+<p>把刚刚打包之后的 dist/index.js 删减掉一些不用的代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">modules</span>) </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">myRequire</span>(<span class="params">moduleId</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line">			exports: &#123;&#125;</span><br><span class="line">		&#125;;</span><br><span class="line">    modules[moduleId].call(<span class="built_in">module</span>.exports, <span class="built_in">module</span>, <span class="built_in">module</span>.exports, myRequire);</span><br><span class="line">        <span class="comment">// call 用于让  modules[moduleId] 函数执行 执行的是传入后面的参数</span></span><br><span class="line">		<span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="keyword">return</span> myRequire(<span class="comment">/* 下面的第一个函数参数 */</span>);</span><br><span class="line">&#125;)</span><br><span class="line">([</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'123'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w6/code/webpack/webpack1/COPY/index1_simple.js" target="_blank" rel="noopener">在线查看</a></p>
+<p>可以看出来， webpack打包生成之后的文件内容就和编译的require方法类似。这就是为什么打包之后的js文件可直接在浏览器中运行的原因</p>
+<h2 id="编译流程"><a href="#编译流程" class="headerlink" title="编译流程"></a>编译流程</h2><h3 id="常见名词解释"><a href="#常见名词解释" class="headerlink" title="常见名词解释"></a>常见名词解释</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>entry</td>
+<td>项目入口</td>
+</tr>
+<tr>
+<td>module</td>
+<td>开发中每一个文件都可以看做module</td>
+</tr>
+<tr>
+<td>chunk</td>
+<td>代码块</td>
+</tr>
+<tr>
+<td>loader</td>
+<td>模块转化器</td>
+</tr>
+<tr>
+<td>plugin</td>
+<td>扩展插件 自定义webpack打包过程</td>
+</tr>
+<tr>
+<td>bundle</td>
+<td>最终打包完成的文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h3><p>webpack的运行流程是一个串行的过程，从启动到结束，会依次执行以下流程</p>
+<ul>
+<li>参数初始化</li>
+</ul>
+<p>从配置文件 【webpack.config.js】和 shell 语句中读取与合并参数</p>
+<ul>
+<li>开始编译</li>
+</ul>
+<p>初始化一个compiler对象 加载所有插件 执行对象的run方法开始编译</p>
+<ul>
+<li>确定入口文件</li>
+</ul>
+<p>根据配置文件找到项目所有的入口文件</p>
+<ul>
+<li>编译模块</li>
+</ul>
+<p>从入口开始 调用配置的loader对模块进行编译 【有一个递归寻找依赖模块的流程】</p>
+<p>模块编译完成后 得到模块被转化后的最后内容以及他们之间的依赖关系</p>
+<ul>
+<li>资源输出</li>
+</ul>
+<p>根据入口文件和模块之间的依赖关系 组成chunk文件 【一个chunk可能包含多个模块】每一个chunk将会被转化成一个单独的文件加入输出列表中</p>
+<ul>
+<li>输出</li>
+</ul>
+<p>根据配置的输出参数 【路径和文件名】将输出内容写入文件系统</p>
+<p><strong> 在以上的过程 WP会在特定的时间点广播特定的事件 插件在监听到感兴趣的事件后会执行特定的逻辑 </strong></p>
+<h4 id="简化流程"><a href="#简化流程" class="headerlink" title="简化流程"></a>简化流程</h4><p>其实以上流程可以简化为三个阶段</p>
+<p><img src="/img/webpack-code/process.png" alt="webpack"></p>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><h3 id="核心库-tapable"><a href="#核心库-tapable" class="headerlink" title="核心库 tapable"></a>核心库 tapable</h3><p>在node中有一个事件发射器 EventEmitter ，可以进行事件监听与发射。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> EventEmitter = <span class="built_in">require</span>(<span class="string">'events'</span>).EventEmitter;</span><br><span class="line"><span class="keyword">var</span> event = <span class="keyword">new</span> EventEmitter();</span><br><span class="line">event.on(<span class="string">'some_event'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'some_event 事件触发'</span>);</span><br><span class="line">&#125;);</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    event.emit(<span class="string">'some_event'</span>);</span><br><span class="line">&#125;, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+<p>webpack核心库 <a href="https://github.com/webpack/tapable" target="_blank" rel="noopener">tapable</a> 的原理和 EventEmitter 类似，通过事件的注册和监听，触发各个编译周期中的函数方法.<br>Tapable 还允许你通过回调函数的参数，访问事件的“触发者(emittee)”或“提供者(producer)”</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w6/code/simple-webpack/tapable.js" target="_blank" rel="noopener">查看在线代码</a></p>
+<h3 id="核心对象-compiler"><a href="#核心对象-compiler" class="headerlink" title="核心对象 compiler"></a>核心对象 compiler</h3><p>compiler 继承自 tapable 可以进行事件的广播和监听</p>
+<p>compiler 进行事件的广播和监听的方式为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 广播事件  params 为附带参数</span></span><br><span class="line">compiler.apply(<span class="string">'event-name'</span>, params)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听 名为 event-name 的事件</span></span><br><span class="line">compiler.plugin(<span class="string">'event-name'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">params</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w10-webpack-code/webpack/lib/Compiler.js" target="_blank" rel="noopener">查看177行代码</a></p>
+<p>webpack 在初始化的时候 会将 compiler对象传入到plugin中 可以使用它来访问 webpack 的主环境</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w10-webpack-code/webpack/lib/webpack.js" target="_blank" rel="noopener">查看45行代码</a></p>
+<p>compiler 对象代表了完整的 webpack 环境配置。这个对象在启动 webpack 时被一次性建立，并配置好所有可操作的设置，包括 options，loader 和 plugin。</p>
+<h3 id="核心对象-compilation"><a href="#核心对象-compilation" class="headerlink" title="核心对象 compilation"></a>核心对象 compilation</h3><p>webpack系列之-原理篇<br>compilation 继承自 tapable 可以进行事件的广播和监听</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w10-webpack-code/webpack/lib/Compilation.js" target="_blank" rel="noopener">查看57行代码</a></p>
+<p>compilation 对象代表了一次资源版本构建。当运行 webpack 开发环境中间件时，每当检测到一个文件变化，就会创建一个新的 compilation，从而生成一组新的编译资源。</p>
+<p>一个 compilation 对象表现了当前的模块资源、编译生成资源、变化的文件、以及被跟踪依赖的状态信息</p>
+<h3 id="打包模板"><a href="#打包模板" class="headerlink" title="打包模板"></a>打包模板</h3><p>webpack打包的每一个chunk都是根据模板而生成的。webpack内部提供了很多模板文件。</p>
+<p><img src="/img/webpack-code/template.png" alt="webpack"><br><img src="/img/webpack-code/template2.png" alt="webpack"></p>
+<p>当webpack分析完所有的Module并准备输出chunk的时候 会分析每一个chunk找对其所对应的template 从而生成最后我们看到的文件格式</p>
+<h3 id="plugin-实现机制"><a href="#plugin-实现机制" class="headerlink" title="plugin 实现机制"></a>plugin 实现机制</h3><h4 id="作用原理"><a href="#作用原理" class="headerlink" title="作用原理"></a>作用原理</h4><p>在webpack的编译流程，每一个阶段都会广播不同的事件，比如 run, done 等事件。plugin会监听到这些事件，一旦事件发生，就会执行注册好的函数方法</p>
+<h4 id="plugin分析"><a href="#plugin分析" class="headerlink" title="plugin分析"></a>plugin分析</h4><p>每一个plugin都是 一个具有 apply 属性的 JavaScript 对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class MPlugin &#123;</span><br><span class="line">  // 这里获取用户为插件传入的配置参数</span><br><span class="line">  constructor (options) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  // webpack 会调用 MPlugin 实例的apply方法 为插件实例传入 compiler 对象</span><br><span class="line">  apply (compiler) &#123;</span><br><span class="line">    compiler.plugin(&apos;compilation&apos;, function (compilation) &#123;</span><br><span class="line">      // 回调函数中 传入了 compilation 对象</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在webpack初始化的阶段  会往plugin中传递compiler对象</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w10-webpack-code/webpack/lib/webpack.js" target="_blank" rel="noopener">查看45行代码</a></p>
+<h4 id="编写plugin"><a href="#编写plugin" class="headerlink" title="编写plugin"></a>编写plugin</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StartWp</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(options) &#123;</span><br><span class="line">        <span class="keyword">this</span>.options = options</span><br><span class="line">    &#125;</span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">        <span class="keyword">let</span> &#123;name&#125; = <span class="keyword">this</span>.options</span><br><span class="line">        <span class="comment">// 监听事件 这是异步的 所以要执行cb  不然会卡到这里不动了</span></span><br><span class="line">        compiler.plugin(<span class="string">'run'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">compilation, cb</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'run'</span>, name)</span><br><span class="line">            <span class="comment">// 每一次重新编译的时候又会触发</span></span><br><span class="line">            <span class="comment">// compilation.plugin('')</span></span><br><span class="line">            cb();</span><br><span class="line">        &#125;)</span><br><span class="line">        compiler.plugin(<span class="string">'done'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">compilation</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'done'</span>, name)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = StartWp</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>传递给插件的compiler和compilation是相同的 也就是某一个插件有修改对象的话会影响后面的插件的使用</p>
+</li>
+<li><p>有的事件是异步的，所以在使用的时候，要执行 cb() 去通知webpack 本次事件监听结束了 要往下继续执行否则会卡到这里</p>
+</li>
+</ul>
+<p>如何使用此插件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> StartWp(&#123;</span><br><span class="line">    name: <span class="string">'v3 - plugin '</span></span><br><span class="line">  &#125;)</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="自己来写一个简易版本的webpack打包器"><a href="#自己来写一个简易版本的webpack打包器" class="headerlink" title="自己来写一个简易版本的webpack打包器"></a>自己来写一个简易版本的webpack打包器</h2><p>实现原理: 根据打包的模板格式 读取文件信息并输入到指定的位置</p>
+<ul>
+<li><p>借助ejs </p>
+</li>
+<li><p>将简化的webpack打包结果拿出来作为 字符串模板</p>
+</li>
+</ul>
+<h3 id="最简易的webpack"><a href="#最简易的webpack" class="headerlink" title="最简易的webpack"></a>最简易的webpack</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入口文件</span></span><br><span class="line"><span class="keyword">let</span> input = <span class="string">'./index.js'</span></span><br><span class="line"><span class="comment">// 输出地址</span></span><br><span class="line"><span class="keyword">let</span> output = <span class="string">'./dist/index.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ejs = <span class="built_in">require</span>(<span class="string">'ejs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getIntry = fs.readFileSync(input, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> template = <span class="string">`(function(modules) &#123; </span></span><br><span class="line"><span class="string">	function __webpack_require__(moduleId) &#123;</span></span><br><span class="line"><span class="string">		var module = &#123;</span></span><br><span class="line"><span class="string">			exports: &#123;&#125;</span></span><br><span class="line"><span class="string">		&#125;;</span></span><br><span class="line"><span class="string">		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);</span></span><br><span class="line"><span class="string">		return module.exports;</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	return __webpack_require__(0);</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string">([</span></span><br><span class="line"><span class="string">  (function(module, exports) &#123;</span></span><br><span class="line"><span class="string">    &lt;%- getIntry %&gt;</span></span><br><span class="line"><span class="string">  &#125;)</span></span><br><span class="line"><span class="string">])`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = ejs.render(template, &#123;</span><br><span class="line">  getIntry</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将结果输出到 dist </span></span><br><span class="line">fs.writeFileSync(output, result)</span><br></pre></td></tr></table></figure>
+<p>在命令行执行一次 node webpack.0.1.0.js</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w11-myWebpack/COPY/index.0.1.0.js" target="_blank" rel="noopener">执行之后的编译结果</a></p>
+<p>可以看到在dist目录有index.js生成 将其引入 html页面</p>
+<p><img src="/img/webpack-code/myw.png" alt="myWebpack"></p>
+<p>这样就完成了一个非常非常简单的webpack</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w11-myWebpack/webpack.0.1.0.js" target="_blank" rel="noopener">在线查看简单的webpack</a></p>
+<h3 id="加入-require-处理"><a href="#加入-require-处理" class="headerlink" title="加入 require 处理"></a>加入 require 处理</h3><p>如果入口文件中 有使用到 require  则需要将其替换为webpack提供的 <strong>webpack_require</strong> </p>
+<p>先看一下如果有使用 require 之后的打包之后的结果</p>
+<p>bundle.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> (<span class="function"><span class="keyword">function</span>(<span class="params">modules</span>) </span>&#123;</span><br><span class="line"> 	<span class="function"><span class="keyword">function</span> <span class="title">__webpack_require__</span>(<span class="params">moduleId</span>) </span>&#123;</span><br><span class="line"> 		<span class="keyword">var</span> <span class="built_in">module</span> = &#123;</span><br><span class="line"> 			exports: &#123;&#125;</span><br><span class="line"> 		&#125;;</span><br><span class="line"> 		modules[moduleId].call(<span class="built_in">module</span>.exports, <span class="built_in">module</span>, <span class="built_in">module</span>.exports, __webpack_require__);</span><br><span class="line"> 		<span class="keyword">return</span> <span class="built_in">module</span>.exports;</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="keyword">return</span> __webpack_require__(<span class="number">0</span>);</span><br><span class="line"> &#125;)</span><br><span class="line"> ([</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">module, exports, __webpack_require__</span>) </span>&#123;</span><br><span class="line">  __webpack_require__(<span class="number">1</span>)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'index.js'</span>)</span><br><span class="line">  &#125;),</span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">module, exports</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">123</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">]);</span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w6/code/webpack/webpack1/COPY/bundle_require.js" target="_blank" rel="noopener">查看在线代码</a></p>
+<p>我们使用这个模板来重新编写一个简易的webpack</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入口文件</span></span><br><span class="line"><span class="keyword">let</span> input = <span class="string">'./index.js'</span></span><br><span class="line"><span class="comment">// 输出地址</span></span><br><span class="line"><span class="keyword">let</span> output = <span class="string">'./dist/index.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ejs = <span class="built_in">require</span>(<span class="string">'ejs'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getIntry = fs.readFileSync(input, <span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将getIntry 中的 require 进行处理</span></span><br><span class="line"><span class="comment">// require('./a.js')</span></span><br><span class="line"><span class="keyword">const</span> contAry = []</span><br><span class="line"><span class="keyword">let</span> dealIntry = getIntry.replace(<span class="regexp">/(require)\(['"](.+?)['"]\)/g</span>, ($<span class="number">1</span>, $<span class="number">2</span>, $<span class="number">3</span>, $<span class="number">4</span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// console.log($1, $2, $3, $4)</span></span><br><span class="line">	<span class="comment">// let filePath = path.join(__resolve, $2)</span></span><br><span class="line">	<span class="keyword">let</span> cont = fs.readFileSync($<span class="number">3</span>, <span class="string">'utf-8'</span>)</span><br><span class="line">	<span class="comment">// console.log(cont)</span></span><br><span class="line">	contAry.push(cont)</span><br><span class="line">	<span class="keyword">return</span> $<span class="number">2</span> = <span class="string">`__webpack_require__(<span class="subst">$&#123;contAry.length&#125;</span>)`</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// console.log(contAry)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> template = <span class="string">`(function(modules) &#123;</span></span><br><span class="line"><span class="string"> 	function __webpack_require__(moduleId) &#123;</span></span><br><span class="line"><span class="string"> 		var module = &#123;</span></span><br><span class="line"><span class="string"> 			exports: &#123;&#125;</span></span><br><span class="line"><span class="string"> 		&#125;;</span></span><br><span class="line"><span class="string"> 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);</span></span><br><span class="line"><span class="string"> 		return module.exports;</span></span><br><span class="line"><span class="string"> 	&#125;</span></span><br><span class="line"><span class="string"> 	return __webpack_require__(0);</span></span><br><span class="line"><span class="string"> &#125;)</span></span><br><span class="line"><span class="string"> ([</span></span><br><span class="line"><span class="string">  (function(module, exports, __webpack_require__) &#123;</span></span><br><span class="line"><span class="string">	  &lt;%- dealIntry %&gt;</span></span><br><span class="line"><span class="string">  &#125;),</span></span><br><span class="line"><span class="string">	&lt;% for(var i=0;i &lt; contAry.length; i++)&#123; %&gt;</span></span><br><span class="line"><span class="string">		(function(module, exports) &#123;</span></span><br><span class="line"><span class="string">	    &lt;%- contAry[i] %&gt;</span></span><br><span class="line"><span class="string">	  &#125;),</span></span><br><span class="line"><span class="string">  &lt;%&#125;%&gt;</span></span><br><span class="line"><span class="string">])`</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = ejs.render(template, &#123;</span><br><span class="line">  dealIntry,</span><br><span class="line">	contAry</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将结果输出到 dist</span></span><br><span class="line">fs.writeFileSync(output, result)</span><br></pre></td></tr></table></figure>
+<p>在命令行执行一次 node webpack.1.0.0.js</p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w11-myWebpack/COPY/index.1.0.0.js" target="_blank" rel="noopener">执行之后的编译结果</a></p>
+<p><img src="/img/webpack-code/wp.png" alt="myWebpack"></p>
+<p><a href="https://github.com/mengxxSELF/webpackTest/blob/master/w11-myWebpack/webpack.1.0.0.js" target="_blank" rel="noopener">在线查看加入require功能的webpack</a></p>
+<h2 id="源码篇提问"><a href="#源码篇提问" class="headerlink" title="源码篇提问"></a>源码篇提问</h2><ul>
+<li>在自己构建的plugin中 是否可以进行事件广播</li>
+</ul>
+<p>可以。只要能拿到 compiler或者compilation对象 就可以广播事件，为其他插件监听使用</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/异步流程处理/" rel="next" title="异步流程处理">
+                <i class="fa fa-chevron-left"></i> 异步流程处理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/07/读书笔记-linux私房菜/" rel="prev" title="读书笔记-linux私房菜">
+                读书笔记-linux私房菜 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#储备知识"><span class="nav-number">1.</span> <span class="nav-text">储备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CommonJS-规范"><span class="nav-number">1.1.</span> <span class="nav-text">CommonJS 规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6规范"><span class="nav-number">1.2.</span> <span class="nav-text">es6规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑盒体验"><span class="nav-number">2.</span> <span class="nav-text">黑盒体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于如何启动webpack"><span class="nav-number">2.1.</span> <span class="nav-text">关于如何启动webpack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#require方法"><span class="nav-number">3.</span> <span class="nav-text">require方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译流程"><span class="nav-number">4.</span> <span class="nav-text">编译流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见名词解释"><span class="nav-number">4.1.</span> <span class="nav-text">常见名词解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包流程"><span class="nav-number">4.2.</span> <span class="nav-text">打包流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简化流程"><span class="nav-number">4.2.1.</span> <span class="nav-text">简化流程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码分析"><span class="nav-number">5.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心库-tapable"><span class="nav-number">5.1.</span> <span class="nav-text">核心库 tapable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心对象-compiler"><span class="nav-number">5.2.</span> <span class="nav-text">核心对象 compiler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心对象-compilation"><span class="nav-number">5.3.</span> <span class="nav-text">核心对象 compilation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包模板"><span class="nav-number">5.4.</span> <span class="nav-text">打包模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#plugin-实现机制"><span class="nav-number">5.5.</span> <span class="nav-text">plugin 实现机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#作用原理"><span class="nav-number">5.5.1.</span> <span class="nav-text">作用原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#plugin分析"><span class="nav-number">5.5.2.</span> <span class="nav-text">plugin分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编写plugin"><span class="nav-number">5.5.3.</span> <span class="nav-text">编写plugin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自己来写一个简易版本的webpack打包器"><span class="nav-number">6.</span> <span class="nav-text">自己来写一个简易版本的webpack打包器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最简易的webpack"><span class="nav-number">6.1.</span> <span class="nav-text">最简易的webpack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加入-require-处理"><span class="nav-number">6.2.</span> <span class="nav-text">加入 require 处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码篇提问"><span class="nav-number">7.</span> <span class="nav-text">源码篇提问</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

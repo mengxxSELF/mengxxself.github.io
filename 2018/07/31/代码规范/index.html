@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="coding,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目组内有一套统一的代码规范非常有利与项目维护">
+<meta name="keywords" content="coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码规范">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/代码规范/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="项目组内有一套统一的代码规范非常有利与项目维护">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/31/1659024e86dcdac4?w=1354&h=544&f=png&s=43243">
+<meta property="og:updated_time" content="2018-08-31T13:22:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码规范">
+<meta name="twitter:description" content="项目组内有一套统一的代码规范非常有利与项目维护">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/8/31/1659024e86dcdac4?w=1354&h=544&f=png&s=43243">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/31/代码规范/">
+
+
+
+
+
+  <title>代码规范 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/代码规范/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">代码规范</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T17:47:16+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index">
+                    <span itemprop="name">coding</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/8/31/1659024e86dcdac4?w=1354&amp;h=544&amp;f=png&amp;s=43243" alt="eslint"></p>
+<blockquote>
+<p>项目组内有一套统一的代码规范非常有利与项目维护</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="个人vscode配置"><a href="#个人vscode配置" class="headerlink" title="个人vscode配置"></a>个人vscode配置</h1><ul>
+<li><p>在vscode中安装 eslint 插件</p>
+</li>
+<li><p>code - 首选项-设置置</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"eslint.autoFixOnSave"</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>这样vscode可以在保存 （command+s）的时候自动修正代码规范</p>
+<p>这里列出几个常用的配置</p>
+<h1 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h1><ul>
+<li><a href="https://eslint.org/docs/rules/quotes" target="_blank" rel="noopener">quotes</a></li>
+</ul>
+<p>引号类型： 单引号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'hello there'</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://eslint.org/docs/rules/no-unused-lets" target="_blank" rel="noopener">no-unused-lets</a></li>
+</ul>
+<p>不能有声明后未被使用的变量或参数</p>
+<ul>
+<li>同一模块有多个导入时一次性写完</li>
+</ul>
+<p><a href="https://eslint.org/docs/rules/no-duplicate-imports" target="_blank" rel="noopener">no-duplicate-imports</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; myFunc1 &#125; <span class="keyword">from</span> <span class="string">'module'</span></span><br><span class="line"><span class="keyword">import</span> &#123; myFunc2 &#125; <span class="keyword">from</span> <span class="string">'module'</span>          <span class="comment">// ✗ avoid</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; myFunc1, myFunc2 &#125; <span class="keyword">from</span> <span class="string">'module'</span> <span class="comment">// ✓ ok</span></span><br></pre></td></tr></table></figure>
+<h1 id="默认配置项"><a href="#默认配置项" class="headerlink" title="默认配置项"></a>默认配置项</h1><p>项目中eslintrc文件中有配置项</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extends: standard</span><br></pre></td></tr></table></figure>
+<p>表示已经使用了 <a href="https://github.com/standard/eslint-config-standard" target="_blank" rel="noopener">eslint-config-standard</a> 这个中配置的规则</p>
+<ul>
+<li>使用两个空格进行缩进</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span> (<span class="params">name</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'hi'</span>, name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>关键字后面加空格</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (condition) &#123; ... &#125;   <span class="comment">// ✓ ok</span></span><br><span class="line"><span class="keyword">if</span>(condition) &#123; ... &#125;    <span class="comment">// ✗ avoid</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数声明时括号与函数名间加空格</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span> (<span class="params">arg</span>) </span>&#123; ... &#125;   <span class="comment">// ✓ ok</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params">arg</span>) </span>&#123; ... &#125;    <span class="comment">// ✗ avoid</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>始终使用 === 替代 ==</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (name === <span class="string">'John'</span>)   <span class="comment">// ✓ ok</span></span><br><span class="line"><span class="keyword">if</span> (name == <span class="string">'John'</span>)    <span class="comment">// ✗ avoid</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>字符串拼接操作符 (Infix operators) 之间要留空格</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✓ ok</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="number">2</span></span><br><span class="line"><span class="keyword">let</span> message = <span class="string">'hello, '</span> + name + <span class="string">'!'</span></span><br><span class="line"><span class="keyword">let</span> msg = <span class="string">`hello, <span class="subst">$&#123;name&#125;</span>!`</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>逗号后面加空格</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ✓ ok</span></span><br><span class="line"><span class="keyword">let</span> list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">greet</span> (<span class="params">name, options</span>) </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>不允许有连续多行空行</p>
+</li>
+<li><p>每个 let 关键字单独声明一个变量</p>
+</li>
+<li><p>始终将逗号置于行末</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'foo'</span></span><br><span class="line">  ,<span class="attr">bar</span>: <span class="string">'bar'</span>   <span class="comment">// ✗ avoid</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  foo: <span class="string">'foo'</span>,</span><br><span class="line">  bar: <span class="string">'bar'</span>   <span class="comment">// ✓ ok</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>除非key包含 - 之类的特殊符号，否则一律不添加单引号</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">  <span class="string">'foo'</span>: <span class="string">'foo'</span>,   <span class="comment">// ✗ avoid</span></span><br><span class="line">  bar: <span class="string">'bar'</span>,    <span class="comment">// ✓ ok</span></span><br><span class="line">  <span class="string">'key-2'</span>: <span class="number">2</span>  <span class="comment">// ✓ ok</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>键值对当中冒号与值之间要留空白</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="string">'key'</span> : <span class="string">'value'</span> &#125;    <span class="comment">// ✗ avoid</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="string">'key'</span> :<span class="string">'value'</span> &#125;     <span class="comment">// ✗ avoid</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="string">'key'</span>:<span class="string">'value'</span> &#125;      <span class="comment">// ✗ avoid</span></span><br><span class="line"><span class="keyword">let</span> obj = &#123; <span class="string">'key'</span>: <span class="string">'value'</span> &#125;     <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不要定义冗余的函数参数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">a, b, a</span>) </span>&#123;  <span class="comment">// ✗ avoid</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span> (<span class="params">a, b, c</span>) </span>&#123;  <span class="comment">// ✓ ok</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>避免不必要的布尔转换</p>
+</li>
+<li><p>对象属性换行时注意统一代码风格</p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  name: <span class="string">'Jane Doe'</span>, <span class="attr">age</span>: <span class="number">30</span>,</span><br><span class="line">  username: <span class="string">'jdoe86'</span>            <span class="comment">// ✗ avoid</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user = &#123; <span class="attr">name</span>: <span class="string">'Jane Doe'</span>, <span class="attr">age</span>: <span class="number">30</span>, <span class="attr">username</span>: <span class="string">'jdoe86'</span> &#125;    <span class="comment">// ✓ ok</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> user = &#123;</span><br><span class="line">  name: <span class="string">'Jane Doe'</span>,</span><br><span class="line">  age: <span class="number">30</span>,</span><br><span class="line">  username: <span class="string">'jdoe86'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码块中避免多余留白</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (user) &#123;</span><br><span class="line">                            <span class="comment">// ✗ avoid</span></span><br><span class="line">  <span class="keyword">const</span> name = getName()</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (user) &#123;</span><br><span class="line">  <span class="keyword">const</span> name = getName()    <span class="comment">// ✓ ok</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注释首尾留空格</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//comment           // ✗ avoid</span></span><br><span class="line"><span class="comment">// comment          // ✓ ok</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*comment*/</span>         <span class="comment">// ✗ avoid</span></span><br><span class="line"><span class="comment">/* comment */</span>       <span class="comment">// ✓ ok</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>检查 NaN 的正确姿势是使用 isNaN()</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (price === <span class="literal">NaN</span>) &#123; &#125;      <span class="comment">// ✗ avoid</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">isNaN</span>(price)) &#123; &#125;       <span class="comment">// ✓ ok</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>不要使用分号</p>
+</li>
+<li><p>不建议使用var</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/coding/" rel="tag"># coding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/18/认识typescript/" rel="next" title="认识typescript">
+                <i class="fa fa-chevron-left"></i> 认识typescript
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/31/每日一练第一期/" rel="prev" title="每日一练第一期">
+                每日一练第一期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#个人vscode配置"><span class="nav-number">1.</span> <span class="nav-text">个人vscode配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rules"><span class="nav-number">2.</span> <span class="nav-text">rules</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认配置项"><span class="nav-number">3.</span> <span class="nav-text">默认配置项</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

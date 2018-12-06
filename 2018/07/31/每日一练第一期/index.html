@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="练习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="08-03 – flex">
+<meta name="keywords" content="练习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一练第一期">
+<meta property="og:url" content="http://yoursite.com/2018/07/31/每日一练第一期/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="08-03 – flex">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/30/1658a9d289c1e11b?w=1210&h=508&f=png&s=31924">
+<meta property="og:updated_time" content="2018-08-30T11:42:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一练第一期">
+<meta name="twitter:description" content="08-03 – flex">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/8/30/1658a9d289c1e11b?w=1210&h=508&f=png&s=31924">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/31/每日一练第一期/">
+
+
+
+
+
+  <title>每日一练第一期 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/31/每日一练第一期/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每日一练第一期</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-31T19:44:16+08:00">
+                2018-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/练习/" itemprop="url" rel="index">
+                    <span itemprop="name">练习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/8/30/1658a9d289c1e11b?w=1210&amp;h=508&amp;f=png&amp;s=31924" alt="Test"></p>
+<blockquote>
+<p>08-03 – flex </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Q-flex-布局和传统布局的不同"><a href="#Q-flex-布局和传统布局的不同" class="headerlink" title="Q: flex 布局和传统布局的不同"></a>Q: flex 布局和传统布局的不同</h2><p>传统布局，基于盒模型，依赖 display属性 、position属性 、float属性，而FLEX用来为盒状模型提供最大的灵活性,不强制要求子元素的大小,任何一个容器都可以指定为 Flex 布局,可以简便、完整、响应式地实现各种页面布局。</p>
+<h2 id="Q-如何比较两个颜色的差值"><a href="#Q-如何比较两个颜色的差值" class="headerlink" title="Q: 如何比较两个颜色的差值"></a>Q: 如何比较两个颜色的差值</h2><h3 id="个人思路"><a href="#个人思路" class="headerlink" title="个人思路"></a>个人思路</h3><p>利用第三方插件 nodejs-color-model 将格式为十六进制需要转化为rgba格式，然后R G B 三个颜色通道的数值各自做减法</p>
+<ul>
+<li>第三方库直接计算差值</li>
+</ul>
+<p>nodejs-color-difference</p>
+<h3 id="answer"><a href="#answer" class="headerlink" title="answer"></a>answer</h3><p>首先将颜色拆分成r/g/b三个值，如果是字符串的颜色如#aabbff或者rgb(255,128,100)可以用正则表达式取出对应的r/g/b值。对于16进制字符串，可以使用parseInt(‘0xaa’)转10进制整数。</p>
+<p>然后对于两个颜色，可以使用距离</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sqrt( (r1-r2) *(r1-r2) +(g1-g2)*(g1-g2)+(b1-b2)*(b1-b2) )</span><br></pre></td></tr></table></figure>
+<p>进行比较， 距离近则相似。 当然可以用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.hypot( r1-r2, g1-t2, b1-b2)</span><br></pre></td></tr></table></figure>
+<p>来简化上述运算</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.hypot() <span class="comment">// 函数返回它的所有参数的平方和的平方根</span></span><br></pre></td></tr></table></figure>
+<h2 id="Q-单页面应用"><a href="#Q-单页面应用" class="headerlink" title="Q: 单页面应用"></a>Q: 单页面应用</h2><p>一个单页面应用，有6张页面，F、E、A、B、C、D。 页面ABCD构成了一个冗长的用户验证过程。目前A、B、C对应用户验证过程的第1步，第2步，第3步。 页面F是首页，E是某张业务相关页面。用户到达页面E后，系统发现用户没有认证，触发验证流程，到达页面A，然后开始A-&gt;B-&gt;C-&gt;D流程。 页面D是验证结果页面（验证成功页面）。 请问，如果到达页面D后，如何让用户点击返回可以返回页面F，而忽略中间流程（注：用户可能根本没有到达过F，比如微信分享直接进入了E</p>
+<p>补充下： 场景是上述场景，最好能做到到达页面D后，浏览器自然返回是F，再按返回，单页面系统退出；</p>
+<p>另外请思考下各个流程如何实现流畅切换，不会有中间闪烁的页面</p>
+<h3 id="个人思路-1"><a href="#个人思路-1" class="headerlink" title="个人思路"></a>个人思路</h3><p>这种单页面应用在react项目中非常常见也很容易处理，直接变更页面哈希值就可以实现页面回退并且用户体验非常好。</p>
+<p>如果不是框架的话，又不确定刘浏览器中是否有首页历史记录，那只想到了页面重新刷新了。</p>
+<p>而且两种方式都需要注意的是，在返回到首页的时候，已经完成了用户登录行为，所以要保存用户状态，可以考虑jwt来处理鉴权</p>
+<h2 id="Q-算法"><a href="#Q-算法" class="headerlink" title="Q: 算法"></a>Q: 算法</h2><p>一个无序正负项 数组，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3, -6, 123, -945, -231, 112]</span><br></pre></td></tr></table></figure>
+<p>找出其中的最大的连续子序列</p>
+<p>有如下乱序数组 A1, A2, A3, A4,……..An, 求 i, j (1&lt;= i &lt;= j&lt;= n), 使得Ai +  …. + Aj 和最大, 输出i j</p>
+<h3 id="answer-1"><a href="#answer-1" class="headerlink" title="answer"></a>answer</h3><p>1）最简单也最暴力的解法：首先列出 所有的子序列，然后找出其中和最大的 即可；<br>实现思路：一个 记录当前最大值的变量maxSum；一个 子序列开始和结束的游标 变量；一个 当前子序列的和 的暂存变量，我们称之为 currentSum 或者 tmpSum（下文中 使用currentSum）<br>找到所有的 子序列 我们可以通过两层循环的方式来解决<br>第一层循环 i 从 0~ length-1;<br>第二层循环 j 从 i ~ length - 1;<br>这样的循环里 就可以找到所有的子序列了<br>下一步 我们是要计算出所有子序列的和<br>最简单的办法 就是 第三层循环从 i ~ j 累加求出和 然后求出来的每个和  和 maxSum 去比较，如果比maxSum 大 就替换</p>
+<p>伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maxSum = maxSum &lt; currentSum ? currentSum : maxSum;</span><br></pre></td></tr></table></figure>
+<p>三层循环结束后 maxSum就是我们要 求的解<br>return maxSum即可<br>这个算法的时间复杂度是O(n^3);</p>
+<p>2）简化解法：我们在第二层循环中，我们已经知道 当前的 i/j之前的方法是在第三层的循环中 计算 i ~ j 的和<br>现在 我们在第二层中 在进入第二层之前 我们重置一下currentSum<br>第一次循环 是 i ~ i 当前我们就把 i 的值 记录到 currentSum去跟 maxSum 对比 然后 maxSum = maxSum &lt; currentSum ? currentSum : maxSum;<br>第二次循环 是 i ~ i + 1 我们就把 当前的 i+1 累加到currentSum 这时候的 currentSum就是 i ~ i+1 的值，再去跟maxSum去比 然后 maxSum = maxSum &lt; currentSum ? currentSum : maxSum;<br>以此类推<br>第二层的循环中 就可以 计算出 以当前 i 开头的子序列中 最大的子序列是多少<br>现在我们看回 到 第一层循环 i 的取值 是从 0 ~ length-1 那么我们是不是 可以找到 i 从 0 ~ length-1 所有的子序列中和最大的</p>
+<p>伪代码思路：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">第一层 i (0 ~ length-1)</span><br><span class="line">  currentSum 清零</span><br><span class="line">    第二层 j(i ~ length-1)</span><br><span class="line">        currentSum 累加</span><br><span class="line">        maxSum = maxSum &lt; currentSum ? currentSum : maxSum;</span><br><span class="line">return maxSum;</span><br></pre></td></tr></table></figure>
+<p>算法的时间复杂度是 O(n^2)</p>
+<p>3）demo数组：[-2, 1, -3, 4, -1, 2 , 1, -5, 4]</p>
+<p>首先 我们可以简单的简化一下 这个数组把相邻的同 正负的数字合起来，因为同符号的连续数 一定会同时存在在最大子序列里<br>比如 [-1, -2, -3, 1, 2, 13] 那跟 [-6, 16] 是没有区别的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[-2, 1, -3, 4, -1, 2, 1, -5, 4] ==&gt; [-2, 1, -3, 4, -1, 3, -5, 4]</span><br></pre></td></tr></table></figure>
+<p>然后 我们从头开始看 -2 这是第一个元素  那么 我们认为 当前的 最大子序列和 就是 -2<br>然后 发现了一个正数 1 那我们可以确定 -2 一定不包含在 我们的最大子序列中<br>也就是说 数组开头 如果是负数 可以忽略过去</p>
+<p>现在 我们的数组 变成了 [1, -3, 4, -1, 3, -5, 4] 同理 结尾的如果是 负数 也不需要考虑</p>
+<p>现在我们的数组 变成了 [1, -3, 4, -1, 3, -5, 4]</p>
+<p>我们继续，现在 第一个元素是 1 最大和 是1 然后下一个数是 -3<br>那么 -3 对 1 这个数 起到了阻断作用 也就是说 -3 把 前边所有正数 积累的能量都磨平了 甚至还变成了一个负数 那么 -3 我们称之为 一个阻断</p>
+<p>当前的 最大和 还是 1 现在 我们到了 4 那么现在的最大值 就是4<br>我们继续向下看</p>
+<p>下个数字是 -1 之前最大的和是 4 加起来之后是 3 影响并不大 我们继续带着他 向后看</p>
+<p>下一个 是个正数 3 也就是 4 -1 3 这样的情况</p>
+<p>我们是不是可以认为 这个 -1 虽然降低了 和 但是 他连接了左右的正数 让我们当前的最大值 变成了 6 更新最大值 继续看</p>
+<p>下一个是-5 同理 之前的 6+ -5 和 还是1 也没有阻断 我们去看看 后边 有没有一个大数 拯救我 后边 一个数 是 4<br>加上 我们刚才记录的 1 和是5 最后还是没有挑战成功 所以 最大的和 还是之前的 6</p>
+<p>公式：</p>
+<p>nums是我们的源数组 nums[i] 就是我们的当前元素 currentMax[i] 记录 我们以 i 结尾的子序列里 最大的一个子序列 那么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">currentMax[i] = max(currentMax[i - 1] + nums[i], nums[i])</span><br></pre></td></tr></table></figure>
+<p>这个公式被称之为 状态转移公式 我们的这种解法 称之为 动态规划解法 简称：PD</p>
+<p>然后我们去遍历 currentMax 这个数组 里边的最大值 就是我们要找的 最大值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var maxSubArray = function(nums) &#123;</span><br><span class="line">    // 初始化源数组，初始化An为结束的最大值</span><br><span class="line">    let A = nums;</span><br><span class="line">    let dp = [];</span><br><span class="line">    let maxSum = A[0];</span><br><span class="line">    dp[0] = A[0];</span><br><span class="line">    for(let i = 1; i &lt; A.length; i++) &#123;</span><br><span class="line">        //状态转移公式</span><br><span class="line">        dp[i] = max(A[i], dp[i-1] + A[i])</span><br><span class="line">        maxSum = dp[i] &gt; maxSum ? dp[i] : maxSum;</span><br><span class="line">    &#125;</span><br><span class="line">    return maxSum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function max(a, b) &#123;</span><br><span class="line">    return a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="文章导读"><a href="#文章导读" class="headerlink" title="文章导读"></a>文章导读</h3><ul>
+<li><a href="http://blog.cgsdream.org/2015/11/11/recursion-algorithm-analysis/" target="_blank" rel="noopener">一道递归算法题</a></li>
+</ul>
+<h2 id="Q-如何处理函数节流与防抖"><a href="#Q-如何处理函数节流与防抖" class="headerlink" title="Q: 如何处理函数节流与防抖"></a>Q: 如何处理函数节流与防抖</h2><p>函数节流： 指定时间间隔触发一次任务</p>
+<p>函数防抖： 多次任务触发，但是只有任务触发的间隔大于某一个时间段才去执行此任务</p>
+<h3 id="个人思路-2"><a href="#个人思路-2" class="headerlink" title="个人思路"></a>个人思路</h3><p>处理节流： 全局变量flag 当符合条件变更flag 值为TRUE 开始执行任务 任务执行完毕 则flag 为false</p>
+<p>并且在下次任务过来的时候 去判断flag  如果flag 为TRUE了 则return掉 不去执行之后的逻辑</p>
+<p>处理防抖：全局时间点time 当第一次任务</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/练习/" rel="tag"># 练习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/31/代码规范/" rel="next" title="代码规范">
+                <i class="fa fa-chevron-left"></i> 代码规范
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/06/每日一练第二期/" rel="prev" title="每日一练第二期">
+                每日一练第二期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-flex-布局和传统布局的不同"><span class="nav-number">1.</span> <span class="nav-text">Q: flex 布局和传统布局的不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-如何比较两个颜色的差值"><span class="nav-number">2.</span> <span class="nav-text">Q: 如何比较两个颜色的差值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人思路"><span class="nav-number">2.1.</span> <span class="nav-text">个人思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#answer"><span class="nav-number">2.2.</span> <span class="nav-text">answer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-单页面应用"><span class="nav-number">3.</span> <span class="nav-text">Q: 单页面应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人思路-1"><span class="nav-number">3.1.</span> <span class="nav-text">个人思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-算法"><span class="nav-number">4.</span> <span class="nav-text">Q: 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#answer-1"><span class="nav-number">4.1.</span> <span class="nav-text">answer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章导读"><span class="nav-number">4.2.</span> <span class="nav-text">文章导读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-如何处理函数节流与防抖"><span class="nav-number">5.</span> <span class="nav-text">Q: 如何处理函数节流与防抖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人思路-2"><span class="nav-number">5.1.</span> <span class="nav-text">个人思路</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

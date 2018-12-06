@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="webpack,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="webpack 配置 – 监听文件变化 开启自动刷新 webpack’s Watch Mode配置 –watch 开启观察模式 添加一个用于启动 webpack 的观察模式的 npm script 1&quot;watch&quot;: &quot;webpack --watch&quot;, 当使用此命令 会监听到文件变动 webpack会自动重新打包编译文件重新生成bundle文件">
+<meta name="keywords" content="webpack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack-2">
+<meta property="og:url" content="http://yoursite.com/2017/09/02/webpack-2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="webpack 配置 – 监听文件变化 开启自动刷新 webpack’s Watch Mode配置 –watch 开启观察模式 添加一个用于启动 webpack 的观察模式的 npm script 1&quot;watch&quot;: &quot;webpack --watch&quot;, 当使用此命令 会监听到文件变动 webpack会自动重新打包编译文件重新生成bundle文件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/webpack/webpack-watch.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack/webpack-refresh.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack/iframe.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack/iframe2.png">
+<meta property="og:image" content="http://yoursite.com/img/webpack/dev-hash.png">
+<meta property="og:updated_time" content="2017-12-05T08:38:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webpack-2">
+<meta name="twitter:description" content="webpack 配置 – 监听文件变化 开启自动刷新 webpack’s Watch Mode配置 –watch 开启观察模式 添加一个用于启动 webpack 的观察模式的 npm script 1&quot;watch&quot;: &quot;webpack --watch&quot;, 当使用此命令 会监听到文件变动 webpack会自动重新打包编译文件重新生成bundle文件">
+<meta name="twitter:image" content="http://yoursite.com/img/webpack/webpack-watch.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/02/webpack-2/">
+
+
+
+
+
+  <title>webpack-2 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/02/webpack-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webpack-2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T12:23:51+08:00">
+                2017-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>webpack 配置 – 监听文件变化 开启自动刷新</p>
+<h3 id="webpack’s-Watch-Mode"><a href="#webpack’s-Watch-Mode" class="headerlink" title="webpack’s Watch Mode"></a>webpack’s Watch Mode</h3><p>配置 –watch 开启观察模式</p>
+<p>添加一个用于启动 webpack 的观察模式的 npm script</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"watch"</span>: <span class="string">"webpack --watch"</span>,</span><br></pre></td></tr></table></figure>
+<p>当使用此命令 会监听到文件变动 webpack会自动重新打包编译文件重新生成bundle文件</p>
+<a id="more"></a>
+<p><img src="/img/webpack/webpack-watch.png" alt="watch"></p>
+<p>当文件有变动的时候 会自动产生新的bundle文件</p>
+<p><img src="/img/webpack/webpack-refresh.png" alt="watch"></p>
+<p>但是唯一的缺陷是无法刷新浏览器 因此页面的刷新还需要用户手动刷新</p>
+<h3 id="webpack-dev-server"><a href="#webpack-dev-server" class="headerlink" title="webpack-dev-server"></a>webpack-dev-server</h3><p>webpack-dev-server 提供了一个简单的 web 服务器，并且能够实时重新加载页面</p>
+<p>webpack-dev-server主要是启动了一个使用express的Http服务器。它的作用主要是用来伺服资源文件</p>
+<p>此外这个Http服务器和client使用了websocket通讯协议，原始文件作出改动后，webpack-dev-server会实时的编译，但是最后的编译的文件并没有输出到目标文件夹</p>
+<p>你启动webpack-dev-server后，你在目标文件夹中是看不到编译后的文件的,实时编译后的文件都保存到了内存当中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  contentBase: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  compress: <span class="literal">true</span>,</span><br><span class="line">  port: <span class="number">9000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上配置表示在 localhost:9090 下建立服务，将 dist 目录下的文件作为可访问文件。</p>
+<h4 id="通过-通过CLI选项-来配置-webapck-dev-server"><a href="#通过-通过CLI选项-来配置-webapck-dev-server" class="headerlink" title="通过 通过CLI选项 来配置 webapck-dev-server"></a>通过 通过CLI选项 来配置 webapck-dev-server</h4><p>也就是在命令行启动方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack-dev-server --hot --inline --open</span><br></pre></td></tr></table></figure>
+<p>那么webapck.config.js中配置如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  contentBase: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  compress: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>–open</li>
+</ul>
+<p>表示自动开启一个浏览器去加载页面</p>
+<h4 id="直接在-webapck-config-js-中配合参数"><a href="#直接在-webapck-config-js-中配合参数" class="headerlink" title="直接在 webapck.config.js 中配合参数"></a>直接在 webapck.config.js 中配合参数</h4><p>命令行中配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">webpack-dev-server --open</span><br></pre></td></tr></table></figure>
+<p>那么webapck.config.js中配置如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">devServer: &#123;</span><br><span class="line">  contentBase: path.join(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">  inline: <span class="literal">true</span>,</span><br><span class="line">  hot:<span class="literal">true</span>,</span><br><span class="line">  compress: <span class="literal">true</span></span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">  <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./index.html'</span>&#125;),</span><br><span class="line">  <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>注意plugin中这里添加HMR插件</p>
+<h4 id="contentBase"><a href="#contentBase" class="headerlink" title="contentBase"></a>contentBase</h4><p>告诉服务器从哪里提供内容。只有在你想要提供静态文件时才需要 也就是本地服务器所加载的页面所在的目录</p>
+<p><strong> devServer.publicPath 将用于确定应该从哪里提供 bundle，并且此选项优先 </strong></p>
+<p>默认情况下，将使用当前目录(所谓当前的目录就是在哪里运行webpack-dev-server这个命令的目录)作为提供内容的目录</p>
+<p>但是你可以修改为其他目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contentBase: path.join(__dirname, <span class="string">'public'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="compress"><a href="#compress" class="headerlink" title="compress"></a>compress</h4><p>表示一切服务都启用gzip 压缩</p>
+<h4 id="port"><a href="#port" class="headerlink" title="port"></a>port</h4><p>默认监听端口，如果省略，默认为”8080“</p>
+<h4 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h4><p>设置为true，当源文件改变时会自动刷新页面</p>
+<h4 id="proxy"><a href="#proxy" class="headerlink" title="proxy"></a>proxy</h4><p>属性值为 Object</p>
+<blockquote>
+<p>如果你有单独的后端开发服务器 API，并且希望在同域名下发送 API 请求 ，那么代理某些 URL 会很有用。</p>
+</blockquote>
+<p>比如当前项目 koa搭建 运行端口为 localhost:3000</p>
+<p>然后你的route 有一个接口</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">router.get(<span class="string">'/api/try'</span>, <span class="function"><span class="keyword">function</span> * (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.body = &#123;</span><br><span class="line">    code: <span class="number">9999999999999999999</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>但是前端用webpack启动 打开的端口是 9090  那么如果想通过 /api/try 接口接受信息 就可以配置 proxy</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy: &#123;</span><br><span class="line">  <span class="string">"/api"</span>: <span class="string">"http://localhost:3000"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样如果你发的请求是 /api/xxx 可以被<a href="http://localhost:3000/api/xxx" target="_blank" rel="noopener">http://localhost:3000/api/xxx</a> 接口捕获到</p>
+<p>所以如果你的服务和页面是相同的接口  就不用配置proxy的</p>
+<h4 id="hot"><a href="#hot" class="headerlink" title="hot"></a>hot</h4><p>表示重新加载改变的部分，如果HRM失败则刷新页面</p>
+<ul>
+<li>关于hot 以及 inline 参数</li>
+</ul>
+<p>‘inline’选项会为入口页面添加“热加载”功能，’hot’选项则开启“热替换HMR”功能，即尝试重新加载组件改变的部分（而不是重新加载整个页面）</p>
+<p>如果两个参数都传入，当资源改变时，webpack-dev-server将会先尝试HRM（即热替换），如果失败则重新加载整个入口页面。</p>
+<h3 id="自动刷新-Automatic-Refresh"><a href="#自动刷新-Automatic-Refresh" class="headerlink" title="自动刷新 Automatic Refresh"></a>自动刷新 Automatic Refresh</h3><h4 id="Iframe-mode"><a href="#Iframe-mode" class="headerlink" title="Iframe mode"></a>Iframe mode</h4><p>这种刷新处理方式 在网页中嵌入了一个 iframe ，将我们自己的应用注入到这个iframe当中去，因此每次你修改的文件后，都是这个iframe进行了reload当资源改变的时候会重新加载</p>
+<p>开启这种刷新方式只需要通过 <a href="http://localhost:8081/webpack-dev-server/index.html" target="_blank" rel="noopener">http://localhost:8081/webpack-dev-server/index.html</a> 来访问你的项目就可以</p>
+<p><img src="/img/webpack/iframe.png" alt="iframe"></p>
+<p>每次更改数据 页面将会开启自动刷新</p>
+<p><img src="/img/webpack/iframe2.png" alt="iframe"></p>
+<p>页面中被插入一个 iframe 并且引入 live.bundle.js 文件</p>
+<p>这个iframe页面会请求 live.bundle.js ,其中里面会新建一个 Iframe ，你的应用就被注入到了这个 Iframe 当中</p>
+<p>live.bundle.js 中含有 socket.io 的 client 代码，这样它就能和 webpack-dev-server 建立的 http server 进行 websocket 通讯了，并根据返回的信息完成相应的动作</p>
+<p><strong> iframe 引起页面自动刷新的机制为 </strong></p>
+<p>因为我们的访问此页面的时候加载了live.bundle.js，其具有websocket的client代码，所以当websocket-dev-server服务端代码发生变化的时候会通知到这个页面，这个页面只是需要重新刷新iframe中的页面就可以了</p>
+<h4 id="inline-mode"><a href="#inline-mode" class="headerlink" title="inline mode"></a>inline mode</h4><ul>
+<li><p>命令行中使用 –inline</p>
+</li>
+<li><p>webapck 配置文件中使用 设置inline: true [感觉webpackV1好像不支持这种处理方式]</p>
+</li>
+</ul>
+<p><strong> 每一个模式都是支持Hot Module Replacement的 </strong> 在HMR模式下，每一个文件都会被通知内容已经改变而不是重新加载整个页面。因此，在HMR执行的时候可以加载更新的模块，从而把他们注册到运行的应用里面。</p>
+<h3 id="模块热替换-Hot-Module-Replacement"><a href="#模块热替换-Hot-Module-Replacement" class="headerlink" title="模块热替换(Hot Module Replacement)"></a>模块热替换(Hot Module Replacement)</h3><p>HMR 用于替换、添加或删除模块，无需重新加载整个页面</p>
+<ul>
+<li>HMR 与 chunkhash 的问题</li>
+</ul>
+<p>项目中有在输出项配置 filename 为 chunkhash</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  filename: <span class="string">`[name]-[chunkhash:8].js`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样使用webpack 启动项目是可以的 但是如果是通过 webpack-dev-server –hot –inline 就会一直报错</p>
+<p><img src="/img/webpack/dev-hash.png" alt="server"></p>
+<p>原来是 热更新(HMR)不能和[chunkhash]同时使用</p>
+<p><a href="http://ask.csdn.net/questions/258212" target="_blank" rel="noopener">chunkhash问题</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">filename: <span class="string">`[name]-[hash].js`</span>,</span><br><span class="line">chunkFilename: <span class="string">`[name]-[hash].js`</span></span><br></pre></td></tr></table></figure>
+<h4 id="HMR-的工作原理"><a href="#HMR-的工作原理" class="headerlink" title="HMR 的工作原理"></a>HMR 的工作原理</h4><ul>
+<li>在应用程序中置换模块的步骤</li>
+</ul>
+<p>应用程序代码要求 HMR runtime 检查更新 -&gt; HMR 下载更新，然后通知应用程序代码 -&gt; 应用程序代码要求 HMR 进行处理去更新应用 -&gt;<br>HMR runtime（异步）应用更新</p>
+<ul>
+<li>在编译器中</li>
+</ul>
+<p>编译器(compiler)需要发出 “update”，以允许更新之前的版本到新的版本。”update” 由两部分组成：</p>
+<p>更新后的 manifest(JSON)<br>一个或多个更新后的 chunk (JavaScript)</p>
+<p>manifest 包括新的编译 hash 和所有的待更新 chunk 目录。每个更新 chunk 都含有对应于此 chunk 的全部更新模块（或一个 flag 用于表明此模块要被移除）的代码。</p>
+<p>编译器确保模块 ID 和 chunk ID 在这些构建之间保持一致。通常将这些 ID 存储在内存中（例如，使用 webpack-dev-server 时），但是也可能将它们存储在一个 JSON 文件中。</p>
+<p>*</p>
+<h4 id="启用-HMR"><a href="#启用-HMR" class="headerlink" title="启用 HMR"></a>启用 HMR</h4><p>两种方式可以开启 webpack 的HMR 功能 上文已经提到过</p>
+<ul>
+<li><p>命令行添加参数 –hot</p>
+</li>
+<li><p>直接在配置文件中修改并添加 HMR 配置plugin  </p>
+</li>
+</ul>
+<h5 id="HotModuleReplacementPlugin"><a href="#HotModuleReplacementPlugin" class="headerlink" title="HotModuleReplacementPlugin"></a>HotModuleReplacementPlugin</h5><p> 如果已经通过 HotModuleReplacementPlugin 启用了模块热替换(Hot Module Replacement)，则它的接口将被暴露在 module.hot 属性下面</p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p>1 <a href="https://segmentfault.com/q/1010000007434045?_ea=1345250" target="_blank" rel="noopener">webpack-dev-server问题</a></p>
+<p>2 <a href="https://www.cnblogs.com/vajoy/p/7000522.html" target="_blank" rel="noopener">webpack 插件拾趣 (1) —— webpack-dev-server</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/01/读书笔记-js高程/" rel="next" title="读书笔记-js高程">
+                <i class="fa fa-chevron-left"></i> 读书笔记-js高程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/04/关于告别/" rel="prev" title="告别">
+                告别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack’s-Watch-Mode"><span class="nav-number">1.</span> <span class="nav-text">webpack’s Watch Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webpack-dev-server"><span class="nav-number">2.</span> <span class="nav-text">webpack-dev-server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通过-通过CLI选项-来配置-webapck-dev-server"><span class="nav-number">2.1.</span> <span class="nav-text">通过 通过CLI选项 来配置 webapck-dev-server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直接在-webapck-config-js-中配合参数"><span class="nav-number">2.2.</span> <span class="nav-text">直接在 webapck.config.js 中配合参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#contentBase"><span class="nav-number">2.3.</span> <span class="nav-text">contentBase</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#compress"><span class="nav-number">2.4.</span> <span class="nav-text">compress</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#port"><span class="nav-number">2.5.</span> <span class="nav-text">port</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inline"><span class="nav-number">2.6.</span> <span class="nav-text">inline</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#proxy"><span class="nav-number">2.7.</span> <span class="nav-text">proxy</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hot"><span class="nav-number">2.8.</span> <span class="nav-text">hot</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动刷新-Automatic-Refresh"><span class="nav-number">3.</span> <span class="nav-text">自动刷新 Automatic Refresh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Iframe-mode"><span class="nav-number">3.1.</span> <span class="nav-text">Iframe mode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inline-mode"><span class="nav-number">3.2.</span> <span class="nav-text">inline mode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块热替换-Hot-Module-Replacement"><span class="nav-number">4.</span> <span class="nav-text">模块热替换(Hot Module Replacement)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HMR-的工作原理"><span class="nav-number">4.1.</span> <span class="nav-text">HMR 的工作原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启用-HMR"><span class="nav-number">4.2.</span> <span class="nav-text">启用 HMR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HotModuleReplacementPlugin"><span class="nav-number">4.2.1.</span> <span class="nav-text">HotModuleReplacementPlugin</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文章"><span class="nav-number">4.3.</span> <span class="nav-text">参考文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

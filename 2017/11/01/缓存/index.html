@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="优化,缓存,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="现在的大型网站，随便一个页面都是一两百个请求，每天 pv 都是亿级别，如果没有缓存，用户体验会急剧下降、同时服务器压力和网络带宽都面临严重的考验。  缓存和重用以前获取的资源的是优化网页性能很重要的一个方面。">
+<meta name="keywords" content="优化,缓存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存">
+<meta property="og:url" content="http://yoursite.com/2017/11/01/缓存/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="现在的大型网站，随便一个页面都是一两百个请求，每天 pv 都是亿级别，如果没有缓存，用户体验会急剧下降、同时服务器压力和网络带宽都面临严重的考验。  缓存和重用以前获取的资源的是优化网页性能很重要的一个方面。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/cache/agentServer.png">
+<meta property="og:image" content="http://yoursite.com/img/cache/cache1.png">
+<meta property="og:image" content="http://yoursite.com/img/cache/cache2.png">
+<meta property="og:image" content="http://yoursite.com/img/cache/cache-control.png">
+<meta property="og:image" content="http://yoursite.com/img/cache/cacheControl.png">
+<meta property="og:image" content="http://yoursite.com/img/cache/etag.png">
+<meta property="og:updated_time" content="2017-11-02T03:57:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="缓存">
+<meta name="twitter:description" content="现在的大型网站，随便一个页面都是一两百个请求，每天 pv 都是亿级别，如果没有缓存，用户体验会急剧下降、同时服务器压力和网络带宽都面临严重的考验。  缓存和重用以前获取的资源的是优化网页性能很重要的一个方面。">
+<meta name="twitter:image" content="http://yoursite.com/img/cache/agentServer.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/01/缓存/">
+
+
+
+
+
+  <title>缓存 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/缓存/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">缓存</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T19:02:22+08:00">
+                2017-11-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在的大型网站，随便一个页面都是一两百个请求，每天 pv 都是亿级别，如果没有缓存，用户体验会急剧下降、同时服务器压力和网络带宽都面临严重的考验。  缓存和重用以前获取的资源的是优化网页性能很重要的一个方面。</p>
+<a id="more"></a>
+<h2 id="缓存的优缺点"><a href="#缓存的优缺点" class="headerlink" title="缓存的优缺点"></a>缓存的优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>减少网络延迟，加快页面打开速度</li>
+</ul>
+<p>缓存比源服务器离客户端更近，因此，从缓存请求内容比从源服务器所用时间更少，缓存的使用能够明显加快页面打开速度，达到更好的体验。</p>
+<ul>
+<li>降低服务器的压力</li>
+</ul>
+<p>给网络资源设定有效期之后，用户可以重复使用本地的缓存，减少对源服务器的请求，间接降低服务器的压力。同时，搜索引擎的爬虫机器人也能根据过期机制降低爬取的频率，也能有效降低服务器的压力。</p>
+<ul>
+<li>减少网络带宽损耗</li>
+</ul>
+<p>无论对于网站运营者或者用户，带宽都代表着金钱,当Web缓存副本被使用时，只会产生极小的网络流量，可以有效的降低运营成本。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>缓存没有清理机制</li>
+</ul>
+<p>这些缓存的文件会永久性地保存在机器上，在特定的时间内，这些文件可能是帮了你大忙，但是时间一长，我们已经不再需要浏览之前的这些网页，这些文件就成了无效或者无用的文件，它们存储在用户硬盘中只会占用空间而没有任何用处，如果要缓存的东西非常多，那就会撑暴整个硬盘空间。</p>
+<ul>
+<li>给开发带来的困扰</li>
+</ul>
+<p>明明修改了样式文件、图片、视频或脚本，刷新页面或部署到站点之后看不到修改之后的效果。</p>
+<p>所以在产品开发的时候我们总是想办法避免缓存产生，而在产品发布之时又在想策略管理缓存提升网页的访问速度。</p>
+<h2 id="缓存分类"><a href="#缓存分类" class="headerlink" title="缓存分类"></a>缓存分类</h2><p>Web应用领域，Web缓存大致可以分为以下几种类型：</p>
+<h3 id="数据库数据缓存"><a href="#数据库数据缓存" class="headerlink" title="数据库数据缓存"></a>数据库数据缓存</h3><p>  Web应用，特别是社交网络服务类型的应用，往往关系比较复杂，数据库表繁多，如果频繁进行数据库查询，很容易导致数据库不堪重荷。为了提供查询的性能，会将查询后的数据放到内存中进行缓存，下次查询时，直接从内存缓存直接返回，提供响应效率。比如常用的缓存方案有memcached,redis等。  </p>
+<h3 id="服务器端缓存"><a href="#服务器端缓存" class="headerlink" title="服务器端缓存"></a>服务器端缓存</h3><h4 id="代理服务器缓存"><a href="#代理服务器缓存" class="headerlink" title="代理服务器缓存"></a>代理服务器缓存</h4><p> 代理服务器是浏览器和源服务器之间的中间服务器，浏览器先向这个中间服务器发起Web请求，经过处理后（比如权限验证，缓存匹配等），再将请求转发到源服务器。代理服务器缓存的运作原理跟浏览器的运作原理差不多，只是规模更大。可以把它理解为一个共享缓存，不只为一个用户服务，一般为大量用户提供服务，因此在减少相应时间和带宽使用方面很有效，同一个副本会被重用多次。常见代理服务器缓存解决方案有Squid,Nginx,Apache等。</p>
+<p> <img src="/img/cache/agentServer.png" alt="agent Server"></p>
+<h4 id="CDN缓存"><a href="#CDN缓存" class="headerlink" title="CDN缓存"></a>CDN缓存</h4><p>CDN（Content delivery networks）缓存，也叫网关缓存、反向代理缓存。CDN缓存一般是由网站管理员自己部署，为了让他们的网站更容易扩展并获得更好的性能。浏览器先向CDN网关发起Web请求，网关服务器后面对应着一台或多台负载均衡源服务器，会根据它们的负载请求，动态将请求转发到合适的源服务器上。虽然这种架构负载均衡源服务器之间的缓存没法共享，但却拥有更好的处扩展性。从浏览器角度来看，整个CDN就是一个源服务器，浏览器和服务器之间的缓存机制，在这种架构下同样适用。</p>
+<h3 id="浏览器端缓存"><a href="#浏览器端缓存" class="headerlink" title="浏览器端缓存"></a>浏览器端缓存</h3><p>浏览器缓存根据一套与服务器约定的规则进行工作，在同一个会话过程中会检查一次并确定缓存的副本足够新。如果你浏览过程中，比如前进或后退，访问到同一个图片，这些图片可以从浏览器缓存中调出而即时显现。</p>
+<h3 id="Web应用层缓存"><a href="#Web应用层缓存" class="headerlink" title="Web应用层缓存"></a>Web应用层缓存</h3><p>应用层缓存指的是从代码层面上，通过代码逻辑和缓存策略，实现对数据，页面，图片等资源的缓存，可以根据实际情况选择将数据存在文件系统或者内存中，减少数据库查询或者读写瓶颈，提高响应效率</p>
+<p>例如 本地存储和离线存储</p>
+<h2 id="什么是浏览器缓存"><a href="#什么是浏览器缓存" class="headerlink" title="什么是浏览器缓存"></a>什么是浏览器缓存</h2><blockquote>
+<p> Web缓存存在于服务器和客户端之间。Web缓存密切注视着服务器-客户端之间的通信，监控请求，并且把请求输出的内容（例如html页面、 图片和文件）另存一份；然后，如果下一个请求是相同的URL，则直接使用保存的副本，而不是再次请求源服务器。</p>
+</blockquote>
+<p>http缓存是<strong> 基于HTTP协议 </strong> 的浏览器文件级缓存机制。即针对文件的 <strong> 重复请求情况 </strong> 下，浏览器可以根据 <strong> 协议头 </strong> 判断从服务器端请求文件还是从本地读取文件</p>
+<p>HTTP协议基于请求响应模式，客户端向服务器发送一个请求，请求头包含请求的方法，URI，协议版本以及包含请求修饰符，<br>客户端信息和内容的类似 MIME的消息结果。 服务器则以一个状态行为作为响应，相应的内容包括消息协议的版本，成功或错误编码加上包含服务器信息，实体元信息以及可能的实体内容。</p>
+<p>当浏览器第一次请求某个URL时，顺利访问的话，服务器返回状态200的状态, 同时会返回给浏览器一些Headers集合，例如set-cookie,Last-Mondified,Etag等等</p>
+<h2 id="关于处理缓存的信息头关键字"><a href="#关于处理缓存的信息头关键字" class="headerlink" title="关于处理缓存的信息头关键字"></a>关于处理缓存的信息头关键字</h2><p>HTTP协议中关于缓存的信息头关键字包括Cache-Control(HTTP1.1)，Pragma(HTTP1.0)，last-Modified，Expires等。</p>
+<h3 id="缓存控制头-Cache-Control"><a href="#缓存控制头-Cache-Control" class="headerlink" title="缓存控制头 Cache-Control"></a>缓存控制头 Cache-Control</h3><p>Cache-Control 是最重要的规则。这个字段用于指定所有缓存机制在整个请求/响应链中必须服从的指令。这些指令指定用于阻止缓存对请求或响应造成不利干扰的行为。这些指令 通常覆盖默认缓存算法。缓存指令是单向的，即请求中存在一个指令并不意味着响应中将存在同一个指令。</p>
+<p>cache-control 定义是：Cache-Control = “Cache-Control” “:” cache-directive</p>
+<p>cache-directive 的取值请参加本文 – 名词解析 – 部分</p>
+<h3 id="过期头-Expires"><a href="#过期头-Expires" class="headerlink" title="过期头 (Expires)"></a>过期头 (Expires)</h3><p>指定资源在浏览器缓存中的过期时间 (需要在服务端设定)</p>
+<p>如果给文件加上关于过期时间(Expires)的header报文,这样浏览器就会先检查缓存中的文件，如果没有过期，就直接使用缓存中的文件,从而不会发送http请求</p>
+<h3 id="控制文件是否有修改-Last-Modified-E-Tag"><a href="#控制文件是否有修改-Last-Modified-E-Tag" class="headerlink" title="控制文件是否有修改 Last-Modified/E-Tag"></a>控制文件是否有修改 Last-Modified/E-Tag</h3><p>Last-Modified: 资源更新时间  Etag: 资源的状态唯一标识 一般选择哈希值</p>
+<p>Last-Modified PK  Etag</p>
+<p>你可能会觉得使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？</p>
+<p>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：</p>
+<ul>
+<li><p>(1) Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间</p>
+</li>
+<li><p>(2)如果某些文件会被定期生成，当有时内容并没有任何变化，但Last-Modified却改变了，导致文件没法使用缓存</p>
+</li>
+<li><p>(3)有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形</p>
+</li>
+</ul>
+<p>Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符，能够更加准确的控制缓存。</p>
+<p>Last-Modified与ETag是可以一起使用的，<strong> 服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，</strong> 最后才决定是否返回304。</p>
+<h3 id="浏览器缓存流程图"><a href="#浏览器缓存流程图" class="headerlink" title="浏览器缓存流程图"></a>浏览器缓存流程图</h3><p>首次请求</p>
+<p><img src="/img/cache/cache1.png" alt="cache"></p>
+<p>第二次访问页面的缓存流程</p>
+<p>1 判断expires，如果未过期，直接读取http缓存文件，不发http请求，否则进入下一步</p>
+<p>2 判断是否含有etag，有则带上if-none-match发送请求，未修改返回304，修改返回200，否则进入下一步</p>
+<p>3 判断是否含有last-modified，有则带上if-modified-since发送请求，无效返回200，有效返回304，否则直接向服务器请求</p>
+<p><img src="/img/cache/cache2.png" alt="cache"></p>
+<p>如果通过etag和last-modified判断，即使返回304有至少有一次http请求，只不过返回的是304的返回内容，而不是文件内容。所以合理设计实现expires参数可以减少较多的浏览器请求</p>
+<h2 id="名词解析"><a href="#名词解析" class="headerlink" title="名词解析"></a>名词解析</h2><h3 id="Pragma"><a href="#Pragma" class="headerlink" title="Pragma"></a>Pragma</h3><p>Pragma:设置页面是否缓存，为Pragma则缓存，no-cache则不缓存</p>
+<p>当该字段值为no-cache的时候，会知会客户端不要对该资源读缓存，即每次都得向服务器发一次请求才行</p>
+<p>在 http1.0 时代，给客户端设定缓存方式可通过两个字段Pragma和Expires来规范。虽然这两个字段早可抛弃，但http协议做了向下兼容，所以依然可以看到</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h3><p>响应报文中Expires其定义的是资源“失效时刻”</p>
+<p>这里的缓存时间是相对服务器上的时间而言的, 如果客户端上的时间跟服务器上的时间不一致（特别是用户修改了自己电脑的系统时间），那缓存时间可能就没啥意义了</p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h3><p>针对上述的“Expires时间是相对服务器而言，无法保证和客户端时间统一”的问题，http1.1新增了 Cache-Control 来定义缓存过期时间</p>
+<p>这三者的优先级从高到低分别是 Pragma -&gt; Cache-Control -&gt; Expires</p>
+<p><strong> 作为请求首部时 </strong> 其可选属性为</p>
+<p><img src="/img/cache/cache-control.png" alt="cache-control"></p>
+<p>Cache-Control: no-cache：这个很容易让人产生误解，使人误以为是响应不被缓存。</p>
+<p>实际上Cache-Control: no-cache是会被缓存的， 只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。</p>
+<p>Cache-Control: no-store：这个才是响应不被缓存的意思。</p>
+<p><strong> 作为响应首部时 </strong> 其可选属性</p>
+<p><img src="/img/cache/cacheControl.png" alt="cache-control"></p>
+<h3 id="Last-Modified"><a href="#Last-Modified" class="headerlink" title="Last-Modified"></a>Last-Modified</h3><p>标示这个响应资源的最后修改时间。web服务器在响应请求时，告诉浏览器资源的最后修改时间</p>
+<h3 id="If-Modified-Since"><a href="#If-Modified-Since" class="headerlink" title="If-Modified-Since"></a>If-Modified-Since</h3><p>If-Modified-Since：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Last-Modified声明，则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。</p>
+<p>web服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内），</p>
+<p>HTTP 200；若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache。</p>
+<p>Last-Modified/If-Modified-Since要配合Cache-Control使用</p>
+<h3 id="ETag"><a href="#ETag" class="headerlink" title="ETag"></a>ETag</h3><p>ETag 是HTTP1.1中才加入的一个属性，用来帮助服务器控制Web端的缓存验证。</p>
+<p><img src="/img/cache/etag.png" alt="ETag"></p>
+<p>它的原理是这样的，当浏览器请求服务器的某项资源(A)时, 服务器根据A算出一个哈希值(3f80f-1b6-3e1cb03b)并通过 ETag 返回给浏览器，浏览器把”3f80f-1b6-3e1cb03b” 和 A 同时缓存在本地，当下次再次向服务器请求A时，会通过类似 If-None-Match: “3f80f-1b6-3e1cb03b” 的请求头把ETag发送给服务器，服务器再次计算A的哈希值并和浏览器返回的值做比较，如果发现A发生了变化就把A返回给浏览器(200)，如果发现A没有变化就给浏览器返回一个304未修改。</p>
+<p>并未指定ETag是如何产生的 但是哈希是最好的选择方案</p>
+<h3 id="If-None-Match"><a href="#If-None-Match" class="headerlink" title="If-None-Match"></a>If-None-Match</h3><p>If-None-Match：当资源过期时（使用Cache-Control标识的max-age），发现资源具有Etage声明，则再次向web服务器请求时带上头If-None-Match （Etag的值）web服务器收到请求后发现有头If-None-Match 则与被请求资源的相应校验串进行比对，决定返回200或304。</p>
+<p>Etag/If-None-Match也要配合Cache-Control使用</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p>1 <a href="http://www.cnblogs.com/wangpenghui522/p/5498427.html" target="_blank" rel="noopener">浏览器缓存原理</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+            <a href="/tags/缓存/" rel="tag"># 缓存</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/一周计划3/" rel="next" title="一周计划3">
+                <i class="fa fa-chevron-left"></i> 一周计划3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/04/http基础篇/" rel="prev" title="http基础篇">
+                http基础篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存的优缺点"><span class="nav-number">1.</span> <span class="nav-text">缓存的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存分类"><span class="nav-number">2.</span> <span class="nav-text">缓存分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库数据缓存"><span class="nav-number">2.1.</span> <span class="nav-text">数据库数据缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端缓存"><span class="nav-number">2.2.</span> <span class="nav-text">服务器端缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代理服务器缓存"><span class="nav-number">2.2.1.</span> <span class="nav-text">代理服务器缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CDN缓存"><span class="nav-number">2.2.2.</span> <span class="nav-text">CDN缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器端缓存"><span class="nav-number">2.3.</span> <span class="nav-text">浏览器端缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web应用层缓存"><span class="nav-number">2.4.</span> <span class="nav-text">Web应用层缓存</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是浏览器缓存"><span class="nav-number">3.</span> <span class="nav-text">什么是浏览器缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于处理缓存的信息头关键字"><span class="nav-number">4.</span> <span class="nav-text">关于处理缓存的信息头关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存控制头-Cache-Control"><span class="nav-number">4.1.</span> <span class="nav-text">缓存控制头 Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过期头-Expires"><span class="nav-number">4.2.</span> <span class="nav-text">过期头 (Expires)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制文件是否有修改-Last-Modified-E-Tag"><span class="nav-number">4.3.</span> <span class="nav-text">控制文件是否有修改 Last-Modified/E-Tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器缓存流程图"><span class="nav-number">4.4.</span> <span class="nav-text">浏览器缓存流程图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#名词解析"><span class="nav-number">5.</span> <span class="nav-text">名词解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Pragma"><span class="nav-number">5.1.</span> <span class="nav-text">Pragma</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expires"><span class="nav-number">5.2.</span> <span class="nav-text">Expires</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control"><span class="nav-number">5.3.</span> <span class="nav-text">Cache-Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Last-Modified"><span class="nav-number">5.4.</span> <span class="nav-text">Last-Modified</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#If-Modified-Since"><span class="nav-number">5.5.</span> <span class="nav-text">If-Modified-Since</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ETag"><span class="nav-number">5.6.</span> <span class="nav-text">ETag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#If-None-Match"><span class="nav-number">5.7.</span> <span class="nav-text">If-None-Match</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

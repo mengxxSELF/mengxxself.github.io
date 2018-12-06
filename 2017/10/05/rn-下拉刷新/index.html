@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="PullToRefreshListView 提供了页面下拉刷新 上滑获取更多数据的功能 [GitHub 地址] (https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/) 其实提供了Android和iOS两种系统的刷新">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rn-下拉刷新">
+<meta property="og:url" content="http://yoursite.com/2017/10/05/rn-下拉刷新/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="PullToRefreshListView 提供了页面下拉刷新 上滑获取更多数据的功能 [GitHub 地址] (https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/) 其实提供了Android和iOS两种系统的刷新">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-10T11:50:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rn-下拉刷新">
+<meta name="twitter:description" content="PullToRefreshListView 提供了页面下拉刷新 上滑获取更多数据的功能 [GitHub 地址] (https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/) 其实提供了Android和iOS两种系统的刷新">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/05/rn-下拉刷新/">
+
+
+
+
+
+  <title>rn-下拉刷新 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/05/rn-下拉刷新/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rn-下拉刷新</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-05T14:45:16+08:00">
+                2017-10-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/第三方插件使用/" itemprop="url" rel="index">
+                    <span itemprop="name">第三方插件使用</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>PullToRefreshListView 提供了页面下拉刷新 上滑获取更多数据的功能</p>
+<p>[GitHub 地址] (<a href="https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/" target="_blank" rel="noopener">https://github.com/react-native-component/react-native-smart-pull-to-refresh-listview/</a>)</p>
+<p>其实提供了Android和iOS两种系统的刷新</p>
+<a id="more"></a>
+<p>如果你的项目只服务其中一种系统 可以只引入其中一个</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> AndroidPullToRefreshListView <span class="keyword">from</span> <span class="string">'./PullToRefreshListView-android'</span></span><br><span class="line"><span class="keyword">import</span> IOSPullToRefreshListView <span class="keyword">from</span> <span class="string">'./PullToRefreshListView-ios'</span></span><br></pre></td></tr></table></figure>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install react-native-smart-pull-to-refresh-listview --save</span><br></pre></td></tr></table></figure>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">PullToRefreshListView</span></span></span><br><span class="line"><span class="tag"> <span class="attr">viewType</span>=<span class="string">&#123;viewType&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">enableEmptySections</span>=<span class="string">&#123;true&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pagingEnabled</span>=<span class="string">&#123;false&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">contentContainerStyle</span>=<span class="string">&#123;styles.listView&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">dataSource</span>=<span class="string">&#123;state.dataSource&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">renderRow</span>=<span class="string">&#123;renderRow&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">renderHeader</span>=<span class="string">&#123;this._renderHeader&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">renderFooter</span>=<span class="string">&#123;this._renderFooter&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">onRefresh</span>=<span class="string">&#123;this._onRefresh&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">onLoadMore</span>=<span class="string">&#123;this._onLoadMore&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">autoLoadMore</span>=<span class="string">&#123;true&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pullUpDistance</span>=<span class="string">&#123;1&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pullUpStayDistance</span>=<span class="string">&#123;35&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pullDownDistance</span>=<span class="string">&#123;pullOkMargin&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pullDownStayDistance</span>=<span class="string">&#123;defaultTopIndicatorHeight&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">scrollRenderAheadDistance</span>=<span class="string">&#123;windowHeight&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">removeClippedSubviews</span>=<span class="string">&#123;true&#125;</span></span></span><br><span class="line"><span class="tag"> <span class="attr">pageSize</span>=<span class="string">&#123;20&#125;</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="属性解析"><a href="#属性解析" class="headerlink" title="属性解析"></a>属性解析</h4><p>1 viewType</p>
+<p>2 dataSource</p>
+<p>数据来源</p>
+<p>3  renderRow</p>
+<p>内置函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_renderRow = <span class="function">(<span class="params">rowData, sectionID, rowID</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">          &lt;View style=&#123;styles.thumbnail&#125;&gt;</span><br><span class="line">              &lt;View style=&#123;styles.textContainer&#125;&gt;</span><br><span class="line">                  &lt;Text&gt;&#123;rowData.text&#125;&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>View&gt;</span><br><span class="line">          &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">      )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br></pre></td></tr></table></figure>
+<p>这个函数是组件封装好的 默认接受三个参数 第一个参数是渲染的数据</p>
+<p>可以直接使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> renderRow = <span class="function">(<span class="params">rowData, _, index</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> shouldHidden ? <span class="literal">null</span> : <span class="xml"><span class="tag">&lt;<span class="name">ListRow</span> &#123;<span class="attr">...props</span>&#125; &#123;<span class="attr">...rowData</span>&#125; /&gt;</span></span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>4 renderheader</p>
+<p>下拉刷新时候展示的头部loading组件部分</p>
+<p>这个是一个函数  返回值是一个组件  此组件将作为loading组件展示在头部</p>
+<p>而关于下拉刷新的几个状态值  比如未下拉刷新 正在下拉  松手状态  刷新完毕状态 都可以获取到</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">_renderHeader = <span class="function">(<span class="params">viewState</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;pullState, pullDistancePercent&#125; = viewState</span><br><span class="line">  <span class="keyword">let</span> &#123;refresh_none, refresh_idle, will_refresh, refreshing&#125; = PullToRefreshListView.constants.viewState</span><br><span class="line">  pullDistancePercent = <span class="built_in">Math</span>.round(pullDistancePercent * <span class="number">100</span>)</span><br><span class="line">  <span class="keyword">switch</span>(pullState) &#123;</span><br><span class="line">    <span class="keyword">case</span>  refresh_none :</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">Text</span>&gt;</span> 请下拉用以刷新页面 <span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">    ......</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到几个状态值 全部保存在 PullToRefreshListView.constants.viewState 里面</p>
+<p>5 renderFooter</p>
+<p>同理 是在下拉获取更多的时候 在底部展示的组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">_renderFooter = <span class="function">(<span class="params">viewState</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> &#123;pullState, pullDistancePercent&#125; = viewState</span><br><span class="line">   <span class="keyword">let</span> &#123;load_more_none, load_more_idle, will_load_more, loading_more, loaded_all, &#125; = PullToRefreshListView.constants.viewState</span><br><span class="line">   ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>则关于上拉的各种状态也是在PullToRefreshListView.constants.viewState中</p>
+<p>6 autoLoadMore</p>
+<p>是否开启上拉获取更多数据功能 默认值FALSE</p>
+<p>7  关于处理下拉以及上滑的距离</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pullUpDistance=&#123;<span class="number">1</span>&#125;</span><br><span class="line">pullUpStayDistance=&#123;<span class="number">35</span>&#125;</span><br><span class="line">pullDownDistance=&#123;pullOkMargin&#125;</span><br><span class="line">pullDownStayDistance=&#123;defaultTopIndicatorHeight&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><p>1 onRefresh</p>
+<p>当下拉刷新的时候 触发此方法</p>
+<p>2 onLoadMore</p>
+<p>当上拉获取更多数据的时候 触发此方法</p>
+<p>other</p>
+<p>1 beginRefresh  相当于强制去执行一次下拉刷新</p>
+<p>2 endRefresh 终止下拉刷新</p>
+<p>3 endLoadMore 终止上拉获取更多数据</p>
+<p>当开始执行下拉刷新 获取数据的过程  此时展示头部loading组件部分  当数据获取完毕 需要使用以上方法关闭loading状态</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">this</span>._pullToRefreshListView.endRefresh()</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"> <span class="keyword">this</span>._pullToRefreshListView.endLoadMore(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p>如果不执行这个方法 加载状态会一直存在的</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/04/rn-swiper/" rel="next" title="rn-swiper">
+                <i class="fa fa-chevron-left"></i> rn-swiper
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/07/swiper-js/" rel="prev" title="swiper.js">
+                swiper.js <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">2.</span> <span class="nav-text">code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性解析"><span class="nav-number">3.</span> <span class="nav-text">属性解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">4.</span> <span class="nav-text">方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

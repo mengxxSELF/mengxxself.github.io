@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node,Linux,pm2,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="服务器以及其配置升级记录">
+<meta name="keywords" content="node,Linux,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器三大件的升级">
+<meta property="og:url" content="http://yoursite.com/2018/07/02/服务器三大件的升级/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="服务器以及其配置升级记录">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/3/1659f153e0de9a42?w=1400&h=664&f=png&s=106656">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/3/1645f2feb2211d80?w=709&h=356&f=png&s=87920">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/3/1645f31982228022?w=545&h=116&f=png&s=31351">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/3/1645fe8c8931a436?w=395&h=35&f=png&s=11406">
+<meta property="og:updated_time" content="2018-09-03T11:00:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="服务器三大件的升级">
+<meta name="twitter:description" content="服务器以及其配置升级记录">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/3/1659f153e0de9a42?w=1400&h=664&f=png&s=106656">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/02/服务器三大件的升级/">
+
+
+
+
+
+  <title>服务器三大件的升级 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/02/服务器三大件的升级/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">服务器三大件的升级</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-02T15:34:14+08:00">
+                2018-07-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/9/3/1659f153e0de9a42?w=1400&amp;h=664&amp;f=png&amp;s=106656" alt="level"></p>
+<blockquote>
+<p>服务器以及其配置升级记录</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="升级版本为"><a href="#升级版本为" class="headerlink" title="升级版本为"></a>升级版本为</h2><ul>
+<li><p>npm v5.6.0</p>
+</li>
+<li><p>node v8.11.2</p>
+</li>
+<li><p>cnpm v5.2.0</p>
+</li>
+<li><p>pm2 v2.10.2</p>
+</li>
+</ul>
+<h2 id="nvm-安装"><a href="#nvm-安装" class="headerlink" title="nvm 安装"></a>nvm 安装</h2><p><a href="https://www.jianshu.com/p/6249d1d24914" target="_blank" rel="noopener">nvm安装</a></p>
+<h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm i 8.11.2</span><br></pre></td></tr></table></figure>
+<p>以下三个升级请切换到root身份操作</p>
+<h2 id="升级npm"><a href="#升级npm" class="headerlink" title="升级npm"></a>升级npm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g npm@5.6.0</span><br></pre></td></tr></table></figure>
+<h2 id="升级cnpm"><a href="#升级cnpm" class="headerlink" title="升级cnpm"></a>升级cnpm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g cnpm@5.2.0</span><br></pre></td></tr></table></figure>
+<h2 id="升级pm2"><a href="#升级pm2" class="headerlink" title="升级pm2"></a>升级pm2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g pm2@2.10.2</span><br></pre></td></tr></table></figure>
+<p>pm2升级之后 work身份下需要执行 pm2 update </p>
+<p>升级之后去查看pm2 list</p>
+<p>pm2 show xxx</p>
+<p>需要DELETE 重新启动才可以，直接restart不行</p>
+<h2 id="在服务器创建新的身份"><a href="#在服务器创建新的身份" class="headerlink" title="在服务器创建新的身份"></a>在服务器创建新的身份</h2><p>以root身份登录到服务器之后 创建新的身份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd vbird</span><br></pre></td></tr></table></figure>
+<p>这样就创建了一个新的角色</p>
+<p>但此时尝试使用此身份登录服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh vbird@xxx</span><br></pre></td></tr></table></figure>
+<p>会提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Permission denied, please try again</span><br></pre></td></tr></table></figure>
+<p>是权限错误，并不是密码错误</p>
+<p>这是因为使用 useradd 新郑vbird 账号之后，在默认情况下，账号是暂时被封锁的。也就是无法登录的。</p>
+<p>我们需要给vbird来设置密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd vbird</span><br></pre></td></tr></table></figure>
+<p>然后输入密码就可以了。此密码将会是使用新身份登录服务器的密码。</p>
+<h2 id="修改项目配置信息，以新身份去进行部署"><a href="#修改项目配置信息，以新身份去进行部署" class="headerlink" title="修改项目配置信息，以新身份去进行部署"></a>修改项目配置信息，以新身份去进行部署</h2><h3 id="报错-–-无权限创建文件夹"><a href="#报错-–-无权限创建文件夹" class="headerlink" title="报错 – 无权限创建文件夹"></a>报错 – 无权限创建文件夹</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645f2feb2211d80?w=709&amp;h=356&amp;f=png&amp;s=87920" alt="permission"></p>
+<p>看一下此文件夹的属性</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645f31982228022?w=545&amp;h=116&amp;f=png&amp;s=31351" alt="nature"></p>
+<p>可以看到 releases 这个文件夹的权限属性是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drwxr-xr-x 4 root root 4096 May 21 21:10 releases</span><br></pre></td></tr></table></figure>
+<p>【文件夹】【可读可写可执行】【可读可执行】【可读可执行】【文件所有者root】【文件所属用户组root】 </p>
+<p>所以现在vbird的权限是 【可读可执行】</p>
+<p>而创建一个文件夹属于 【写】的权限范围</p>
+<p>处理方案： 变更文件夹权限</p>
+<p>登录服务器 进入/home 然后修改work文件夹权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line"></span><br><span class="line">chgroup work work // 变更文件所属组为 work组</span><br><span class="line">chown vbird work // 变更文件所有者为vbird</span><br></pre></td></tr></table></figure>
+<p>看些变更后的权限<br><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645fe8c8931a436?w=395&amp;h=35&amp;f=png&amp;s=11406" alt="work"></p>
+<p>work文件夹内部已经有我之前使用root身份部署的时候创建的项目文件夹，需要全部删除才可以部署成功</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/pm2/" rel="tag"># pm2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/02/一周计划9/" rel="next" title="一周计划9">
+                <i class="fa fa-chevron-left"></i> 一周计划9
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/18/安全令牌JWT/" rel="prev" title="安全令牌JWT">
+                安全令牌JWT <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#升级版本为"><span class="nav-number">1.</span> <span class="nav-text">升级版本为</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nvm-安装"><span class="nav-number">2.</span> <span class="nav-text">nvm 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node"><span class="nav-number">3.</span> <span class="nav-text">node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级npm"><span class="nav-number">4.</span> <span class="nav-text">升级npm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级cnpm"><span class="nav-number">5.</span> <span class="nav-text">升级cnpm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级pm2"><span class="nav-number">6.</span> <span class="nav-text">升级pm2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在服务器创建新的身份"><span class="nav-number">7.</span> <span class="nav-text">在服务器创建新的身份</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改项目配置信息，以新身份去进行部署"><span class="nav-number">8.</span> <span class="nav-text">修改项目配置信息，以新身份去进行部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#报错-–-无权限创建文件夹"><span class="nav-number">8.1.</span> <span class="nav-text">报错 – 无权限创建文件夹</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

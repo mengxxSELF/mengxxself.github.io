@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="video,audio,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="videovideo是HTML5提供的新标签 用于替代flash进行视频展示 然而video在移动端的表现情况却不如人意">
+<meta name="keywords" content="video,audio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="video 和 audio在移动端的表现">
+<meta property="og:url" content="http://yoursite.com/2017/10/24/video和audio在移动端的表现/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="videovideo是HTML5提供的新标签 用于替代flash进行视频展示 然而video在移动端的表现情况却不如人意">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/video/use.png">
+<meta property="og:image" content="http://yoursite.com/img/video/ios.jpg">
+<meta property="og:image" content="http://yoursite.com/img/video/control.png">
+<meta property="og:image" content="http://yoursite.com/img/video/video1.png">
+<meta property="og:image" content="http://yoursite.com/img/video/video2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/video/video3.png">
+<meta property="og:image" content="http://yoursite.com/img/video/crossDomain.png">
+<meta property="og:image" content="http://yoursite.com/img/video/mime.png">
+<meta property="og:image" content="http://yoursite.com/img/video/video4.png">
+<meta property="og:image" content="http://yoursite.com/img/video/code.png">
+<meta property="og:image" content="http://yoursite.com/img/video/video5.png">
+<meta property="og:updated_time" content="2018-09-06T07:52:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="video 和 audio在移动端的表现">
+<meta name="twitter:description" content="videovideo是HTML5提供的新标签 用于替代flash进行视频展示 然而video在移动端的表现情况却不如人意">
+<meta name="twitter:image" content="http://yoursite.com/img/video/use.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/24/video和audio在移动端的表现/">
+
+
+
+
+
+  <title>video 和 audio在移动端的表现 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/video和audio在移动端的表现/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">video 和 audio在移动端的表现</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T17:32:24+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTML5/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML5</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="video"><a href="#video" class="headerlink" title="video"></a>video</h2><p>video是HTML5提供的新标签 用于替代flash进行视频展示 然而video在移动端的表现情况却不如人意</p>
+<a id="more"></a>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">poster</span>=<span class="string">&#123;</span>`$&#123;<span class="attr">source</span>&#125;?<span class="attr">vframe</span>/<span class="attr">jpg</span>/<span class="attr">offset</span>/<span class="attr">0</span>`&#125; <span class="attr">src</span>=<span class="string">&#123;source&#125;</span>  <span class="attr">controls</span>=<span class="string">"controls"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>或者是</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">poster</span>=<span class="string">&#123;</span>`$&#123;<span class="attr">source</span>&#125;?<span class="attr">vframe</span>/<span class="attr">jpg</span>/<span class="attr">offset</span>/<span class="attr">0</span>`&#125; <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&#123;source&#125;</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>浏览器支持情况</p>
+<p><img src="/img/video/use.png" alt="use"></p>
+<p>在PC端表现还是不错的</p>
+<h3 id="常用属性"><a href="#常用属性" class="headerlink" title="常用属性"></a>常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>设置为自动播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>展示视频播放的控制条</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>视频预加载 如果使用 “autoplay”，则忽略该属性</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>开启循环播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td>string</td>
+<td>视频源</td>
+</tr>
+<tr>
+<td>muted</td>
+<td>Boolean</td>
+<td>静音</td>
+</tr>
+<tr>
+<td>poster</td>
+<td>string</td>
+<td>视频封面</td>
+</tr>
+</tbody>
+</table>
+<h4 id="controls"><a href="#controls" class="headerlink" title="controls"></a>controls</h4><p>控制条包括：播放 暂停 定位 音量 全屏切换 字幕（如果可用）音轨（如果可用）</p>
+<p>在iOS和Android中 控制条表现不同</p>
+<p>以下是iOS中视频控制条的表现形式</p>
+<p><img src="/img/video/ios.jpg" alt="ios"></p>
+<p>以下是Android中视频控制条的表现形式</p>
+<p><img src="/img/video/control.png" alt="control"></p>
+<h4 id="autoplay"><a href="#autoplay" class="headerlink" title="autoplay"></a>autoplay</h4><p>此属性表示设置为默认播放 但实际上 这个效果在移动端体验非常不友好 并不能实现视频自动播放的功能</p>
+<h3 id="移动端实际样式"><a href="#移动端实际样式" class="headerlink" title="移动端实际样式"></a>移动端实际样式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&#123;source&#125;</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>安卓手机呈现</p>
+<p><img src="/img/video/video1.png" alt="video"></p>
+<p>iOS 手机呈现</p>
+<p><img src="/img/video/video2.jpg" alt="video"></p>
+<p>可以看到 移动端视频展现没有一个合适的封面图 实际应该展示的是视频的第一帧作为默认封面图</p>
+<p>然后我们添加一个 poster 属性 用于展现封面</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">poster</span>=<span class="string">&#123;poster&#125;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">source</span> <span class="attr">src</span>=<span class="string">&#123;source&#125;</span> <span class="attr">type</span>=<span class="string">"video/mp4"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/img/video/video3.png" alt="video"></p>
+<p>就可以正确展示视频封面了</p>
+<h4 id="关于获取视频封面"><a href="#关于获取视频封面" class="headerlink" title="关于获取视频封面"></a>关于获取视频封面</h4><p>项目中的视频是存储在七牛中的 七牛提供了一个图片地址 是截取视频第一帧</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> poster = <span class="string">`<span class="subst">$&#123;source&#125;</span>?vframe/jpg/offset/0`</span></span><br></pre></td></tr></table></figure>
+<p>如果你无法拿到视频中的某一张图片 就需要另外处理了</p>
+<ul>
+<li>视频设置自动播放 则默认使用视频第一帧作为封面图</li>
+</ul>
+<p>如果视频有设置 autoplay 属性 则可以展现第一帧作为封面 但是移动端体验不好</p>
+<ul>
+<li>canvas截取视频封面</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>)</span><br><span class="line"><span class="keyword">let</span> video = <span class="built_in">document</span>.getElementById(<span class="string">`video`</span>)</span><br><span class="line"><span class="keyword">let</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">canvas.width = video.offsetWidth</span><br><span class="line">canvas.height = video.offsetHeight</span><br><span class="line">ctx.drawImage(video, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> img = <span class="built_in">document</span>.createElement(<span class="string">"img"</span>)</span><br><span class="line">img.src = canvas.toDataURL(<span class="string">"image/png"</span>)</span><br><span class="line"><span class="built_in">document</span>.body.appendChild(img)</span><br></pre></td></tr></table></figure>
+<p>这样是利用canvas截取视频 得到一个Img图片</p>
+<p><strong> 视频跨域 则无法获取到图片 </strong></p>
+<p>视频截取中 网页报错</p>
+<p><img src="/img/video/crossDomain.png" alt="video"></p>
+<p>canvas中的图像进行操作时有跨域限制（canvas安全机制）,如在某一个域名项目中的canvas中加载非本域中的图像，在进行toDataURL或getImageData进行操作时抛出异常</p>
+<p>所以如果你的项目中视频源不涉及到跨域问题 可以直接使用这种方式</p>
+<p>如果视频不同源 则直接将canvas元素展现出来 配合CSS充当封面</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>)</span><br><span class="line"><span class="keyword">let</span> video = <span class="built_in">document</span>.getElementById(<span class="string">`video`</span>)</span><br><span class="line"><span class="keyword">let</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line">canvas.width = video.offsetWidth</span><br><span class="line">canvas.height = video.offsetHeight</span><br><span class="line">ctx.drawImage(video, <span class="number">0</span>, <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="全屏播放"><a href="#全屏播放" class="headerlink" title="全屏播放"></a>全屏播放</h4><p>iOS系统中 默认是全屏播放 当你点击视频 iOS会自动全屏</p>
+<p>Android 系统就是在展现的位置播放 当点击全屏按钮才会显示全屏</p>
+<ul>
+<li>禁止iOS全屏播放</li>
+</ul>
+<p>如果不想在iOS展示全屏效果 那么可以添加属性 playsinline 来禁止iOS的默认全屏</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;video ref=<span class="string">'videoEl'</span> src=&#123;source&#125; &#123;...videoProps&#125; playsinline /&gt;</span><br></pre></td></tr></table></figure>
+<p>这样视频会在指定位置处播放 [和Android表现相同]</p>
+<ul>
+<li>Android 无法实现自动全屏 需要再处理</li>
+</ul>
+<p>如果有设置 control 属性 则可以通过点击控制条中的全屏按钮实现全屏播放</p>
+<p>还可以通过一个虚假的蒙层实现 全屏播放 当点击按钮的是 传入视频源 然后强制蒙层中的video元素100% 播放</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>play</td>
+<td>播放视频</td>
+</tr>
+<tr>
+<td>pause</td>
+<td>暂停视频</td>
+</tr>
+</tbody>
+</table>
+<h4 id="play"><a href="#play" class="headerlink" title="play"></a>play</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">  <span class="comment">// 尝试播放视频</span></span><br><span class="line">  <span class="keyword">let</span> target = findDOMNode(<span class="keyword">this</span>.refs.videoEl)</span><br><span class="line">  target.play()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然而 并没有什么用  PC端一切正常 但是在移动端是无法实现的</p>
+<p>移动端的视频播放 必须通过用户执行点击动作 否则是无法实现播放的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> video = <span class="built_in">document</span>.querySelector(<span class="string">'video'</span>)</span><br><span class="line">  video.play()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>项目开始的时候提出一个需求 类似于微博客户端效果 当视频滑动到用户可视区 即可自动播放此视频 当此视频滑离可视区 则视频停止播放</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="comment">// 自动播放过一次之后 就禁止第二次自动播放了</span></span><br><span class="line">  <span class="keyword">let</span> &#123;played&#125; = <span class="keyword">this</span>.state</span><br><span class="line">  <span class="keyword">if</span> (played) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">let</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop</span><br><span class="line">  <span class="comment">// 滑动距离 + 屏幕距离  &gt; 盒子距离顶部 + 200</span></span><br><span class="line">  <span class="keyword">if</span> (scrollTop + screenH &gt; boxTop + <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.refs.videoEl.play()</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">played</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以看到在PC端 可以实现这种效果  然而 由于移动端 <strong> 必须通过用户点击屏幕的动作来触发播放事件 </strong>  所以无法实现这个效果  </p>
+<p>添加一个事件: 视频滑入可视区的时候 监听用户的 touch 事件 用户触发视频的播放</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'scroll'</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> &#123;played&#125; = <span class="keyword">this</span>.state</span><br><span class="line">  <span class="keyword">if</span> (played) <span class="keyword">return</span></span><br><span class="line">  <span class="keyword">let</span> scrollTop = <span class="built_in">document</span>.documentElement.scrollTop || <span class="built_in">document</span>.body.scrollTop</span><br><span class="line">  <span class="keyword">if</span> (scrollTop + screenH &gt; boxTop + <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, () =&gt; &#123;</span><br><span class="line">      <span class="keyword">this</span>.refs.videoEl.play()</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">played</span>: <span class="literal">true</span>&#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>功能上是可以实现的 但是这种方式非常不友好 体验的时候就能感觉到 当用户把视频滑动到可视区域 并不一定发生touch事件</p>
+<h2 id="audio"><a href="#audio" class="headerlink" title="audio"></a>audio</h2><p>audio 是HTML5提供的新标签 用于进行音频文件的播放</p>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> audioProps = &#123;</span><br><span class="line"> src: <span class="string">'../music.mp3'</span>,</span><br><span class="line"> loop: <span class="string">'loop'</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;audio &#123;...audioProps&#125; /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="常用属性-1"><a href="#常用属性-1" class="headerlink" title="常用属性"></a>常用属性</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>autoplay</td>
+<td>autoplay</td>
+<td>设置为自动播放</td>
+</tr>
+<tr>
+<td>controls</td>
+<td>controls</td>
+<td>展示音频播放的控制条</td>
+</tr>
+<tr>
+<td>preload</td>
+<td>preload</td>
+<td>音频预加载 如果使用 “autoplay”，则忽略该属性</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>loop</td>
+<td>开启循环播放</td>
+</tr>
+<tr>
+<td>src</td>
+<td>string</td>
+<td>音频源</td>
+</tr>
+</tbody>
+</table>
+<h4 id="autoplay-自动播放"><a href="#autoplay-自动播放" class="headerlink" title="autoplay 自动播放"></a>autoplay 自动播放</h4><p>音频文件在ios系统中无法实现自动播放的这个效果</p>
+<blockquote>
+<p>User Control of Downloads Over Cellular Networks<br>In Safari on iOS (for all devices, including iPad), where the user may be on a cellular network and be charged per data unit, preload and autoplay are disabled. No data is loaded until the user initiates it. This means the JavaScript play() and load() methods are also inactive until the user initiates playback, unless the play() or load() method is triggered by user action. In other words, a user-initiated Play button works, but an onLoad=”play()” event does not.</p>
+</blockquote>
+<p>简而言之 ios认为自动播放音频视频是不友好的行为 不想用户浪费过多的流量，禁止了自动播放的功能</p>
+<p>所以即使你在标签中添加了 autoplay属性 在移动端也不会触发视频或者音频的播放</p>
+<ul>
+<li>解决方案1</li>
+</ul>
+<p>如果就是想要用户开启播放 可以为页面绑定一个 touchstart 点击事件  这样在页面点击的时候 触发此音频播放</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'touchstart'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> audio = <span class="built_in">document</span>.getElementById(<span class="string">'audio'</span>)</span><br><span class="line">  audio.play()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解决方案2</li>
+</ul>
+<p>虽然在浏览器中有此限制 但是在微信中却可以做到自动播放</p>
+<p>Android 中可以使用 [ios 无效]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'DOMContentLoaded'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> audio = <span class="built_in">document</span>.getElementById(<span class="string">'audio'</span>)</span><br><span class="line">  audio.play()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>iOS 可以使用 [Android 也可以]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"WeixinJSBridgeReady"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> audio = <span class="built_in">document</span>.getElementById(<span class="string">'audio'</span>)</span><br><span class="line">  audio.play()</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="src"><a href="#src" class="headerlink" title="src"></a>src</h4><p>测试的时候使用了一首来自5sing的歌曲链接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> src = <span class="string">'http://data.5sing.kgimg.com/G106/M00/0A/0F/SpQEAFljNBqATRL-ADks3ezSCI8032.m4a'</span></span><br></pre></td></tr></table></figure>
+<p>然后发现无法播放  是由于audio不支持此格式的音频文件</p>
+<p>audio只支持三种格式的音频文件</p>
+<p><img src="/img/video/mime.png" alt="video"></p>
+<p>其实并非所有的浏览器都支持video与audio的所有的编码解码器 这就代表着有时候需要提供多个格式的资源  </p>
+<p>ja提供了一个 canPlayType 方法 来判断是否支持当前播放资源</p>
+<ul>
+<li>canPlayType</li>
+</ul>
+<p>参数为 某一种格式 或者 编解码器</p>
+<p>返回值 ‘maybe’ ‘’ ‘probably’ 三种结果</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> audio = <span class="built_in">document</span>.querySelector(<span class="string">'audio'</span>)</span><br><span class="line"><span class="comment">// let canPlay = audio.canPlayType('audio/mpeg')</span></span><br><span class="line"><span class="keyword">let</span> canPlay = audio.canPlayType(<span class="string">'audio/m4a'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(canPlay)</span><br></pre></td></tr></table></figure>
+<h4 id="创建实例"><a href="#创建实例" class="headerlink" title="创建实例"></a>创建实例</h4><p>其实还可以通过new 来创建一个 audio 实例  就类似于 Image 来创建 img 一样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> src = <span class="string">'https://os4ty6tab.qnssl.com/web/static/AllProjects/music-0c0d070d.mp3'</span></span><br><span class="line"><span class="keyword">this</span>.audio = <span class="keyword">new</span> Audio(src)</span><br><span class="line"><span class="keyword">this</span>.audio.setAttribute(<span class="string">'loop'</span>, <span class="string">'loop'</span>)</span><br></pre></td></tr></table></figure>
+<p>这样就不必在页面中插入一个audio元素了</p>
+<h2 id="第三方视频插件"><a href="#第三方视频插件" class="headerlink" title="第三方视频插件"></a>第三方视频插件</h2><p>其实原生的video标签有的时候无法满足UI需求 比如一般需要另行处理播放或者全屏按钮</p>
+<p><img src="/img/video/video4.png" alt="video"></p>
+<p>可以看到页面元素中 下面控制条部分并没有被解析为标签元素展示 整个视频源和控制条都在一个video元素中展示 所以无法处理这些按钮 比如调整位置或者样式</p>
+<h4 id="video-js"><a href="#video-js" class="headerlink" title="video.js"></a>video.js</h4><blockquote>
+<p>Video.js 是一个通用的在网页上嵌入视频播放器的 JS 库，Video.js 自动检测浏览器对 HTML5 的支持情况，如果不支持 HTML5 则自动使用 Flash 播放器</p>
+</blockquote>
+<p><a href="http://videojs.com/" target="_blank" rel="noopener">官网</a></p>
+<p><a href="https://www.npmjs.com/package/video.js" target="_blank" rel="noopener">npm</a></p>
+<p><a href="https://github.com/videojs/video.js" target="_blank" rel="noopener">Github</a></p>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">videojs(videoID, &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">  <span class="keyword">this</span>.play()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>传入的参数是  </p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>videoID</td>
+<td>string</td>
+<td>video标签元素的id</td>
+</tr>
+<tr>
+<td>option</td>
+<td>{}</td>
+<td>标签参数</td>
+</tr>
+<tr>
+<td>cb</td>
+<td>function</td>
+<td>回调函数  其中的this表示为当前播放源</td>
+</tr>
+</tbody>
+</table>
+<p>去看了源码 有这么一段</p>
+<p><img src="/img/video/code.png" alt="video"></p>
+<p>简化版</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">videojs</span>(<span class="params">id, options, ready</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> tag;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> string) &#123;</span><br><span class="line">    tag = $(<span class="string">`#<span class="subst">$&#123;id&#125;</span>`</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    tag = id</span><br><span class="line">  &#125;</span><br><span class="line">  ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以第一个参数那里 不只是可以传递 id  也可以直接传递 DOM节点 比如</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">videojs(<span class="built_in">document</span>.querySelector(<span class="string">'video'</span>), &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">  <span class="keyword">this</span>.play()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>查看页面元素 可以看到 每一个部分都被解析为元素节点了</p>
+<p><img src="/img/video/video5.png" alt="video"> 这样就可以调整按钮样式了</p>
+<p>** video.js 提供了在React中的使用方式  </p>
+<p><a href="http://docs.videojs.com/tutorial-react.html" target="_blank" rel="noopener">react-video</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> videojs <span class="keyword">from</span> <span class="string">'video.js'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">VideoPlayer</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">let</span> option = &#123;</span><br><span class="line">      autoplay: <span class="literal">true</span>,</span><br><span class="line">      controls: <span class="literal">true</span>,</span><br><span class="line">      poster: <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.props.video&#125;</span>?vframe/jpg/offset/0`</span>,</span><br><span class="line">      sources: [&#123;</span><br><span class="line">        src: <span class="keyword">this</span>.props.video,</span><br><span class="line">        type: <span class="string">'video/mp4'</span></span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.player = videojs(<span class="keyword">this</span>.videoNode, option, <span class="function"><span class="keyword">function</span> <span class="title">onPlayerReady</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'onPlayerReady'</span>, <span class="keyword">this</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillUnmount() &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.player) &#123;</span><br><span class="line">      <span class="keyword">this</span>.player.dispose()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div data-vjs-player&gt;</span><br><span class="line">        &lt;video ref=&#123; node =&gt; <span class="keyword">this</span>.videoNode = node &#125; className=<span class="string">"video-js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>有一些坑请看程总文章 <a href="https://github.com/GodEngine/videojs_hls" target="_blank" rel="noopener">video.js文档笔记(videojs)</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/video/" rel="tag"># video</a>
+          
+            <a href="/tags/audio/" rel="tag"># audio</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/redis-数据类型及其使用/" rel="next" title="redis-数据类型及其使用">
+                <i class="fa fa-chevron-left"></i> redis-数据类型及其使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/25/node基础/" rel="prev" title="node基础">
+                node基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#video"><span class="nav-number">1.</span> <span class="nav-text">video</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.1.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用属性"><span class="nav-number">1.2.</span> <span class="nav-text">常用属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#controls"><span class="nav-number">1.2.1.</span> <span class="nav-text">controls</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#autoplay"><span class="nav-number">1.2.2.</span> <span class="nav-text">autoplay</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动端实际样式"><span class="nav-number">1.3.</span> <span class="nav-text">移动端实际样式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于获取视频封面"><span class="nav-number">1.3.1.</span> <span class="nav-text">关于获取视频封面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全屏播放"><span class="nav-number">1.3.2.</span> <span class="nav-text">全屏播放</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">1.4.</span> <span class="nav-text">常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#play"><span class="nav-number">1.4.1.</span> <span class="nav-text">play</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#audio"><span class="nav-number">2.</span> <span class="nav-text">audio</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">2.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用属性-1"><span class="nav-number">2.2.</span> <span class="nav-text">常用属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#autoplay-自动播放"><span class="nav-number">2.2.1.</span> <span class="nav-text">autoplay 自动播放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#src"><span class="nav-number">2.2.2.</span> <span class="nav-text">src</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建实例"><span class="nav-number">2.2.3.</span> <span class="nav-text">创建实例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方视频插件"><span class="nav-number">3.</span> <span class="nav-text">第三方视频插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#video-js"><span class="nav-number">3.0.1.</span> <span class="nav-text">video.js</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

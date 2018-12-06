@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="类,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="es6的继承">
+<meta name="keywords" content="类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类以及继承">
+<meta property="og:url" content="http://yoursite.com/2018/09/26/类以及继承/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="es6的继承">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/27/166197e8f34e3ccd?w=1996&h=772&f=png&s=500608">
+<meta property="og:updated_time" content="2018-09-28T12:35:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="类以及继承">
+<meta name="twitter:description" content="es6的继承">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/27/166197e8f34e3ccd?w=1996&h=772&f=png&s=500608">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/26/类以及继承/">
+
+
+
+
+
+  <title>类以及继承 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/类以及继承/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">类以及继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T18:20:50+08:00">
+                2018-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/es6/" itemprop="url" rel="index">
+                    <span itemprop="name">es6</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>es6的继承</p>
+<a id="more"></a>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><h3 id="es5中的类"><a href="#es5中的类" class="headerlink" title="es5中的类"></a>es5中的类</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function Move (left, end) &#123;</span><br><span class="line">  this.left = left</span><br><span class="line">  this.end = end</span><br><span class="line">&#125;</span><br><span class="line">Move.prototype.walk = function () &#123;</span><br><span class="line">  do &#123;</span><br><span class="line">    this.left++</span><br><span class="line">    console.log(this.left)</span><br><span class="line">  &#125; while (this.left &lt; this.end)</span><br><span class="line">&#125;</span><br><span class="line">var move = new Move(2, 5)</span><br><span class="line">move.walk()</span><br></pre></td></tr></table></figure>
+<h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>用来初始化新创建的对象的函数是构造函数 如 Move </p>
+<p>通过构造函数的new操作创建的对象是实例对象 如 move</p>
+<p>构造函数有一个prototype属性，指向实例对象的原型对象。同一个构造函数实例化的多个对象是具有相同的原型对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var move1 = new Move(1, 2)</span><br><span class="line">var move2 = new Move(2, 3)</span><br><span class="line">move1.__propto__ === move2.__propto__ // true</span><br></pre></td></tr></table></figure>
+<p>原型对象有一个constructor属性，指向该原型对象对应的构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Move.prototype.contructor === Move // true</span><br></pre></td></tr></table></figure>
+<p>由于实例对象可以继承原型对象的属性，所以实例对象也拥有constructor属性，同样指向原型对象对应的构造函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(move1.constructor === Move, <span class="string">'constructor'</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(move1.hasOwnProperty(<span class="string">'constructor'</span>), <span class="string">'hasOwnPrototype'</span>) <span class="comment">// false  -- constructor 属性是继承自原型对象Move.prototype</span></span><br></pre></td></tr></table></figure>
+<h3 id="es6-的类"><a href="#es6-的类" class="headerlink" title="es6 的类"></a>es6 的类</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = left</span><br><span class="line">    <span class="keyword">this</span>.end = end</span><br><span class="line">  &#125;</span><br><span class="line">  running () &#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.left += <span class="number">10</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.left)</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="keyword">this</span>.left &lt; <span class="keyword">this</span>.end)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> run = <span class="keyword">new</span> Run(<span class="number">0</span>, <span class="number">40</span>)</span><br><span class="line">run.running()</span><br></pre></td></tr></table></figure>
+<p>定义一个 Run 类 具有 running 方法</p>
+<p>类的所有方法都定义在类的prototype属性上面</p>
+<p>相当于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Run.prototype = &#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;&#125;</span><br><span class="line">  running () &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而类的实例调用方法，就是在调用原型上的方法</p>
+<p>由于类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = left</span><br><span class="line">    <span class="keyword">this</span>.end = end</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.assign(Run.prototype, &#123;</span><br><span class="line">  running()&#123;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.left += <span class="number">10</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.left)</span><br><span class="line">    &#125; <span class="keyword">while</span> (<span class="keyword">this</span>.left &lt; <span class="keyword">this</span>.end)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> run = <span class="keyword">new</span> Run(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">run.running()</span><br></pre></td></tr></table></figure>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><p>constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法</p>
+<p>一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加</p>
+<p>constructor方法默认返回实例对象（即this），也指定返回另外一个对象</p>
+<p>Q: 当constructor 返回值被修改 ， 会有什么后果</p>
+<h4 id="实例对象"><a href="#实例对象" class="headerlink" title="实例对象"></a>实例对象</h4><p>实例的属性除非显式定义在其本身（即定义在this对象上），否则都是定义在原型上</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(run.hasOwnProperty(<span class="string">'left'</span>), <span class="string">'left'</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">console</span>.log(run.hasOwnProperty(<span class="string">'running'</span>), <span class="string">'running'</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(run.__proto__.hasOwnProperty(<span class="string">'running'</span>), <span class="string">'running'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>因为 left 和 end 属性都定义在实例自身 (this) 上, 所以 hasOwnProperty 可以找到此属性</p>
+<h4 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h4><blockquote>
+<p>类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> stop () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'woow, stop it!!'</span>, <span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Run.stop() <span class="comment">// 'woow, stop it!!', Run</span></span><br></pre></td></tr></table></figure>
+<p><strong> 注意，如果静态方法包含this关键字，这个this指的是类，而不是实例 </strong> </p>
+<p>静态方法可以与非静态方法重名</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">   stop () &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="number">0</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.left, <span class="string">'stop now, please'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> stop () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'woow, stop it!!'</span>, <span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> run = <span class="keyword">new</span> Run(<span class="number">0</span>, <span class="number">10</span>)</span><br><span class="line">run.running()</span><br><span class="line">run.stop()</span><br></pre></td></tr></table></figure>
+<h4 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h4><blockquote>
+<p>静态属性指的是 Class 本身的属性，而不是定义在实例对象（this）上的属性</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;&#125;</span><br><span class="line">Run.props1 = <span class="string">'i am props1'</span></span><br></pre></td></tr></table></figure>
+<p>处于提案中的类的静态属性的写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> props1 = <span class="string">'i am props1'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>实例的属性</li>
+</ul>
+<p>处于提案中的实例属性的写法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  whoProps = <span class="string">'i am whoProps'</span></span><br><span class="line">  <span class="keyword">constructor</span> () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.whoProps) <span class="comment">// 'i am whoProps'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><h3 id="es5-的-继承"><a href="#es5-的-继承" class="headerlink" title="es5 的 继承"></a>es5 的 继承</h3><p><a href="https://mengxxself.github.io/2016/12/10/%E7%BB%A7%E6%89%BF/" target="_blank" rel="noopener">继承</a></p>
+<p>ES5 的继承，实质是先创造子类的实例对象this，然后再将父类的方法添加到this上面（Parent.apply(this)）</p>
+<h3 id="es6-继承"><a href="#es6-继承" class="headerlink" title="es6 继承"></a>es6 继承</h3><p>通过extends关键字实现继承</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Walk extends Run &#123;</span><br><span class="line">  constructor (left, end) &#123;</span><br><span class="line">    super(left, end)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const walk = new Walk(1, 20)</span><br><span class="line">walk.running()</span><br></pre></td></tr></table></figure>
+<p>子类必须在constructor方法中调用super方法，否则新建实例时会报错</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/27/166197e8f34e3ccd?w=1996&amp;h=772&amp;f=png&amp;s=500608" alt="constructor"></p>
+<p>ES6 的继承机制完全不同，实质是先将父类实例对象的属性和方法，加到this上面（所以必须先调用super方法），然后再用子类的构造函数修改this。</p>
+<p>如果子类没有定义constructor方法，这个方法会被默认添加，代码如下。也就是说，不管有没有显式定义，任何一个子类都有constructor方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="comment">// constructor (left, end) &#123;</span></span><br><span class="line">  <span class="comment">//   // super(left, end)</span></span><br><span class="line">  <span class="comment">// &#125;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 相当于</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line"> <span class="keyword">constructor</span>(...args) &#123;</span><br><span class="line">    <span class="keyword">super</span>(...args)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>也就是你可以不写 constructor 但是如果写了 constructor 就必须写 super </p>
+<p>实例对象同时是 子类 和 父类 的实例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(walk <span class="keyword">instanceof</span> Walk, walk <span class="keyword">instanceof</span> Run)</span><br></pre></td></tr></table></figure>
+<p>子类可以继承父类的静态方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> stop () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'woow, stop it!!'</span>, <span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Run.stop() <span class="comment">// 'woow, stop it!!', Run</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">Walk.stop() <span class="comment">// 'woow, stop it!!', Walk</span></span><br></pre></td></tr></table></figure>
+<h4 id="Object-getPrototypeOf-获取父类"><a href="#Object-getPrototypeOf-获取父类" class="headerlink" title="Object.getPrototypeOf 获取父类"></a>Object.getPrototypeOf 获取父类</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> isP = <span class="built_in">Object</span>.getPrototypeOf(Walk) === Run</span><br><span class="line"><span class="built_in">console</span>.log(isP, <span class="string">'isP'</span>) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>可以使用这个方法判断，一个类是否继承了另一个类</p>
+<h4 id="super"><a href="#super" class="headerlink" title="super"></a>super</h4><h3 id="作为函数"><a href="#作为函数" class="headerlink" title="作为函数"></a>作为函数</h3><p>作为函数时，super()只能用在子类的构造函数之中，用在其他地方就会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  back () &#123;</span><br><span class="line">    <span class="keyword">super</span>() <span class="comment">// 报错</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="作为对象"><a href="#作为对象" class="headerlink" title="作为对象"></a>作为对象</h3><ul>
+<li>super作为对象时，在普通方法中，指向父类的原型对象</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = left</span><br><span class="line">    <span class="keyword">this</span>.end = end</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.left + <span class="string">'left left'</span></span><br><span class="line">  &#125;</span><br><span class="line">  write () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.left + <span class="string">' write, write'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">super</span>(left, end)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>.write())</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> walk = <span class="keyword">new</span> Walk(<span class="number">1</span>, <span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p>在子类普通方法中通过super调用父类的方法时，方法内部的this指向当前的子类实例</p>
+<ul>
+<li>在静态方法中，指向父类</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = left</span><br><span class="line">    <span class="keyword">this</span>.end = end</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.left + <span class="string">'left left'</span></span><br><span class="line">  &#125;</span><br><span class="line">  stop () &#123;</span><br><span class="line">    <span class="keyword">this</span>.left = <span class="number">0</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.left, <span class="string">'stop now, please'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> stop () &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'woow, stop it!!'</span>, <span class="keyword">this</span>.name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Walk</span> <span class="keyword">extends</span> <span class="title">Run</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (left, end) &#123;</span><br><span class="line">    <span class="keyword">super</span>(left, end)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">super</span>.write())</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">static</span> lay () &#123;</span><br><span class="line">    <span class="keyword">super</span>.stop()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Walk.lay() <span class="comment">// woow, stop it!! Walk</span></span><br></pre></td></tr></table></figure>
+<p>在子类的静态方法中通过super调用父类的方法时，方法内部的this指向当前的子类，而不是子类的实例。</p>
+<p><strong> 注意，使用super的时候，必须显式指定是作为函数、还是作为对象使用，否则会报错 </strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">super</span>) <span class="comment">// 这样是会报错的</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/类/" rel="tag"># 类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/17/每日一练第七期/" rel="next" title="每日一练第七期">
+                <i class="fa fa-chevron-left"></i> 每日一练第七期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/28/typescript-react/" rel="prev" title="typescript-react">
+                typescript-react <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类"><span class="nav-number">1.</span> <span class="nav-text">类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#es5中的类"><span class="nav-number">1.1.</span> <span class="nav-text">es5中的类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6-的类"><span class="nav-number">1.2.</span> <span class="nav-text">es6 的类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#constructor-NaN"><span class="nav-number">1.2.2.</span> <span class="nav-text">constructor</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例对象"><span class="nav-number">1.2.3.</span> <span class="nav-text">实例对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态方法"><span class="nav-number">1.2.4.</span> <span class="nav-text">静态方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#静态属性"><span class="nav-number">1.2.5.</span> <span class="nav-text">静态属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的继承"><span class="nav-number">2.</span> <span class="nav-text">类的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#es5-的-继承"><span class="nav-number">2.1.</span> <span class="nav-text">es5 的 继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#es6-继承"><span class="nav-number">2.2.</span> <span class="nav-text">es6 继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Object-getPrototypeOf-获取父类"><span class="nav-number">2.2.1.</span> <span class="nav-text">Object.getPrototypeOf 获取父类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#super"><span class="nav-number">2.2.2.</span> <span class="nav-text">super</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为函数"><span class="nav-number">2.3.</span> <span class="nav-text">作为函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作为对象"><span class="nav-number">2.4.</span> <span class="nav-text">作为对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

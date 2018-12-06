@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本文搭建的是Mac环境的RN 环境搭建官网链接 安装所需模块按照官网中逐步安装即可">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react-native1">
+<meta property="og:url" content="http://yoursite.com/2017/10/04/react-native1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文搭建的是Mac环境的RN 环境搭建官网链接 安装所需模块按照官网中逐步安装即可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-10T11:44:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react-native1">
+<meta name="twitter:description" content="本文搭建的是Mac环境的RN 环境搭建官网链接 安装所需模块按照官网中逐步安装即可">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/04/react-native1/">
+
+
+
+
+
+  <title>react-native1 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/04/react-native1/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react-native1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-04T12:59:07+08:00">
+                2017-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!-- description: RN的学习 -->
+<p>本文搭建的是Mac环境的RN</p>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><p><a href="http://reactnative.cn/docs/0.45/getting-started.html" target="_blank" rel="noopener">官网链接</a></p>
+<p>安装所需模块按照官网中逐步安装即可</p>
+<a id="more"></a>
+<p>所有模块安装完毕 开始创建项目</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native init HelloWorld</span><br></pre></td></tr></table></figure>
+<p>这样就可以创建一个完成的RN项目</p>
+<p>启动项目 在命令行中输入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native run-ios</span><br></pre></td></tr></table></figure>
+<p>即可启动此项目</p>
+<h4 id="项目启动中bug"><a href="#项目启动中bug" class="headerlink" title="项目启动中bug"></a>项目启动中bug</h4><p>在尝试启动项目中 一直报错</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">‘boost/iterator/iterator_adaptor.hpp’ file not found</span><br></pre></td></tr></table></figure>
+<p>产生原因：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* <span class="regexp">/Users/</span>xxx/.rncache 中 boost_1_63_0.tar.gz， double-conversion<span class="number">-1.1</span><span class="number">.5</span>.tar.gz， folly<span class="number">-2016.09</span><span class="number">.26</span><span class="number">.00</span>.tar.gz， glog<span class="number">-0.3</span><span class="number">.4</span>.tar.gz 等文件下载不完整</span><br></pre></td></tr></table></figure>
+<p><strong> 解决方案 </strong> 删除 .rncache 后重新下载，或手动下载后放入 .rncache 中</p>
+<p>可能是由于网络问题或者无法翻墙 导致此文件下载不完整</p>
+<p>然后一旦此文件存在 后面的发现有这个 就不再去安装它了 所以你会发现  即使你把所有项目删掉重新来 也依旧显示这个错误</p>
+<h4 id="相关文章导读"><a href="#相关文章导读" class="headerlink" title="相关文章导读"></a>相关文章导读</h4><p>1 <a href="http://reactnative.cn/docs/0.45/getting-started.html" target="_blank" rel="noopener">《RN 开发错误警告处理》</a></p>
+<p>2 <a href="https://github.com/vczero/react-native-lesson" target="_blank" rel="noopener">RN 课程自学</a></p>
+<h3 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h3><p>RN 的元素渲染与React不同  前者就是使用的普通HTML标签 而RN则是新的一套语义化更加明白的标签</p>
+<h4 id="Loading"><a href="#Loading" class="headerlink" title="Loading"></a>Loading</h4> <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ActivityIndicator</span></span></span><br><span class="line"><span class="tag"><span class="attr">animating</span>=<span class="string">&#123;this.state.animating&#125;</span></span></span><br><span class="line"><span class="tag"><span class="attr">style</span>=<span class="string">&#123;[styles.centering,</span> &#123;<span class="attr">height:</span> <span class="attr">80</span>&#125;]&#125;</span></span><br><span class="line"><span class="tag"><span class="attr">color</span>=<span class="string">'#000'</span></span></span><br><span class="line"><span class="tag"><span class="attr">size</span>=<span class="string">'large'</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其属性animating 表示是否显示loading图片  默认TRUE 显示<br>color  loading的颜色<br>size  大小设置  属性值 可写 small  large 不可以为数字或者其他</p>
+<h4 id="Button"><a href="#Button" class="headerlink" title="Button"></a>Button</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag"><span class="attr">onPress</span>=<span class="string">&#123;this.onPressLearnMore&#125;</span></span></span><br><span class="line"><span class="tag"><span class="attr">title</span>=<span class="string">'click the button'</span></span></span><br><span class="line"><span class="tag"><span class="attr">color</span>=<span class="string">'#841584'</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性 onPress 当点击的时候 执行此函数</p>
+<p>其余属性</p>
+<p>disabled  为TRUE 时候 则按钮不可点击<br>color 按钮中字体颜色</p>
+<h4 id="Alert-弹出层"><a href="#Alert-弹出层" class="headerlink" title="Alert  弹出层"></a>Alert  弹出层</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import &#123;Alert&#125; from 'react-native'</span><br><span class="line">---</span><br><span class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">onPress</span>=<span class="string">&#123;()</span> =&gt;</span> Alert.alert('you clicked the button') &#125;&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Image</span></span></span><br><span class="line"><span class="tag">   <span class="attr">style</span>=<span class="string">&#123;styles.logo&#125;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">source</span>=<span class="string">&#123;&#123;uri:</span> '<span class="attr">http:</span>//<span class="attr">facebook.github.io</span>/<span class="attr">react</span>/<span class="attr">img</span>/<span class="attr">logo_og.png</span>'&#125;&#125;</span></span><br><span class="line"><span class="tag">/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意这里的属性source  后面的URL  如果是http开头的 很可能在iOS上打不开  推荐使用https开头</p>
+<h4 id="listView"><a href="#listView" class="headerlink" title="listView"></a>listView</h4><p>展示数据列表</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="keyword">super</span>(props);</span><br><span class="line">  <span class="keyword">var</span> ds = <span class="keyword">new</span> ListView.DataSource(&#123;<span class="attr">rowHasChanged</span>: <span class="function">(<span class="params">r1, r2</span>) =&gt;</span> r1 !== r2&#125;);</span><br><span class="line">  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">    dataSource: ds.cloneWithRows([<span class="string">'row 1'</span>, <span class="string">'row 2'</span>]),</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line">render() &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ListView</span><br><span class="line">      dataSource=&#123;<span class="keyword">this</span>.state.dataSource&#125;</span><br><span class="line">      renderRow=&#123;(rowData) =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Text</span>&gt;</span>&#123;rowData&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>&#125;</span><br><span class="line">    /&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最基本的使用方式就是创建一个ListView.DataSource数据源，然后给它传递一个普通的数据数组，</p>
+<p>再使用数据源来实例化一个ListView组件，并且定义它的renderRow回调函数</p>
+<p>这个函数会接受数组中的每个数据作为参数，去渲染每一行，返回一个可渲染的组件（作为listview的每一行）</p>
+<p>属性参数解析</p>
+<h5 id="dataSource"><a href="#dataSource" class="headerlink" title="dataSource"></a>dataSource</h5><p>列表依赖的数据源</p>
+<h5 id="initialListSize-【number】"><a href="#initialListSize-【number】" class="headerlink" title="initialListSize 【number】"></a>initialListSize 【number】</h5><p>指定在组件刚挂载的时候渲染多少行数据</p>
+<p>用这个属性来确保首屏显示合适数量的数据，而不是花费太多帧逐步显示出来</p>
+<h5 id="onChangeVisibleRows-function"><a href="#onChangeVisibleRows-function" class="headerlink" title="onChangeVisibleRows [function]"></a>onChangeVisibleRows [function]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(visibleRows, changedRows) =&gt; <span class="keyword">void</span></span><br></pre></td></tr></table></figure>
+<p>视野内可见的行的集合变化的时候调用此回调函数</p>
+<p>visibleRows 以 { sectionID: { rowID: true }}的格式包含了所有可见行，而changedRows 以{ sectionID: { rowID: true | false }}的格式包含了所有刚刚改变了可见性的行</p>
+<p>其中如果值为true表示一个行变得可见，而为false表示行刚刚离开可视区域而变得不可见。</p>
+<h5 id="pageSize-【number】"><a href="#pageSize-【number】" class="headerlink" title="pageSize 【number】"></a>pageSize 【number】</h5><p>每次事件循环（每帧）渲染的行数</p>
+<h5 id="renderFooter-【function】"><a href="#renderFooter-【function】" class="headerlink" title="renderFooter 【function】"></a>renderFooter 【function】</h5><h5 id="renderHeader-【function】"><a href="#renderHeader-【function】" class="headerlink" title="renderHeader 【function】"></a>renderHeader 【function】</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">() =&gt; renderable</span><br></pre></td></tr></table></figure>
+<p>页头与页脚会在每次渲染过程中都重新渲染【如果提供了这些属性】</p>
+<p>如果它们重绘的性能开销很大，把他们包装到一个StaticContainer或者其它恰当的结构中。页脚会永远在列表的最底部，而页头会在最顶部</p>
+<h5 id="renderRow-【function】"><a href="#renderRow-【function】" class="headerlink" title="renderRow 【function】"></a>renderRow 【function】</h5><p>(rowData, sectionID, rowID, highlightRow) =&gt; renderable</p>
+<p>从数据源(Data source)中接受一条数据，以及它和它所在section的ID。返回一个可渲染的组件来为这行数据进行渲染。默认情况下参数中的数据就是放进数据源中的数据本身，不过也可以提供一些转换器。</p>
+<p>如果某一行正在被高亮（通过调用highlightRow函数），ListView会得到相应的通知。当一行被高亮时，其两侧的分割线会被隐藏。行的高亮状态可以通过调用highlightRow(null)来重置</p>
+<h4 id="ListView-DataSource"><a href="#ListView-DataSource" class="headerlink" title="ListView.DataSource"></a>ListView.DataSource</h4><p>要更新datasource中的数据，每次都重新调用cloneWithRows方法</p>
+<p>数据源中的数据本身是不可修改的，所以请勿直接尝试修改</p>
+<p>clone方法会自动提取新数据并进行逐行对比（使用rowHasChanged方法中的策略）这样ListView就知道哪些行需要重新渲染了</p>
+<h5 id="cloneWithRows-dataBlob-rowIdentities"><a href="#cloneWithRows-dataBlob-rowIdentities" class="headerlink" title="cloneWithRows(dataBlob, rowIdentities)"></a>cloneWithRows(dataBlob, rowIdentities)</h5><p>根据指定的dataBlob和 rowIdentities为ListViewDataSource复制填充数据。dataBlob即原始数据。需要在初始化时定义抽取函数（否则使用默认的抽取函数）。</p>
+<p>rowIdentities是一个二维数组，包含了行数据对应的id标识符，例如[[‘a1’, ‘a2’], [‘b1’, ‘b2’, ‘b3’], …]。如果没有指定此数组，则默认取行数据的key。</p>
+<p>注：此方法实际并没有复制数据。它只是重新创建一个datasource，然后将你指定的dataBlob传递给构造函数中指定的提取函数，因而会抛弃先前的数据。如果你希望保留先前的数据，则必须先自行进行新老数据的合并处理，然后再将合并后的结果作为dataBlob传递给此方法调用。</p>
+<h4 id="ScrollView-视图滚动"><a href="#ScrollView-视图滚动" class="headerlink" title="ScrollView  视图滚动"></a>ScrollView  视图滚动</h4><p>属性解析</p>
+<h5 id="horizontal"><a href="#horizontal" class="headerlink" title="horizontal"></a>horizontal</h5><p>当此属性为true的时候，所有的子视图会在水平方向上排成一行，而不是默认的在垂直方向上排成一列</p>
+<p>默认值为false</p>
+<h5 id="showsHorizontalScrollIndicator-bool"><a href="#showsHorizontalScrollIndicator-bool" class="headerlink" title="showsHorizontalScrollIndicator bool"></a>showsHorizontalScrollIndicator bool</h5><p>当此属性为true的时候，显示一个水平方向的滚动条</p>
+<h5 id="scrollEventThrottle-【number】"><a href="#scrollEventThrottle-【number】" class="headerlink" title="scrollEventThrottle   【number】"></a>scrollEventThrottle   【number】</h5><p>这个属性控制在滚动过程中，scroll事件被调用的频率（单位是每秒事件数量）</p>
+<p>更大的数值能够更及时的跟踪滚动位置，不过可能会带来性能问题</p>
+<p>默认值为0，意味着每次视图被滚动，scroll事件只会被调用一次</p>
+<h5 id="onScroll"><a href="#onScroll" class="headerlink" title="onScroll"></a>onScroll</h5><p>滚动是触发的方法</p>
+<h5 id="scrollEnabled-bool"><a href="#scrollEnabled-bool" class="headerlink" title="scrollEnabled bool"></a>scrollEnabled bool</h5><p>当值为false的时候，内容不能滚动，默认值为true</p>
+<h4 id="TouchableOpacity"><a href="#TouchableOpacity" class="headerlink" title="TouchableOpacity"></a>TouchableOpacity</h4><p>本组件用于封装视图，使其可以正确响应触摸操作。当按下的时候，封装的视图的不透明度会降低。这个过程并不会真正改变视图层级</p>
+<p>使用案例</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">TouchableOpacity</span> <span class="attr">onPress</span>=<span class="string">&#123;this._onPressButton&#125;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">Image</span></span></span><br><span class="line"><span class="tag">     <span class="attr">style</span>=<span class="string">&#123;styles.button&#125;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">source</span>=<span class="string">&#123;require(</span>'<span class="attr">image</span>!<span class="attr">myButton</span>')&#125;</span></span><br><span class="line"><span class="tag">   /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="项目调试"><a href="#项目调试" class="headerlink" title="项目调试"></a>项目调试</h3><p>当你的项目在模拟器中运行起来之后 需要对项目进行调试</p>
+<p><strong> 针对于iOS开发 </strong></p>
+<h4 id="Developer-Menu"><a href="#Developer-Menu" class="headerlink" title="Developer Menu"></a>Developer Menu</h4><p>在模拟器中开启 Developer Menu  快捷键 com + D</p>
+<h4 id="Chrome-Developer-Tools"><a href="#Chrome-Developer-Tools" class="headerlink" title="Chrome Developer Tools"></a>Chrome Developer Tools</h4><p>谷歌开发工具是大家非常熟悉的了</p>
+<p>第一步：启动远程调试</p>
+<p>Developer Menu下单击”Debug JS Remotely” 启动JS远程调试功能。此时Chrome会被打开</p>
+<p>第二步：打开Chrome开发者工具</p>
+<p>在该“<a href="http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单-&gt;选择更多工具-&gt;选择开发者工具" target="_blank" rel="noopener">http://localhost:8081/debugger-ui.”Tab页下打开开发者工具。打开Chrome菜单-&gt;选择更多工具-&gt;选择开发者工具</a></p>
+<p>然后选择source 进行调试</p>
+<h4 id="other"><a href="#other" class="headerlink" title="other"></a>other</h4><p>1 在调试模拟器的时候发现速度很慢  估计是在刷新页面的时候 误点击了commond + T 导致开启了slowe animation</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/01/pm2/" rel="next" title="pm2">
+                <i class="fa fa-chevron-left"></i> pm2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/04/rn-swiper/" rel="prev" title="rn-swiper">
+                rn-swiper <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#项目启动中bug"><span class="nav-number">1.1.</span> <span class="nav-text">项目启动中bug</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关文章导读"><span class="nav-number">1.2.</span> <span class="nav-text">相关文章导读</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础组件"><span class="nav-number">2.</span> <span class="nav-text">基础组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Loading"><span class="nav-number">2.1.</span> <span class="nav-text">Loading</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Button"><span class="nav-number">2.2.</span> <span class="nav-text">Button</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Alert-弹出层"><span class="nav-number">2.3.</span> <span class="nav-text">Alert  弹出层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Image"><span class="nav-number">2.4.</span> <span class="nav-text">Image</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#listView"><span class="nav-number">2.5.</span> <span class="nav-text">listView</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dataSource"><span class="nav-number">2.5.1.</span> <span class="nav-text">dataSource</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#initialListSize-【number】"><span class="nav-number">2.5.2.</span> <span class="nav-text">initialListSize 【number】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onChangeVisibleRows-function"><span class="nav-number">2.5.3.</span> <span class="nav-text">onChangeVisibleRows [function]</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pageSize-【number】"><span class="nav-number">2.5.4.</span> <span class="nav-text">pageSize 【number】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#renderFooter-【function】"><span class="nav-number">2.5.5.</span> <span class="nav-text">renderFooter 【function】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#renderHeader-【function】"><span class="nav-number">2.5.6.</span> <span class="nav-text">renderHeader 【function】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#renderRow-【function】"><span class="nav-number">2.5.7.</span> <span class="nav-text">renderRow 【function】</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ListView-DataSource"><span class="nav-number">2.6.</span> <span class="nav-text">ListView.DataSource</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cloneWithRows-dataBlob-rowIdentities"><span class="nav-number">2.6.1.</span> <span class="nav-text">cloneWithRows(dataBlob, rowIdentities)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ScrollView-视图滚动"><span class="nav-number">2.7.</span> <span class="nav-text">ScrollView  视图滚动</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#horizontal"><span class="nav-number">2.7.1.</span> <span class="nav-text">horizontal</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#showsHorizontalScrollIndicator-bool"><span class="nav-number">2.7.2.</span> <span class="nav-text">showsHorizontalScrollIndicator bool</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scrollEventThrottle-【number】"><span class="nav-number">2.7.3.</span> <span class="nav-text">scrollEventThrottle   【number】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onScroll"><span class="nav-number">2.7.4.</span> <span class="nav-text">onScroll</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#scrollEnabled-bool"><span class="nav-number">2.7.5.</span> <span class="nav-text">scrollEnabled bool</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TouchableOpacity"><span class="nav-number">2.8.</span> <span class="nav-text">TouchableOpacity</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目调试"><span class="nav-number">3.</span> <span class="nav-text">项目调试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Developer-Menu"><span class="nav-number">3.1.</span> <span class="nav-text">Developer Menu</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Chrome-Developer-Tools"><span class="nav-number">3.2.</span> <span class="nav-text">Chrome Developer Tools</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#other"><span class="nav-number">3.3.</span> <span class="nav-text">other</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

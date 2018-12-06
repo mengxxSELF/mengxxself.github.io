@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node,Linux,pm2,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前段时间在公司部署项目的时候，运维同学说了一堆关于服务器的东西，顿时感觉不知所云，云里雾里。。。索性拿这个项目练习一下，简单了解项目部署到服务器的这个流程是怎么处理的">
+<meta name="keywords" content="node,Linux,pm2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="服务器部署">
+<meta property="og:url" content="http://yoursite.com/2018/06/12/服务器部署/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前段时间在公司部署项目的时候，运维同学说了一堆关于服务器的东西，顿时感觉不知所云，云里雾里。。。索性拿这个项目练习一下，简单了解项目部署到服务器的这个流程是怎么处理的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/12/163f38cd00ab0e3a?w=776&h=223&f=png&s=29247">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/163a1aec86e99008?w=1438&h=450&f=png&s=140802">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/163a1ba30dd25825?w=1512&h=180&f=png&s=87117">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/163a1f1bbad301ee?w=1490&h=656&f=png&s=180997">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/163a200b8a0985cd?w=1716&h=472&f=png&s=300205">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/27/163a208e89e5a090?w=1346&h=72&f=png&s=39928">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ee455567729da?w=610&h=280&f=png&s=60077">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ee650ddf9642c?w=396&h=51&f=png&s=12748">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ee5fe7d595200?w=664&h=149&f=png&s=49446">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163ee65340369a24?w=699&h=98&f=png&s=16714">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eec4823de9345?w=822&h=138&f=png&s=38275">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eec1fea607d01?w=877&h=416&f=png&s=216161">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eec6a3384c7aa?w=899&h=190&f=png&s=56828">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eec769f6504f5?w=820&h=203&f=png&s=54513">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eec8d099577ea?w=906&h=152&f=png&s=36711">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eeca943fc474f?w=811&h=256&f=png&s=74416">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eecc8919bd7ca?w=605&h=705&f=png&s=87614">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eed4a54c6e76b?w=624&h=103&f=png&s=18177">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eed4c3afa8bd0?w=710&h=249&f=png&s=64349">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/11/163eeec21673a93a?w=610&h=40&f=png&s=14927">
+<meta property="og:updated_time" content="2018-09-03T11:08:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="服务器部署">
+<meta name="twitter:description" content="前段时间在公司部署项目的时候，运维同学说了一堆关于服务器的东西，顿时感觉不知所云，云里雾里。。。索性拿这个项目练习一下，简单了解项目部署到服务器的这个流程是怎么处理的">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/6/12/163f38cd00ab0e3a?w=776&h=223&f=png&s=29247">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/12/服务器部署/">
+
+
+
+
+
+  <title>服务器部署 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/服务器部署/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">服务器部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T18:20:40+08:00">
+                2018-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/6/12/163f38cd00ab0e3a?w=776&amp;h=223&amp;f=png&amp;s=29247" alt="banner"></p>
+<blockquote>
+<p>前段时间在公司部署项目的时候，运维同学说了一堆关于服务器的东西，顿时感觉不知所云，云里雾里。。。索性拿这个项目练习一下，简单了解项目部署到服务器的这个流程是怎么处理的</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h2><h3 id="pm2"><a href="#pm2" class="headerlink" title="pm2"></a>pm2</h3><p>pm2 是启动node进程管理工具</p>
+<h4 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h4><p>···</p>
+<p>pm2 start app.js ： 启动服务，入口文件是app.js</p>
+<p>pm2 list 查看有哪些进程启动</p>
+<p>pm2 show xxx  查看某一个服务的详情</p>
+<p>npm restart  [name or id] ： 重启服务</p>
+<p>pm2 monit ： 对服务进行监控</p>
+<p>···</p>
+<p>一个项目的package.json 文件</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a1aec86e99008?w=1438&amp;h=450&amp;f=png&amp;s=140802" alt="package.json"></p>
+<p>平时启动服务我们可以使用 node run app.js</p>
+<p>如果借助pm2 来启动服务 就可以输入 pm2 start  app.js</p>
+<p>在命令行输入 pm2 list 可以查看正在运行的项目</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a1ba30dd25825?w=1512&amp;h=180&amp;f=png&amp;s=87117" alt="pm2 list"></p>
+<h4 id="pm2支持配置文件启动"><a href="#pm2支持配置文件启动" class="headerlink" title="pm2支持配置文件启动"></a>pm2支持配置文件启动</h4><p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a1f1bbad301ee?w=1490&amp;h=656&amp;f=png&amp;s=180997" alt="pm2配置文件"></p>
+<ul>
+<li>script  启动脚本路径</li>
+<li>exec_mode  应用启动模式，支持fork和cluster模式</li>
+<li>instances  应用启动实例个数，仅在cluster模式有效，默认为fork</li>
+</ul>
+<h2 id="fork和cluster模式"><a href="#fork和cluster模式" class="headerlink" title="fork和cluster模式"></a>fork和cluster模式</h2><p>fork为单进程   cluster可以启动多个进程</p>
+<p>在项目中新增一个pm2配置文件 pm2.config.json</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;mxx-project&quot;,</span><br><span class="line">  &quot;script&quot;: &quot;./index.js&quot;,</span><br><span class="line">  &quot;error_file&quot;: &quot;./logs/err.log&quot;,</span><br><span class="line">  &quot;out_file&quot;: &quot;./logs/out.log&quot;,</span><br><span class="line">  &quot;log_date_format&quot;: &quot;YYYY-MM-DD HH:mm Z&quot;,</span><br><span class="line">  &quot;instances&quot;: 3,</span><br><span class="line">  &quot;merge_logs&quot;: true,</span><br><span class="line">  &quot;exec_mode&quot;: &quot;cluster&quot;,</span><br><span class="line">  &quot;node_args&quot;: &quot;&quot;,</span><br><span class="line">  &quot;ignore_watch&quot;: [&quot;node_modules&quot;],</span><br><span class="line">  &quot;env&quot;: &#123;</span><br><span class="line">    &quot;NODE_ENV&quot;: &quot;development&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在命令行输入  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 start pm2.config.json</span><br></pre></td></tr></table></figure>
+<p>则会有三个进程被创建</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a200b8a0985cd?w=1716&amp;h=472&amp;f=png&amp;s=300205" alt="cluster"></p>
+<p>注： 如果你的服务器是多核的 那么很有可能在cluster 模式下 被创建多个进程</p>
+<p>可以查看一下自己的服务器是几核的</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/5/27/163a208e89e5a090?w=1346&amp;h=72&amp;f=png&amp;s=39928" alt="cluster"></p>
+<h2 id="shipit"><a href="#shipit" class="headerlink" title="shipit"></a>shipit</h2><p>shipit 是自动化的服务器部署工具</p>
+<p>一个简单的shipit配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">module.exports = shipit =&gt; &#123;</span><br><span class="line">  require(&apos;shipit-deploy&apos;)(shipit)</span><br><span class="line">  shipit.initConfig(&#123;</span><br><span class="line">    default: &#123;</span><br><span class="line">      workspace: &apos;/tmp/myapp&apos;,</span><br><span class="line">      deployTo: &apos;/var/myapp&apos;,</span><br><span class="line">      repositoryUrl: &apos;你的GitHub地址&apos;,</span><br><span class="line">      ignores: [&apos;.git&apos;, &apos;node_modules&apos;],</span><br><span class="line">      keepReleases: 2,</span><br><span class="line">      deleteOnRollback: false,</span><br><span class="line">      key: &apos;/path/to/key&apos;,</span><br><span class="line">      shallowClone: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    staging: &#123;</span><br><span class="line">      servers: &apos;你的服务器地址&apos;,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="连接服务器"><a href="#连接服务器" class="headerlink" title="连接服务器"></a>连接服务器</h2><p>购买服务器之后 得到IP地址 可以尝试登陆服务器</p>
+<p>一般自己的服务器可以使用root身份登陆操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@ipipip</span><br></pre></td></tr></table></figure>
+<p>由于后面项目要部署到服务器中 建议可以先做ssh-copy-id 建立信任 这样就不用重复输入密码了</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163ee455567729da?w=610&amp;h=280&amp;f=png&amp;s=60077" alt="ssh-copy-id"></p>
+<h2 id="在服务器上配置环境"><a href="#在服务器上配置环境" class="headerlink" title="在服务器上配置环境"></a>在服务器上配置环境</h2><p>一般来说 需要安装 npm cnpm node pm2 git nginx</p>
+<ul>
+<li>安装npm</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install npm</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装 cnpm</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装pm2</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i pm2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装node</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i n</span><br></pre></td></tr></table></figure>
+<ul>
+<li>安装git</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install git</span><br></pre></td></tr></table></figure>
+<h2 id="启动一个简易服务"><a href="#启动一个简易服务" class="headerlink" title="启动一个简易服务"></a>启动一个简易服务</h2><p>我们来写一个简单的脚本 在服务器上， 我这里是在 /home/work 目录下新建了一个app.js (依次执行)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd home</span><br><span class="line">mkdir work</span><br><span class="line">touch app.js</span><br></pre></td></tr></table></figure>
+<p>在app.js中 写一个最简单的服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const http = require(&apos;http&apos;)</span><br><span class="line">const port = 3389</span><br><span class="line"></span><br><span class="line">http.createServer((req, res) =&gt; &#123;</span><br><span class="line">  res.end(&apos;Hello word!&apos;)</span><br><span class="line">&#125;).listen(port, () =&gt; &#123;</span><br><span class="line">  console.log(port, &apos;port&apos;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>启动app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node app.js</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163ee650ddf9642c?w=396&amp;h=51&amp;f=png&amp;s=12748" alt="node"></p>
+<p>然后打开浏览器，输入IP+端口号，就能在页面中看到hello word了</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163ee5fe7d595200?w=664&amp;h=149&amp;f=png&amp;s=49446" alt="hello word"></p>
+<p>–补充–</p>
+<p>1 这里使用的端口号是 3389 是因为我的服务器中 安全组中已经配置了 3389 这个端口号</p>
+<p>如果你使用的是其余端口 要注意去查看有没有配置安全组</p>
+<p>2 关于启动服务</p>
+<p>如果使用的是node 那么一旦退出服务器，则无法再访问此服务</p>
+<p>可以换成使用pm2 来启动 这样一旦启动 除非报错，将会一直有此进程存在</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163ee65340369a24?w=699&amp;h=98&amp;f=png&amp;s=16714" alt="pm2"></p>
+<h2 id="准备部署"><a href="#准备部署" class="headerlink" title="准备部署"></a>准备部署</h2><ul>
+<li>准备项目</li>
+</ul>
+<p>项目是用koa1 + React</p>
+<p>react的项目地址 <a href="https://github.com/mengxxSELF/Redux-koa" target="_blank" rel="noopener">点我查看GitHub地址</a></p>
+<p>启动的端口号调整到3389</p>
+<ul>
+<li>准备pm2启动文件</li>
+</ul>
+<p>创建pm2文件夹 在其中写一个 production.json 用于启动pm2</p>
+<ul>
+<li>在项目中创建一个 shipit.js 基本配置如下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">module.exports = function (shipit) &#123;</span><br><span class="line">  require(&apos;shipit-deploy&apos;)(shipit)</span><br><span class="line">  require(&apos;shipit-cnpm&apos;)(shipit)</span><br><span class="line">  require(&apos;shipit-pm&apos;)(shipit)</span><br><span class="line">  shipit.initConfig(&#123;</span><br><span class="line">    default: &#123;</span><br><span class="line">      workspace: &apos;/tmp/deploy/your-project&apos;,</span><br><span class="line">      deployTo: &apos;/home/work/your-project&apos;,</span><br><span class="line">      repositoryUrl: &apos;https://github.com/youproject.git&apos;,</span><br><span class="line">      ignores: [&apos;.git&apos;, &apos;node_modules&apos;],</span><br><span class="line">      keepReleases: 2,</span><br><span class="line">      deleteOnRollback: false,</span><br><span class="line">      key: &apos;/path/to/key&apos;,</span><br><span class="line">      shallowClone: true,</span><br><span class="line">      cnpm: &#123;</span><br><span class="line">        flags: &apos;--production&apos;,</span><br><span class="line">        local: false,</span><br><span class="line">        npm: &apos;cnpm&apos;,</span><br><span class="line">        remote: true</span><br><span class="line">      &#125;,</span><br><span class="line">      pm: &#123;</span><br><span class="line">        production: &#123;</span><br><span class="line">          path: &apos;/home/work/your-project/current/pm2/production.json&apos;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    production: &#123;</span><br><span class="line">      servers: [&apos;root@你的IP地址&apos;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里 pm2 使用的配置文件来启动 所以配置了 pm 参数 会根据这个文件路径来启动pm2</p>
+<ul>
+<li><p>在项目的package.json中 添加两个字段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;deploy&quot;: &quot;shipit production deploy&quot;,</span><br><span class="line">&quot;rollback&quot;: &quot;shipit production rollback&quot;,</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将项目push到GitHub中</p>
+</li>
+<li>执行 npm run deploy</li>
+</ul>
+<p>项目部署完毕后，去服务器查看下项目进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pm2 list</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eec4823de9345?w=822&amp;h=138&amp;f=png&amp;s=38275" alt="pm2"></p>
+<p>打开页面 看下效果</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eec1fea607d01?w=877&amp;h=416&amp;f=png&amp;s=216161" alt="server"></p>
+<p>到目前为止，算是部署完毕了</p>
+<h2 id="部署过程出现的问题"><a href="#部署过程出现的问题" class="headerlink" title="部署过程出现的问题"></a>部署过程出现的问题</h2><ul>
+<li>报错1</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eec6a3384c7aa?w=899&amp;h=190&amp;f=png&amp;s=56828" alt="git"></p>
+<p>解决： 服务器上忘记安装git了</p>
+<ul>
+<li>报错2</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eec769f6504f5?w=820&amp;h=203&amp;f=png&amp;s=54513" alt="cnpm"></p>
+<p>这个就很明显了，没有安装 cnpm</p>
+<ul>
+<li>部署成功之后去服务器查看 项目并没有启动</li>
+</ul>
+<p>原来部署完毕是</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eec8d099577ea?w=906&amp;h=152&amp;f=png&amp;s=36711" alt="shipit"></p>
+<p>然后求助一位大神，发现是shipit配置文件中 没写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require(&apos;shipit-pm&apos;)(shipit)</span><br></pre></td></tr></table></figure>
+<p>[摔桌子！]</p>
+<p>调整文件后重新上线</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eeca943fc474f?w=811&amp;h=256&amp;f=png&amp;s=74416" alt="pm2"></p>
+<p>会启动三个进程</p>
+<h2 id="根据项目端口号配置阿里云"><a href="#根据项目端口号配置阿里云" class="headerlink" title="根据项目端口号配置阿里云"></a>根据项目端口号配置阿里云</h2><p>如果你的项目启动时候端口号并没有在安全组中配置，需要在后台中添加安全组</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eecc8919bd7ca?w=605&amp;h=705&amp;f=png&amp;s=87614" alt="9093"></p>
+<p>在访问页面的时候 还需要输入端口号 3389。非常懒，不想输入端口号</p>
+<p>在安全组中添加默认端口80，将启动文件app.js中端口调整为80。这样就不需要输入端口号了</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eed4a54c6e76b?w=624&amp;h=103&amp;f=png&amp;s=18177" alt="port"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eed4c3afa8bd0?w=710&amp;h=249&amp;f=png&amp;s=64349" alt="port"></p>
+<p>那如果不想修改app.js文件怎么办，使用NGINX</p>
+<h2 id="配置NGINX"><a href="#配置NGINX" class="headerlink" title="配置NGINX"></a>配置NGINX</h2><ul>
+<li>安装 nginx</li>
+</ul>
+<p>yum install nginx</p>
+<p>查看NGINX配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat  /etc/nginx/nginx.conf</span><br></pre></td></tr></table></figure>
+<p>很简单的配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"># For more information on configuration, see:</span><br><span class="line">#   * Official English Documentation: http://nginx.org/en/docs/</span><br><span class="line">#   * Official Russian Documentation: http://nginx.org/ru/docs/</span><br><span class="line"></span><br><span class="line">user nginx;</span><br><span class="line">worker_processes auto;</span><br><span class="line">error_log /var/log/nginx/error.log;</span><br><span class="line">pid /run/nginx.pid;</span><br><span class="line"></span><br><span class="line"># Load dynamic modules. See /usr/share/nginx/README.dynamic.</span><br><span class="line">include /usr/share/nginx/modules/*.conf;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections 1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    access_log  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile            on;</span><br><span class="line">    tcp_nopush          on;</span><br><span class="line">    tcp_nodelay         on;</span><br><span class="line">    keepalive_timeout   65;</span><br><span class="line">    types_hash_max_size 2048;</span><br><span class="line"></span><br><span class="line">    include             /etc/nginx/mime.types;</span><br><span class="line">    default_type        application/octet-stream;</span><br><span class="line"></span><br><span class="line">    # Load modular configuration files from the /etc/nginx/conf.d directory.</span><br><span class="line">    # See http://nginx.org/en/docs/ngx_core_module.html#include</span><br><span class="line">    # for more information.</span><br><span class="line">    include /etc/nginx/conf.d/*.conf;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen       80 default_server;</span><br><span class="line">        listen       [::]:80 default_server;</span><br><span class="line">        server_name  _;</span><br><span class="line">        root         /usr/share/nginx/html;</span><br><span class="line"></span><br><span class="line">        # Load configuration files for the default server block.</span><br><span class="line">        include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 404 /404.html;</span><br><span class="line">            location = /40x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        error_page 500 502 503 504 /50x.html;</span><br><span class="line">            location = /50x.html &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>将项目入口文件app.js中端口号调整为 9999</p>
+<p>处理Nginx.conf.js</p>
+<p>最后调整为 （比较重要的是server 这里只展示server部分）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">       listen       80;</span><br><span class="line">       server_name  localhost;</span><br><span class="line"></span><br><span class="line">       location / &#123;</span><br><span class="line">         proxy_pass  http://127.0.0.1:9999/;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx配置出现的问题"><a href="#Nginx配置出现的问题" class="headerlink" title="Nginx配置出现的问题"></a>Nginx配置出现的问题</h2><ul>
+<li>重启Nginx</li>
+</ul>
+<p>在重启Nginx的时候 一直报错</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/11/163eeec21673a93a?w=610&amp;h=40&amp;f=png&amp;s=14927" alt="error"></p>
+<p>查阅文章后处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nginx -c /etc/nginx/nginx.conf</span><br><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure>
+<p>搞定~</p>
+<p>欢迎访问 <a href="http://47.104.231.146/" target="_blank" rel="noopener">点我查看项目</a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="http://pm2.keymetrics.io/docs/usage/cluster-mode/" target="_blank" rel="noopener">pm2</a></li>
+<li><a href="https://github.com/jawil/blog/issues/7" target="_blank" rel="noopener">PM2使用技巧</a></li>
+<li><a href="https://www.jianshu.com/p/7b10123c8b88" target="_blank" rel="noopener">pm2进程管理工具使用总结</a></li>
+<li><a href="https://cnodejs.org/topic/584545bd4c17b38d354363af" target="_blank" rel="noopener">使用shipit-deploy实现自动化的多服务器部署</a></li>
+<li><a href="https://www.jianshu.com/p/07843ae6b556" target="_blank" rel="noopener">使用 Shipit 来自动化部署 Node 应用</a></li>
+<li><a href="https://lufficc.com/blog/nginx-for-beginners" target="_blank" rel="noopener">初识 Nginx</a></li>
+<li><a href="https://blog.csdn.net/llnara/article/details/8691049" target="_blank" rel="noopener">重启nginx后丢失nginx.pid，如何重新启动nginx</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/pm2/" rel="tag"># pm2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/26/ssh-copy-id/" rel="next" title="ssh-copy-id">
+                <i class="fa fa-chevron-left"></i> ssh-copy-id
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/02/一周计划9/" rel="prev" title="一周计划9">
+                一周计划9 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#预备知识"><span class="nav-number">1.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pm2"><span class="nav-number">1.1.</span> <span class="nav-text">pm2</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用命令"><span class="nav-number">1.1.1.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pm2支持配置文件启动"><span class="nav-number">1.1.2.</span> <span class="nav-text">pm2支持配置文件启动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fork和cluster模式"><span class="nav-number">2.</span> <span class="nav-text">fork和cluster模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#shipit"><span class="nav-number">3.</span> <span class="nav-text">shipit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接服务器"><span class="nav-number">4.</span> <span class="nav-text">连接服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在服务器上配置环境"><span class="nav-number">5.</span> <span class="nav-text">在服务器上配置环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动一个简易服务"><span class="nav-number">6.</span> <span class="nav-text">启动一个简易服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准备部署"><span class="nav-number">7.</span> <span class="nav-text">准备部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署过程出现的问题"><span class="nav-number">8.</span> <span class="nav-text">部署过程出现的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据项目端口号配置阿里云"><span class="nav-number">9.</span> <span class="nav-text">根据项目端口号配置阿里云</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置NGINX"><span class="nav-number">10.</span> <span class="nav-text">配置NGINX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx配置出现的问题"><span class="nav-number">11.</span> <span class="nav-text">Nginx配置出现的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">12.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

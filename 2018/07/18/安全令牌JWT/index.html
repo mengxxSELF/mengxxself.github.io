@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JWT,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安全令牌JWT: JSON对象的形式安全传递信息的方法">
+<meta name="keywords" content="JWT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全令牌JWT">
+<meta property="og:url" content="http://yoursite.com/2018/07/18/安全令牌JWT/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安全令牌JWT: JSON对象的形式安全传递信息的方法">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/164878066f024a5e?w=788&h=216&f=png&s=32480">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/164871616dfaf51b?w=352&h=180&f=png&s=12349">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/16487199d8b65066?w=322&h=179&f=png&s=14545">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/164872339c1506d0?w=356&h=193&f=png&s=22799">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/1648769e313f5e7f?w=701&h=312&f=png&s=28038">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/16487702e4d849aa?w=793&h=404&f=png&s=41332">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/164877a3277653a0?w=919&h=620&f=jpeg&s=67632">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/9/1647ed64044740a5?w=637&h=178&f=png&s=27705">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/9/1647edb4bbb51e7e?w=484&h=216&f=png&s=15670">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/9/1647edde5ae69505?w=434&h=204&f=png&s=12755">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/16487356ff9fd540?w=767&h=360&f=png&s=36543">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/11/1648735fe4613e42?w=468&h=171&f=png&s=37664">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/13/164929b24314b32a?w=1090&h=982&f=png&s=192311">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/12/1648f150f63cc14b?w=942&h=134&f=png&s=34937">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/13/16492f55a5f4485b?w=962&h=472&f=png&s=78702">
+<meta property="og:updated_time" content="2018-08-31T13:25:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安全令牌JWT">
+<meta name="twitter:description" content="安全令牌JWT: JSON对象的形式安全传递信息的方法">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/7/11/164878066f024a5e?w=788&h=216&f=png&s=32480">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/18/安全令牌JWT/">
+
+
+
+
+
+  <title>安全令牌JWT | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/18/安全令牌JWT/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">安全令牌JWT</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-18T13:45:21+08:00">
+                2018-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/7/11/164878066f024a5e?w=788&amp;h=216&amp;f=png&amp;s=32480" alt="JWT"></p>
+<blockquote>
+<p>安全令牌JWT: JSON对象的形式安全传递信息的方法</p>
+</blockquote>
+<a id="more"></a>
+<p>前段时间处理一个抽奖H5，测试过程中想到如果有用户抓到抽奖接口，比如 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:xxx/lottery/userinfo</span><br></pre></td></tr></table></figure>
+<p>如果直接访问抽奖接口，可以直接进行抽奖动作。这里就涉及到处理验证用户身份的问题</p>
+<p>之后的解决方式是 判断接口的cookie中是否包含 userInfo 等参数信息</p>
+<p>不过还可以通过另外一种方式来处理– JWT</p>
+<h2 id="什么是JWT-（JSON-WEB-TOKEN）"><a href="#什么是JWT-（JSON-WEB-TOKEN）" class="headerlink" title="什么是JWT （JSON WEB TOKEN）"></a>什么是JWT （JSON WEB TOKEN）</h2><p>JWT是通信双方之间以 JSON对象的形式安全传递信息的方法。</p>
+<p>其实可以理解为使用非对称算法来进行前后端校验。</p>
+<p>JWT 由三部分组成</p>
+<h3 id="头部"><a href="#头部" class="headerlink" title="头部"></a>头部</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/11/164871616dfaf51b?w=352&amp;h=180&amp;f=png&amp;s=12349" alt="head"></p>
+<ul>
+<li><p>typ 声明类型 </p>
+</li>
+<li><p>alg 声明加密的算法 </p>
+</li>
+</ul>
+<p>然后按照此规则将头部信息进行base64编码，构成JWT第一部分</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9</span><br></pre></td></tr></table></figure>
+<h3 id="payload"><a href="#payload" class="headerlink" title="payload"></a>payload</h3><p>payload 就是存放有效信息的地方</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/11/16487199d8b65066?w=322&amp;h=179&amp;f=png&amp;s=14545" alt="payload"></p>
+<p>payload 中有一些参数字段是建议使用的 （仅列出几个）</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iat</td>
+<td>jwt的签发时间</td>
+</tr>
+<tr>
+<td>exp</td>
+<td>jwt的过期时间，这个过期时间必须要大于签发时间</td>
+</tr>
+<tr>
+<td>nbf</td>
+<td>定义在什么时间之前，该jwt都是不可用的</td>
+</tr>
+</tbody>
+</table>
+<p>比如来定义一个payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;exp&quot;: Math.floor(Date.now() / 1000) + (60 * 60),</span><br><span class="line">  &quot;name&quot;: &quot;John Doe&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>payload 会进行base64编码，构成JWT第二部分</p>
+<h3 id="签证"><a href="#签证" class="headerlink" title="签证"></a>签证</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/11/164872339c1506d0?w=356&amp;h=193&amp;f=png&amp;s=22799" alt="签证"></p>
+<p>可以看到，签证部分是由三个部分组成的</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>base64UrlEncode</td>
+<td>base64加密后的Header</td>
+</tr>
+<tr>
+<td>base64UrlEncode</td>
+<td>base64加密后的payload</td>
+</tr>
+<tr>
+<td>your-256-bit-secret</td>
+<td>自定义的加密secret</td>
+</tr>
+</tbody>
+</table>
+<p>secret 相当于私钥，不可泄漏，如果客户端可以拿到secret，就可以自我签发JWT了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var encodedString = base64UrlEncode(header) + &apos;.&apos; + base64UrlEncode(payload)</span><br><span class="line">var signature = HMACSHA256(encodedString, &apos;secret&apos;)</span><br></pre></td></tr></table></figure>
+<p>signature 是JWT的第三部分</p>
+<p>将以上三部分拼接起来，就是最后的JWT</p>
+<h2 id="第三方库"><a href="#第三方库" class="headerlink" title="第三方库"></a>第三方库</h2><h3 id="jsonwebtoken"><a href="#jsonwebtoken" class="headerlink" title="jsonwebtoken"></a>jsonwebtoken</h3><p>如果自己在生成jwt,有点复杂。目前已经有很多开发的第三方库来支持JWT。比如 jsonwebtoken</p>
+<p><a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener">jsonwebtoken</a> </p>
+<ul>
+<li><p>sign 用于生成 token</p>
+</li>
+<li><p>verify 用于检验token</p>
+</li>
+</ul>
+<h3 id="koa-jwt"><a href="#koa-jwt" class="headerlink" title="koa-jwt"></a>koa-jwt</h3><p>koa-jwt 用于验证接口中是否包含token信息</p>
+<p>搭建了一个简易的server 来看下效果</p>
+<p><a href="https://github.com/mengxxSELF/koa-jwt" target="_blank" rel="noopener">项目Git地址</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">app.use(</span><br><span class="line">  jwtKoa(&#123;secret: SECRET&#125;)</span><br><span class="line">  .unless(&#123;</span><br><span class="line">    path: [/\/login/] // 不需要通过jwt验证的请求路径</span><br><span class="line">  &#125;)</span><br><span class="line">)</span><br><span class="line">router.get(&apos;/login&apos;, async (ctx) =&gt; &#123;</span><br><span class="line">  let token = jwt.sign(&#123;</span><br><span class="line">    name: &apos;dva&apos;</span><br><span class="line">  &#125;, SECRET)</span><br><span class="line">  console.log(token, &apos;token&apos;)</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.get(&apos;/try&apos;, async (ctx) =&gt; &#123;</span><br><span class="line">  let token = ctx.header.authorization</span><br><span class="line">  let result = jwt.verify(token, SECRET)</span><br><span class="line">  ctx.body = &#123;</span><br><span class="line">    result</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>/login 拿到token</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#123;&quot;token&quot;:&quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZHZhIiwiaWF0IjoxNTMxMjgwMDg2fQ.Rh_vAKeytjAL2TbOk-MmXQWFesszjRU3Bzldrx5x17s&quot;&#125;%</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果不添加token 会被koa-jwt 拦截</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/11/1648769e313f5e7f?w=701&amp;h=312&amp;f=png&amp;s=28038" alt="wrong"></p>
+<ul>
+<li>添加 token</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/11/16487702e4d849aa?w=793&amp;h=404&amp;f=png&amp;s=41332" alt="token"></p>
+<h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><p><img src="https://user-gold-cdn.xitu.io/2018/7/11/164877a3277653a0?w=919&amp;h=620&amp;f=jpeg&amp;s=67632" alt="工作机制"></p>
+<p>图片来自于文章 <a href="http://lion1ou.win/2017/01/18/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="noopener">《前后端分离之JWT用户认证》</a></p>
+<ul>
+<li><p>登录拿到JWT</p>
+</li>
+<li><p>前端发起请求，Header中挂载JWT</p>
+</li>
+</ul>
+<h2 id="项目实战"><a href="#项目实战" class="headerlink" title="项目实战"></a>项目实战</h2><p>由于我搭建的这个项目中有这种需要鉴权的接口比较少，所以并没有使用koa-jwt来处理。只是用了 jsonwebtoken</p>
+<p><a href="https://github.com/mengxxSELF/test-activity" target="_blank" rel="noopener">项目GIT地址</a></p>
+<h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p>构建两个接口 login , lottery</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/9/1647ed64044740a5?w=637&amp;h=178&amp;f=png&amp;s=27705" alt="server"></p>
+<ul>
+<li>login 用来生成JWT 返回给前端</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">token = jwt.sign(&#123;</span><br><span class="line">    name: &apos;who&apos;,</span><br><span class="line">    exp: Math.floor(Date.now() / 1000) + (60 * 60), // 设置 token 过期时间</span><br><span class="line">  &#125;, SECRET)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>lottery 用来验证JWT，验证通过则进行抽奖动作</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let token = this.headers.authorization</span><br><span class="line">  // 解码</span><br><span class="line">  let decoded = jwt.verify(token, SECRET)</span><br><span class="line">  // console.log(decoded, &apos;decoded&apos;)</span><br><span class="line">  let &#123;name&#125; = decoded</span><br><span class="line"></span><br><span class="line">  if (name != &apos;who&apos;) &#123;</span><br><span class="line">    code = 403</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h3><ul>
+<li>首页点击登录后 经返回的token信息存储起来</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/9/1647edb4bbb51e7e?w=484&amp;h=216&amp;f=png&amp;s=15670" alt="login"></p>
+<p>我这里拿到token之后将其写入了localStorage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.localStorage.setItem(&apos;token&apos;, token)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入抽奖页面进行抽奖，每次请求的时候挂载Authorization </li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/9/1647edde5ae69505?w=434&amp;h=204&amp;f=png&amp;s=12755" alt="Authorization"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">axios.get(`/$&#123;APP_NAME&#125;/win`, &#123;</span><br><span class="line">  headers: &#123;</span><br><span class="line">    Authorization: token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果传递错误的token 在server端JWT验证的时候就会报错</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/11/16487356ff9fd540?w=767&amp;h=360&amp;f=png&amp;s=36543" alt="error"></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/11/1648735fe4613e42?w=468&amp;h=171&amp;f=png&amp;s=37664" alt="error"></p>
+<p><a href="101.200.45.254:9097/activity/lottery" target="_blank" rel="noopener">项目在线地址</a></p>
+<p>总而言之，如果你的接口需要考虑鉴权问题，可以参考下JWT来处理。</p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><ul>
+<li><p><a href="https://www.npmjs.com/package/jsonwebtoken" target="_blank" rel="noopener">jsonwebtoken</a></p>
+</li>
+<li><p><a href="https://jwt.io/" target="_blank" rel="noopener">jwt.io</a></p>
+</li>
+<li><p><a href="https://github.com/mengxxSELF/test-activity" target="_blank" rel="noopener">项目git地址</a> </p>
+</li>
+<li><p><a href="http://lion1ou.win/2017/01/18/?hmsr=toutiao.io&amp;utm_medium=toutiao.io&amp;utm_source=toutiao.io" target="_blank" rel="noopener">资料1</a></p>
+</li>
+<li><p><a href="https://en.wikipedia.org/wiki/JSON_Web_Token" target="_blank" rel="noopener">资料2</a> </p>
+</li>
+</ul>
+<h2 id="问题回复"><a href="#问题回复" class="headerlink" title="问题回复"></a>问题回复</h2><p>这篇文章发布之后，很多同学提出了一些问题，这里一一回复。感谢各位的评论。</p>
+<h3 id="问题1：-关于base64处理-Header-和-payload"><a href="#问题1：-关于base64处理-Header-和-payload" class="headerlink" title="问题1： 关于base64处理 Header 和 payload"></a>问题1： 关于base64处理 Header 和 payload</h3><p>其实JWT在处理Header 和 payload 的时候，只是很简单的进行了Base64编码。 如果拿到某一个token的话，是很容易就将其解码出来的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const base64url = require(&apos;base64url&apos;)</span><br><span class="line">let header = &#123;</span><br><span class="line">  &apos;typ&apos;: &apos;JWT&apos;,</span><br><span class="line">  &apos;alg&apos;: &apos;HS256&apos;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let resultH = base64url(JSON.stringify(header))</span><br><span class="line">console.log(resultH, &apos;resultH&apos;)</span><br><span class="line"></span><br><span class="line">let payload = &#123;</span><br><span class="line">  name: &apos;dva&apos;,</span><br><span class="line">  exp: 1531410000</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let result = base64url(JSON.stringify(payload))</span><br><span class="line">console.log(result, &apos;result&apos;)</span><br><span class="line"></span><br><span class="line">// 解码payload</span><br><span class="line">let isP = &apos;eyJuYW1lIjoiZHZhIiwiZXhwIjoxNTMxNDEwMDAwfQ&apos;</span><br><span class="line">let getP = base64url.decode(isP)</span><br><span class="line">console.log(getP, &apos;getP&apos;)</span><br></pre></td></tr></table></figure>
+<p>所以不建议在payload中存放敏感信息，比如用户手机号，地址信息等</p>
+<h3 id="问题2-JWT怎么做续签更新"><a href="#问题2-JWT怎么做续签更新" class="headerlink" title="问题2 JWT怎么做续签更新"></a>问题2 JWT怎么做续签更新</h3><p>查阅资料后总结，jwt的续签更新目前有以下处理方式，基本的原理就是在某一个时间点，server端发放新的token</p>
+<ul>
+<li>每次客户端发起新的请求过来，server自动更新token，返回最新的token信息给客户端，客户端拿到token后需要再更新token</li>
+</ul>
+<p>比如 在用户点击抽奖，发起请求的时候，server端每次更新一个token（我这里只更新jwt的有效期）</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/13/164929b24314b32a?w=1090&amp;h=982&amp;f=png&amp;s=192311" alt="token"></p>
+<p>拿到新的token之后将其返回。下次发起抽奖动作的时候，挂载这个最新的token</p>
+<p>但是这种处理方案有缺陷，如果用户两次请求的间隔时间超过了过期时间（比如20分钟），则接口过来的时候 首先会被判断为过期状态，请求终止（之后的代码不被执行，不会被下发新的token了）。用户会被强制退出到登录界面。</p>
+<ul>
+<li>每次请求过来的时候，不去判断有效期 （当然此请求本身携带的token必须在有效期内，我的意思是不像第一种，判断距离过期还有多久） 直接下发新的token</li>
+</ul>
+<h4 id="问题3-处理注销"><a href="#问题3-处理注销" class="headerlink" title="问题3 处理注销"></a>问题3 处理注销</h4><p>可以说token比较重要的问题就是注销token。</p>
+<p>比如我上面第二个jwt的项目，当用户点击退出登录的时候，仅仅在客户端做了token的删除。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/12/1648f150f63cc14b?w=942&amp;h=134&amp;f=png&amp;s=34937" alt="remove"></p>
+<p>但是实际上这个token还是处于有效期内的。如果用户保存了token值，在点击了退出登录之后，实际还可以使用此token值的。可以理解为伪注销。</p>
+<p>传统的方式怎么处理用户的注销行为呢？– 删除数据库记录。当用户注销登录信息的时候，server会变更数据库信息</p>
+<p>但是jwt是没有介入服务器来存储用户状态的。这就比较难处理了。我们希望token能够在用户注销后不可以被继续使用了</p>
+<ul>
+<li><p>设置比较短的token 有效期，每次请求过来的时候，重新下发，不断更新token. </p>
+</li>
+<li><p>使用服务器存储token状态。当用户点击注销，将token置空。</p>
+</li>
+</ul>
+<h4 id="问题4-JWT单点登录（强制退出用户登录-比如修改密码后-希望能让其他客户端登陆的地方全部强制登出）"><a href="#问题4-JWT单点登录（强制退出用户登录-比如修改密码后-希望能让其他客户端登陆的地方全部强制登出）" class="headerlink" title="问题4 JWT单点登录（强制退出用户登录,比如修改密码后,希望能让其他客户端登陆的地方全部强制登出）"></a>问题4 JWT单点登录（强制退出用户登录,比如修改密码后,希望能让其他客户端登陆的地方全部强制登出）</h4><p>可以理解为如何让一个token立即失效（有点像上面的问题3）</p>
+<ul>
+<li>jwt + 数据库（比如 redis）+ 白名单  （这种思路是公司同事提出来的，特别感谢~）</li>
+</ul>
+<p>每一位用户在设备A登录的时候，将UID和token对应关系存放起来</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myRedis.set(`$&#123;uid&#125;:token`, $&#123;tokenA&#125;)</span><br></pre></td></tr></table></figure>
+<p>用户换设备B登录的时候，将redis中的的token进行更新 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myRedis.set(`$&#123;uid&#125;:token`, $&#123;tokenB&#125;)</span><br></pre></td></tr></table></figure>
+<p>每次请求发起的时候，server端去验证该UID对应的token信息是否是最新的token， 这样 如果携带的不是redis中的token的话，拒绝请求。前端强制退出登录。</p>
+<p>我将这个单点登录的逻辑加入到了项目中。</p>
+<p><a href="http://101.200.45.254:9097/activity/lottery" target="_blank" rel="noopener">登录尝试</a> </p>
+<p>你可以在两台设备使用同一个用户名进行登录，尝试是不是可以将第一台设备的状态登出。</p>
+<p>新增逻辑部分：将用户{name, token} 对应关系存放在文件中，每次发送抽奖请求的时候，判断文件最新的token与接口携带的token是否一致。不一致则反馈前端需要退出登录</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/13/16492f55a5f4485b?w=962&amp;h=472&amp;f=png&amp;s=78702" alt="退出"></p>
+<p>缺点：需要保留每一位用户的 {user, token} 对应关系</p>
+<ul>
+<li>jwt + 数据库（比如 redis）+ 黑名单</li>
+</ul>
+<p>当用户点击退出登录，此token则被放入黑名单（比如存放在redis）。如果有请求此时携带了黑名单中的token，则不予处理</p>
+<p>缺点：长此以往黑名单数据量增长</p>
+<h4 id="问题5-如何防范Replay-Attacks-（重放攻击）"><a href="#问题5-如何防范Replay-Attacks-（重放攻击）" class="headerlink" title="问题5  如何防范Replay Attacks （重放攻击）"></a>问题5  如何防范Replay Attacks （重放攻击）</h4><blockquote>
+<p>重放攻击就是攻击者发送一个目的主机已接收过的包，来达到欺骗系统的目的，主要用于身份认证过程</p>
+</blockquote>
+<p>比如用户的token被获取，那么即使用户登出了系统，其他人还可以利用Token模拟正常请求，而服务器端则无法判断这种情况。</p>
+<p>还是黑名单思路，每次token更新之后，或者用户登出之后，旧的token被放入黑名单。携带此token的请求一律不予处理</p>
+<h4 id="问题6-使用‘每一次发送请求就去更新token的方式’-如果客户端有并发的请求，如何处理"><a href="#问题6-使用‘每一次发送请求就去更新token的方式’-如果客户端有并发的请求，如何处理" class="headerlink" title="问题6 使用‘每一次发送请求就去更新token的方式’ 如果客户端有并发的请求，如何处理"></a>问题6 使用‘每一次发送请求就去更新token的方式’ 如果客户端有并发的请求，如何处理</h4><p>em，这个和上面的问题5有点矛盾，如果使用变化token的情况处理，那么肯定会有当请求并发状态下，第一个请求在处理完毕拿到新的token，后面的请求携带的token就变成了旧的token，请求会失败</p>
+<p>查阅资料后发现，有些人在将token存到黑名单的时候，会同时添加一个“宽限时间” 。当请求中携带了一个黑名单中的过期token，则去判断去“宽限时间”，如果在期宽限之间之内，则予以通过。</p>
+<p>不过我个人没想明白，这种处理方式是不是有问题，既然已经被放入黑名单了，那为什么又来一个“宽限时间”。为什么不直接设置一个长一点的有效时间。</p>
+<p>以上是对各位的一些回答。欢迎留言讨论。</p>
+<h3 id="补充文章"><a href="#补充文章" class="headerlink" title="补充文章"></a>补充文章</h3><ul>
+<li><p><a href="http://blog.leapoahead.com/2015/09/07/user-authentication-with-jwt" target="_blank" rel="noopener">JSON Web Token - 在Web应用间安全地传递信息</a></p>
+</li>
+<li><p><a href="https://github.com/bigmeow/JWT/issues/4" target="_blank" rel="noopener">jwt 相关问题</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/22693223" target="_blank" rel="noopener">有关JWT(Json Web Token)如何解决并发问题的思考</a></p>
+</li>
+<li><p><a href="https://juejin.im/entry/59748def518825592c4f9ac0" target="_blank" rel="noopener">不要用 JWT 来做 Web 应用的会话管理</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JWT/" rel="tag"># JWT</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/02/服务器三大件的升级/" rel="next" title="服务器三大件的升级">
+                <i class="fa fa-chevron-left"></i> 服务器三大件的升级
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/18/认识typescript/" rel="prev" title="认识typescript">
+                认识typescript <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是JWT-（JSON-WEB-TOKEN）"><span class="nav-number">1.</span> <span class="nav-text">什么是JWT （JSON WEB TOKEN）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#头部"><span class="nav-number">1.1.</span> <span class="nav-text">头部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#payload"><span class="nav-number">1.2.</span> <span class="nav-text">payload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#签证"><span class="nav-number">1.3.</span> <span class="nav-text">签证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方库"><span class="nav-number">2.</span> <span class="nav-text">第三方库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonwebtoken"><span class="nav-number">2.1.</span> <span class="nav-text">jsonwebtoken</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#koa-jwt"><span class="nav-number">2.2.</span> <span class="nav-text">koa-jwt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工作机制"><span class="nav-number">2.3.</span> <span class="nav-text">工作机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#项目实战"><span class="nav-number">3.</span> <span class="nav-text">项目实战</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#server端"><span class="nav-number">3.1.</span> <span class="nav-text">server端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端"><span class="nav-number">3.2.</span> <span class="nav-text">前端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Other"><span class="nav-number">4.</span> <span class="nav-text">Other</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题回复"><span class="nav-number">5.</span> <span class="nav-text">问题回复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题1：-关于base64处理-Header-和-payload"><span class="nav-number">5.1.</span> <span class="nav-text">问题1： 关于base64处理 Header 和 payload</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题2-JWT怎么做续签更新"><span class="nav-number">5.2.</span> <span class="nav-text">问题2 JWT怎么做续签更新</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题3-处理注销"><span class="nav-number">5.2.1.</span> <span class="nav-text">问题3 处理注销</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题4-JWT单点登录（强制退出用户登录-比如修改密码后-希望能让其他客户端登陆的地方全部强制登出）"><span class="nav-number">5.2.2.</span> <span class="nav-text">问题4 JWT单点登录（强制退出用户登录,比如修改密码后,希望能让其他客户端登陆的地方全部强制登出）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题5-如何防范Replay-Attacks-（重放攻击）"><span class="nav-number">5.2.3.</span> <span class="nav-text">问题5  如何防范Replay Attacks （重放攻击）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题6-使用‘每一次发送请求就去更新token的方式’-如果客户端有并发的请求，如何处理"><span class="nav-number">5.2.4.</span> <span class="nav-text">问题6 使用‘每一次发送请求就去更新token的方式’ 如果客户端有并发的请求，如何处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充文章"><span class="nav-number">5.3.</span> <span class="nav-text">补充文章</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

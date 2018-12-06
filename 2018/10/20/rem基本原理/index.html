@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css3,rem,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="移动端适配方案">
+<meta name="keywords" content="css3,rem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rem基本原理">
+<meta property="og:url" content="http://yoursite.com/2018/10/20/rem基本原理/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="移动端适配方案">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-10-25T02:42:54.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rem基本原理">
+<meta name="twitter:description" content="移动端适配方案">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/10/20/rem基本原理/">
+
+
+
+
+
+  <title>rem基本原理 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/rem基本原理/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rem基本原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-20T18:38:50+08:00">
+                2018-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>移动端适配方案</p>
+</blockquote>
+<a id="more"></a>
+<p>什么是移动端适配</p>
+<p>制作一套页面，在不同设备中，页面图片、文字、间隙大小会变化，但是在比例上保持一致。</p>
+<h3 id="Rem"><a href="#Rem" class="headerlink" title="Rem"></a>Rem</h3><p>简单来说，将原来的px转为rem</p>
+<p>需要判断根元素字体大小 每一个设备的根元素字体大小不同</p>
+<p>设备根元素字体 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如何判断使用多大根字体</li>
+</ul>
+<p>假设设计稿为640px  当设备宽度也为640px  则可完全按照设计稿进行布局 但是单位要使用rem</p>
+<p>将根元素字体大小设置为100px  比较好算</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body&#123;font-size: <span class="number">100</span>px;&#125;</span><br><span class="line">p&#123;margin-top:<span class="number">0.3</span>rem;&#125;<span class="comment">// 相当于 X rem</span></span><br><span class="line"><span class="number">30</span>px/X rem = <span class="number">100</span>;  求出X 为 <span class="number">0.3</span></span><br></pre></td></tr></table></figure>
+<p>关于变化的根元素</p>
+<p>在设计稿640px  有一个元素宽度 20px  根元素字体大小100px    写为自适应 使用rem 单位  0.2 rem</p>
+<p>在设备  320px  有一个元素宽度 20px  根元素字体大小？？？PX         使用rem 单位  0.2 rem</p>
+<p>所以变化的是设备的根元素</p>
+<h4 id="求设备根元素大小"><a href="#求设备根元素大小" class="headerlink" title="求设备根元素大小"></a>求设备根元素大小</h4><p>当设计稿宽度为desW    设备宽度为 docW</p>
+<p>设备宽度的缩放倍数 = 根元素字体大小缩放倍数</p>
+<p>设计稿宽度/设备宽度 = 100/ X</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> desW = <span class="number">750</span>;<span class="comment">// 设计稿宽度</span></span><br><span class="line"><span class="keyword">var</span> winW = <span class="built_in">document</span>.documentElement.clientWidth; <span class="comment">// 设备宽度</span></span><br><span class="line"><span class="built_in">document</span>.documentElement.style.fontSize = winW/desW*<span class="number">100</span>+<span class="string">"px"</span>; <span class="comment">// 求出当前设备根元素大小</span></span><br></pre></td></tr></table></figure>
+<p>注意，求出当前设备宽度使用的是document.documentElement.clientWidth  其实这个是文档宽度 而由于在开头有写</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"</span>/&gt;</span><br></pre></td></tr></table></figure>
+<p>width=device-width 表明了将文档宽度设置为设备宽度</p>
+<h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>flex布局是Flexible Box的缩写  是弹性布局的意思  用来为盒状模型提供很大灵活性</p>
+<p>所有的容器都可以指定为Flex布局 只要将其指定为</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">div &#123; <span class="attr">display</span>: flex; &#125;</span><br></pre></td></tr></table></figure>
+<p>行内元素也可以flex布局  display设置为 inline-flex 即可</p>
+<ul>
+<li>设为flex布局之后 子元素的float  clear vertical-align 属性失效</li>
+</ul>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>采用Flex布局的元素称为Flex容器 其子元素为容器成员 称为项目</p>
+<p>容器默认存在主轴【水平方向】和交叉轴【垂直方向】</p>
+<p>主轴开始位置 mian start 结束位置 main end</p>
+<p>容器默认沿着主轴排列 单个项目占据的主轴空间是main size</p>
+<h4 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h4><p>flex-direction<br>flex-wrap<br>flex-flow<br>justify-content<br>align-items<br>align-content</p>
+<p>1 flea-direction 决定主轴方向 【项目的排列方向  默认是水平 起点左侧】</p>
+<p>row  【默认值】 主轴为水平方向 左侧为起点位置<br>reo-reverse  主轴为 水平   右侧是起点<br>column 主轴是垂直  上为起点<br>column-reverse  主轴是垂直 下为起点</p>
+<p>2 flex-wrap</p>
+<p>默认情况 项目排列为一条线 又称轴线  flex-warp 属性定义了如果在轴线排列不下的情况 如何换行</p>
+<p>nowrap  【默认】 不换行<br>wrap  正常换行 第一行在上<br>wrap-reverse  换行 第一行在下方</p>
+<p>3 flex-flow</p>
+<p>这个属性其实是flex-direction和flex-wrap的简写形式  默认是 row nowrap</p>
+<p>4 justify-content</p>
+<p>属性定义了项目在主轴上的对齐方式</p>
+<p>flex-start  【默认值】 左对齐<br>flex-end 右对齐<br>center 居中<br>space-between 两端对齐  项目之间间隔相同<br>space-around 每个项目两侧间隔相同  所以 项目之间的间隔比项目与边框之间的间隔大一倍</p>
+<p>5 align-items</p>
+<p>定义项目在交叉轴上 如何对齐  假设交叉轴为默认值 上到下</p>
+<p>flex-strat  与交叉轴的起点对齐<br>flex-end 与交叉轴终点对齐<br>center 与交叉轴中点对齐<br>baseline  项目的第一行文字的基线对齐<br>stretch 【默认值】 如果项目没设置高度 或者设为auto  将沾满全部容器空间</p>
+<p>6 align-content</p>
+<p>定义多跟轴线的对齐方式 这里如果项目只有一根轴线 则设置无效</p>
+<p>flex-start<br>flex-end<br>center<br>space-between<br>space-around</p>
+<p>7 属于项目的属性</p>
+<p>order<br>flex-grow<br>flex-shrink<br>flex-basis<br>flex<br>align-self</p>
+<p>7.1 order</p>
+<p>定义项目排列顺序 数值笑的排位靠前 默认0</p>
+<p>7.2 flex-grow</p>
+<p>定义项目的放大比例 默认0</p>
+<p>7.3 flex-shrink</p>
+<p>定义项目缩小比例 默认为1  如果空间不足 项目按照比例缩小</p>
+<p>7.4 flex-basis</p>
+<p>在分配多余空间前 项目占据的主轴空间大小 默认为auto</p>
+<p>7.5 flex</p>
+<p>这个属性是flex-grow flex-shrink flex-basis的简写 默认是 0 1 auto</p>
+<p>7.6 align-self</p>
+<p>允许单个项目与其余的不同 可以覆盖align-items属性 默认为auto 继承父级元素的align-items属性 如果此元素并没有父元素 则等用于stretch</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css3/" rel="tag"># css3</a>
+          
+            <a href="/tags/rem/" rel="tag"># rem</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/28/typescript-react/" rel="next" title="typescript-react">
+                <i class="fa fa-chevron-left"></i> typescript-react
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/10/21/sequelize入门篇/" rel="prev" title="sequelize入门篇">
+                sequelize入门篇 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rem"><span class="nav-number">1.</span> <span class="nav-text">Rem</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#求设备根元素大小"><span class="nav-number">1.1.</span> <span class="nav-text">求设备根元素大小</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex布局"><span class="nav-number">2.</span> <span class="nav-text">flex布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本概念"><span class="nav-number">2.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器属性"><span class="nav-number">2.2.</span> <span class="nav-text">容器属性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

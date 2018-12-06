@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="练习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="webpack + generator">
+<meta name="keywords" content="练习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日一练第四期">
+<meta property="og:url" content="http://yoursite.com/2018/08/29/每日一练第四期/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="webpack + generator">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/8/30/1658a93daf32ec57?w=1326&h=604&f=png&s=312895">
+<meta property="og:updated_time" content="2018-08-31T13:14:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="每日一练第四期">
+<meta name="twitter:description" content="webpack + generator">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/8/30/1658a93daf32ec57?w=1326&h=604&f=png&s=312895">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/29/每日一练第四期/">
+
+
+
+
+
+  <title>每日一练第四期 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/29/每日一练第四期/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">每日一练第四期</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-29T14:57:42+08:00">
+                2018-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/练习/" itemprop="url" rel="index">
+                    <span itemprop="name">练习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/8/30/1658a93daf32ec57?w=1326&amp;h=604&amp;f=png&amp;s=312895" alt="Test"></p>
+<blockquote>
+<p>webpack + generator</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Q-如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？"><a href="#Q-如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？" class="headerlink" title="Q: 如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？"></a>Q: 如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？</h2><h3 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h3><p>确定是不是用户设备: 使用多个设备调试</p>
+<p>确定浏览器: 清除浏览器缓存 换个浏览器尝试</p>
+<h2 id="Q-service-workers-是什么"><a href="#Q-service-workers-是什么" class="headerlink" title="Q: service workers 是什么"></a>Q: service workers 是什么</h2><h3 id="个人理解-1"><a href="#个人理解-1" class="headerlink" title="个人理解"></a>个人理解</h3><h3 id="Answer"><a href="#Answer" class="headerlink" title="Answer"></a>Answer</h3><h2 id="Q-webpack-对于项目的优化"><a href="#Q-webpack-对于项目的优化" class="headerlink" title="Q: webpack 对于项目的优化"></a>Q: webpack 对于项目的优化</h2><h3 id="个人理解-2"><a href="#个人理解-2" class="headerlink" title="个人理解"></a>个人理解</h3><p>1 可以处理按需加载</p>
+<p>2 可以对图片，代码进行压缩</p>
+<p>3 通过设置第三方库为全局引用，可以减少项目打包后的资源大小</p>
+<p>4 抽取公共库</p>
+<h3 id="Answer-1"><a href="#Answer-1" class="headerlink" title="Answer"></a>Answer</h3><ol>
+<li>缩小文件搜索范围,配置比如resolve.modules,resolve.modules,resolve.mainFields,resolve.alias ,resolve.extensions ,module.noParse 配置</li>
+<li>使用DllPlugin 要给 Web 项目构建接入动态链接库<br>3.HappyPack 就能让 Webpack 做到这点，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程<br>4.当 Webpack 有多个 JavaScript 文件需要输出和压缩时，原本会使用 UglifyJS 去一个个挨着压缩再输出， 但是 ParallelUglifyPlugin 则会开启多个子进程，把对多个文件的压缩工作分配给多个子进程去完成<br>5.可以监听文件的变化，当文件发生变化后可以自动刷新浏览器，从而提高开发效率。<br>6.(Hot Module Replacement)的技术可在不刷新整个网页的情况下做到超灵敏的实时预览。 原理是当一个源码发生变化时，只重新编译发生变化的模块，再用新输出的模块替换掉浏览器中对应的老模块。<br>7.Tree Shaking 可以用来剔除 JavaScript 中用不上的死代码。它依赖静态的 ES6 模块化语法，例如通过 import 和 export 导入导出<br>8.可以使用CommonsChunkPlugin 把多个页面公共的代码抽离成单独的文件进行加载<br>9.Webpack 内置了强大的分割代码的功能去实现按需加载，可以用import实现路由按需加载。<br>10.Scope Hoisting 可以让 Webpack 打包出来的代码文件更小、运行的更快， 它又译作 “作用域提升”<br>11.可以使用可视化分析工具 Webpack Analyse等去分析输出结果，从页进行优化.</li>
+<li>对于 Webpack4，打包项目使用 production 模式，这样会自动开启代码压缩<br>13.优化图片，对于小图可以使用 base64 的方式写入文件中</li>
+<li>给打包出来的文件名添加哈希，实现浏览器缓存文件</li>
+</ol>
+<h2 id="Q-generator-的实现原理"><a href="#Q-generator-的实现原理" class="headerlink" title="Q: generator 的实现原理"></a>Q: generator 的实现原理</h2><h3 id="个人理解-3"><a href="#个人理解-3" class="headerlink" title="个人理解"></a>个人理解</h3><p>generator 其实就是一个迭代器生成函数</p>
+<p>generator执行后返回的是一个 迭代器对象，通过调用next方法来改变指针位置，每次移动到yield位置处</p>
+<h3 id="Answer-2"><a href="#Answer-2" class="headerlink" title="Answer"></a>Answer</h3><p>使用 * 表示这是一个 Generator 函数<br>内部可以通过 yield 暂停代码<br>通过调用 next 恢复执行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> b = test();</span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: 2, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: 3, done: false &#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b.next()); <span class="comment">// &gt;  &#123; value: undefined, done: true &#125;</span></span><br></pre></td></tr></table></figure>
+<p>从以上代码可以发现，加上 * 的函数执行后拥有了 next 函数，也就是说函数执行后返回了一个对象。每次调用 next 函数可以继续执行被暂停的代码。以下是 Generator 函数的简单实现</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// cb 也就是编译过的 test 函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">generator</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> object = &#123;</span><br><span class="line">      next: <span class="number">0</span>,</span><br><span class="line">      stop: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      next: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> ret = cb(object);</span><br><span class="line">        <span class="keyword">if</span> (ret === <span class="literal">undefined</span>) <span class="keyword">return</span> &#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">          value: ret,</span><br><span class="line">          done: <span class="literal">false</span></span><br><span class="line">        &#125;;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;)();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 如果你使用 babel 编译后可以发现 test 函数变成了这样</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a;</span><br><span class="line">  <span class="keyword">return</span> generator(<span class="function"><span class="keyword">function</span>(<span class="params">_context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">switch</span> ((_context.prev = _context.next)) &#123;</span><br><span class="line">        <span class="comment">// 可以发现通过 yield 将代码分割成几块</span></span><br><span class="line">        <span class="comment">// 每次执行 next 函数就执行一块代码</span></span><br><span class="line">        <span class="comment">// 并且表明下次需要执行哪块代码</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">          a = <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line">          _context.next = <span class="number">4</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">          _context.next = <span class="number">6</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">		<span class="comment">// 执行完毕</span></span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"end"</span>:</span><br><span class="line">          <span class="keyword">return</span> _context.stop();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Q-什么是-IFC，IFC的作用是什么"><a href="#Q-什么是-IFC，IFC的作用是什么" class="headerlink" title="Q: 什么是 IFC，IFC的作用是什么"></a>Q: 什么是 IFC，IFC的作用是什么</h2><h3 id="个人理解-4"><a href="#个人理解-4" class="headerlink" title="个人理解"></a>个人理解</h3><p>IFC则是表示盒子从左到右的水平排列方式</p>
+<p>他的高度也许比包含在它内最高的盒子高</p>
+<h2 id="Q-什么是跨域，如果处理跨域问题"><a href="#Q-什么是跨域，如果处理跨域问题" class="headerlink" title="Q: 什么是跨域，如果处理跨域问题"></a>Q: 什么是跨域，如果处理跨域问题</h2><h3 id="个人理解-5"><a href="#个人理解-5" class="headerlink" title="个人理解"></a>个人理解</h3><p>根据浏览器的同源策略，协议，域名，端口不一致的情况下，不可以调用彼此的对象数据等信息</p>
+<p>常用的处理跨域的方式</p>
+<p>1 JSONP 通过URL中添加回调函数</p>
+<p>2 如果是子域名的关系，可以考虑设置cookie 来传递数据</p>
+<p>3 CORS 需要服务端做处理</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/练习/" rel="tag"># 练习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/11/有趣的tips/" rel="next" title="有趣的tips">
+                <i class="fa fa-chevron-left"></i> 有趣的tips
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/03/每日一练第五期/" rel="prev" title="每日一练第五期">
+                每日一练第五期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？"><span class="nav-number">1.</span> <span class="nav-text">Q: 如果发现在某个用户的电脑上，网站的静态资源打不开了，如何确定是CDN的问题还是那个用户机器、浏览器的问题？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解"><span class="nav-number">1.1.</span> <span class="nav-text">个人理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-service-workers-是什么"><span class="nav-number">2.</span> <span class="nav-text">Q: service workers 是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-1"><span class="nav-number">2.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer"><span class="nav-number">2.2.</span> <span class="nav-text">Answer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-webpack-对于项目的优化"><span class="nav-number">3.</span> <span class="nav-text">Q: webpack 对于项目的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-2"><span class="nav-number">3.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-1"><span class="nav-number">3.2.</span> <span class="nav-text">Answer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-generator-的实现原理"><span class="nav-number">4.</span> <span class="nav-text">Q: generator 的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-3"><span class="nav-number">4.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Answer-2"><span class="nav-number">4.2.</span> <span class="nav-text">Answer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-什么是-IFC，IFC的作用是什么"><span class="nav-number">5.</span> <span class="nav-text">Q: 什么是 IFC，IFC的作用是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-4"><span class="nav-number">5.1.</span> <span class="nav-text">个人理解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Q-什么是跨域，如果处理跨域问题"><span class="nav-number">6.</span> <span class="nav-text">Q: 什么是跨域，如果处理跨域问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#个人理解-5"><span class="nav-number">6.1.</span> <span class="nav-text">个人理解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

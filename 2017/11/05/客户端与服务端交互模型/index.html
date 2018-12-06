@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="server,优化,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="客户端与服务器端 当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。  什么是客户端 能向服务器端发送请求并且接受内容的都是客户端 什么是服务器端 能接受客户端请求并且返回内容给客户端的都是服务器端 2  详细步骤 1 购买一个服务器 在连上网后  获得了一个外网IP地址 2 通过ftp上传项目资源文件 到服务器 3买一个域名 进行DNS域名解析 在DNS 服务器">
+<meta name="keywords" content="server,优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="客户端与服务端交互模型">
+<meta property="og:url" content="http://yoursite.com/2017/11/05/客户端与服务端交互模型/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="客户端与服务器端 当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。  什么是客户端 能向服务器端发送请求并且接受内容的都是客户端 什么是服务器端 能接受客户端请求并且返回内容给客户端的都是服务器端 2  详细步骤 1 购买一个服务器 在连上网后  获得了一个外网IP地址 2 通过ftp上传项目资源文件 到服务器 3买一个域名 进行DNS域名解析 在DNS 服务器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-06T06:16:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="客户端与服务端交互模型">
+<meta name="twitter:description" content="客户端与服务器端 当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。  什么是客户端 能向服务器端发送请求并且接受内容的都是客户端 什么是服务器端 能接受客户端请求并且返回内容给客户端的都是服务器端 2  详细步骤 1 购买一个服务器 在连上网后  获得了一个外网IP地址 2 通过ftp上传项目资源文件 到服务器 3买一个域名 进行DNS域名解析 在DNS 服务器">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/05/客户端与服务端交互模型/">
+
+
+
+
+
+  <title>客户端与服务端交互模型 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/05/客户端与服务端交互模型/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">客户端与服务端交互模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T14:13:19+08:00">
+                2017-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>客户端与服务器端</p>
+<p>当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。</p>
+<!--nore-->
+<p>什么是客户端</p>
+<p>能向服务器端发送请求并且接受内容的都是客户端</p>
+<p>什么是服务器端</p>
+<p>能接受客户端请求并且返回内容给客户端的都是服务器端</p>
+<p>2  详细步骤</p>
+<p>1 购买一个服务器 在连上网后  获得了一个外网IP地址</p>
+<p>2 通过ftp上传项目资源文件 到服务器</p>
+<p>3买一个域名 进行DNS域名解析</p>
+<p>在DNS 服务器    将域名  <a href="http://www.webmxx,com" target="_blank" rel="noopener">www.webmxx,com</a>  解析到购买的那服务器端 IP地址</p>
+<p>4 在服务器上创建一个服务。</p>
+<p>这个服务接受客户端的请求，把客户端的想要的内容返回给客户。为了区分每一个服务，给其监听一个端口号。</p>
+<p>如何创建服务</p>
+<p>4.1 指定当前服务负责哪个文件目录</p>
+<p>4.2 不同的服务   端口号不同</p>
+<p>3 当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。</p>
+<p>1 通过域名  找到DNS 上对应的外网IP  就是服务器主机IP 【就是所谓的外网IP】</p>
+<p>2 通过外网IP找到对应的服务器</p>
+<p>3 通过地址栏端口号找到相应服务</p>
+<p>4 到相应目录中找到所需要的文件</p>
+<p>5 服务器端这个服务会把资源文件中的源代码发回给客户端浏览器</p>
+<p>6 客户端浏览器获取到源代码后进行解析渲染</p>
+<p>以上123属于请求阶段  Request     45 属于响应阶段 Response</p>
+<p>4 URL URI URN</p>
+<p><a href="http://mxx2015web.gotoip2.com/wp-admin/post.php?post=633&amp;action=edit" target="_blank" rel="noopener">http://mxx2015web.gotoip2.com/wp-admin/post.php?post=633&amp;action=edit</a></p>
+<p><a href="http://www.webmxx.com/dest/JSTEST/Canvas/canvas-girl.html" target="_blank" rel="noopener">http://www.webmxx.com/dest/JSTEST/Canvas/canvas-girl.html</a></p>
+<p>这个严格意义上是叫URI</p>
+<p>URI  统一资源标识符</p>
+<p>URL  统一资源定位符</p>
+<p><a href="http://mxx2015web.gotoip2.com/wp-admin/post.php" target="_blank" rel="noopener">http://mxx2015web.gotoip2.com/wp-admin/post.php</a><br>URN 统一资源名称</p>
+<p>wp-admin/post.php?post=633&amp;action=edit<br>URI 包含了 URI 和 URN</p>
+<p>不过一般将那个地址称为URL ，之后本文也以URL指代。</p>
+<p>5 解析URL</p>
+<p>以 <a href="http://www.webmxx.com:80/wp-admin/post.php?post=633&amp;action=edit#video" target="_blank" rel="noopener">http://www.webmxx.com:80/wp-admin/post.php?post=633&amp;action=edit#video</a> 为例</p>
+<p>5.1 http</p>
+<p>传输协议。作为一个传输载体，可以帮客户端把内容传递给服务器 也可以帮服务器把内容传递给客户端。通俗理解为快递员。</p>
+<p>常用的传输协议</p>
+<p>1 HTTP</p>
+<p>超文本传输协议   [除了传递文本内容之外 还可以传递其他内容 例如 二进制编码 XML格式数据 Base64 的等等]</p>
+<p>2 HTTPS   【HTTP SSL】</p>
+<p>更加安全的超文本传输协议  相对于HTTP  传输的时候 进行了一层加密</p>
+<p>3 FTP</p>
+<p>文件上传下载协议 一般应用于把本地项目资源文件上传到服务器上  特点:传递的文件比较大</p>
+<p>以前那种点击下载文件的就是通过FTP做的</p>
+<p>5.2  <a href="http://www.webmxx.com" target="_blank" rel="noopener">www.webmxx.com</a></p>
+<p>域名  作用 就是设定一个方便用户记忆的名字</p>
+<p>1 后缀名有</p>
+<p>.com  .cn   .net  .com.cn  .org  .gov  等等<br>2 一级域名 二级域名 三级域名</p>
+<p>一级域名  例 <a href="http://www.qq.com" target="_blank" rel="noopener">www.qq.com</a></p>
+<p>二级域名  例 sports.qq.com</p>
+<p>三级域名  例 kbs.sports.qq.com</p>
+<p>只要购买了一级域名，二级域名 三级域名 就是自己基于一级域名下分的</p>
+<p>5.3 端口号  80</p>
+<p>区分不同的服务</p>
+<p>同一台服务器上 可创建多个服务 每一个都有自己的端口号</p>
+<p>端口号取值范围 0 -65535 之间 ,也就是最大能创建65536个服务。但是一般在1-5 个左右</p>
+<p>一般项目是不需要用户输入端口号的,浏览器这边会根据传输协议的不同 ,会添加不同的默认端口号</p>
+<p>比如 HTTP 默认端口号 80  HTTPS 默认端口号443  FTP默认端口号21</p>
+<p>5.4 /wp-admin/post.php</p>
+<p>需要请求的资源文件目录</p>
+<p>第一个/  表示请求的是当前项目根目录下的wp-admin文件夹中的post.php文件</p>
+<p>5.5  ?后面的  ?post=633&amp;action=edit</p>
+<p>问号传参</p>
+<p>把这些信息以问号的方式追加在URL末尾 把内容传递给服务器</p>
+<p>5.5.1 可以通过这种方式传递给服务器指定的内容 从而获取到指定信息</p>
+<p>例如，要获取name=’tom’ 的信息 ，需要把name=‘tom’传递给服务器</p>
+<p>5.5.2 通过问号传参，将数据在两个页面之间传递</p>
+<p>例如 A为列表页 B为详情页</p>
+<p>点击A中记录可跳转到B中页面  就是在B页面中展示不同的详细信息 所以B需要知道A点击的是谁</p>
+<p>所以在点击A中记录的时候 不仅要跳转到B 还需要通过问号传参的方式 传递过去一些标识即可</p>
+<p>5.6 #video   #后面的   -》 hash  哈希值</p>
+<p>1 锚点定位</p>
+<p>当页面加载的时候 或者 点击a 标签 可以直接跳转到 具有该ID的元素位置</p>
+<p>2 前端路由 [单页面应用]</p>
+<p>3 传递给服务器进行标识 [不常用 一般都是用问号传参进行标识]</p>
+<p>6 客户端拿到服务器返回的东西 之后  渲染页面 解析数据</p>
+<p>6.1 为什么代码放在浏览器中可以呈现出页面样式。</p>
+<p>W3C  万维网联盟  一个制定编程语言的非联盟组织</p>
+<p>代码写完运行在浏览器中</p>
+<p>浏览器制造商   制定编译规范</p>
+<p>WEB开发者  按照W3C 规则编写网页</p>
+<p>6.2 浏览器制造商</p>
+<p>从浏览器内核[引擎] 来分</p>
+<p>6.2.1 webkit 内核  又称 V8引擎</p>
+<p>移动端浏览器都是V8引擎</p>
+<p>chrome  谷歌        safari</p>
+<p>-webkit-</p>
+<p>6.2.2  Trident内核代表产品Internet Explorer，又称其为IE内核</p>
+<p>-ms-</p>
+<p>6.2.3 Gecko内核代表作品Mozilla  火狐</p>
+<p>-moz-</p>
+<p>6.2.4 Presto内核代表作品Opera</p>
+<p>-0-</p>
+<p>6.2.5 中国版浏览器 Trident 或者 webkit</p>
+<p>6.4</p>
+<p>从服务器把原代码获取到之后 教给浏览器内核进行解析 在解析过程中 遇到标签 link  video  audio  script iframe</p>
+<p>等的时候，需要重新向服务器发送请求 把内容获取到 进行解析。这样导致 一个页面在加载完毕 会向服务器发送多次请求</p>
+<p>在chrome的network中 可以看到所有的客户端与服务器的交互信息 [请求 响应]  而且信息非常完整</p>
+<p>6.5  前端优化</p>
+<p>前端优化: 用户打开页面的时候 能迅速打开页面</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/server/" rel="tag"># server</a>
+          
+            <a href="/tags/优化/" rel="tag"># 优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/04/http基础篇/" rel="next" title="http基础篇">
+                <i class="fa fa-chevron-left"></i> http基础篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/06/一周计划4/" rel="prev" title="一周计划4">
+                一周计划4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

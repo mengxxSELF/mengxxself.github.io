@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react,video,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="写一个很简单的video组件">
+<meta name="keywords" content="react,video">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react组件Video">
+<meta property="og:url" content="http://yoursite.com/2018/09/06/react组件Video/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写一个很简单的video组件">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ade59d09be085?w=1412&h=616&f=png&s=1455389">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165adfb2a41884ee?w=667&h=487&f=png&s=295192">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165adf8dd1ae98c6?w=612&h=465&f=png&s=267705">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ae0086461647f?w=646&h=447&f=png&s=192550">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ae0e042d85c34?w=795&h=202&f=png&s=121115">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ae7a26a512986?w=301&h=433&f=png&s=143203">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165aeb4c78796f9b?w=307&h=475&f=png&s=70669">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ae0fe2d742de5?w=504&h=340&f=png&s=103725">
+<meta property="og:updated_time" content="2018-09-06T11:55:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="react组件Video">
+<meta name="twitter:description" content="写一个很简单的video组件">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/6/165ade59d09be085?w=1412&h=616&f=png&s=1455389">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/06/react组件Video/">
+
+
+
+
+
+  <title>react组件Video | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/06/react组件Video/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">react组件Video</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-06T15:54:19+08:00">
+                2018-09-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/轮子/" itemprop="url" rel="index">
+                    <span itemprop="name">轮子</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165ade59d09be085?w=1412&amp;h=616&amp;f=png&amp;s=1455389" alt="video"></p>
+<blockquote>
+<p>写一个很简单的video组件</p>
+</blockquote>
+<a id="more"></a>
+<p>之前的一篇文章讨论了 video元素 的使用</p>
+<p><a href="https://mengxxself.github.io/2017/10/24/video%E5%92%8Caudio%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E8%A1%A8%E7%8E%B0/" target="_blank" rel="noopener">video 和 audio在移动端的表现</a></p>
+<p>可以看到在iOS和Android两种系统对于video控件的支持很不一样，在展示控制组件的时候，两者差别很大</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165adfb2a41884ee?w=667&amp;h=487&amp;f=png&amp;s=295192" alt="vs"></p>
+<p>左侧为iOS, 其控件要比Android多</p>
+<p>ISO有提供一个全屏播放的按钮，就是左上角的那个，当点击会进入下图右侧状态。当在点击关闭，会恢复到左侧状态</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165adf8dd1ae98c6?w=612&amp;h=465&amp;f=png&amp;s=267705" alt="vs"></p>
+<p>然后产品同学表示，希望可以实现设备同步</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165ae0086461647f?w=646&amp;h=447&amp;f=png&amp;s=192550" alt="do"></p>
+<p>之后向其解释了video的展示样式是基于设备浏览器的，无法进行控制，比如关闭iOS的全屏按钮，于是就这么处理了</p>
+<p>后面提测之后看这里的代码，因为需求不复杂，决定写个小组件，实现 播放，暂停，进度展示 这三个功能</p>
+<h2 id="组件结构"><a href="#组件结构" class="headerlink" title="组件结构"></a>组件结构</h2><p>1 video </p>
+<p>2 底部控制条</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;video/&gt;</span><br><span class="line">  &lt;controller/&gt;</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>video元素 不添加 controls 不展示本身的控件</p>
+<h2 id="事件控制"><a href="#事件控制" class="headerlink" title="事件控制"></a>事件控制</h2><h3 id="onloadedmetadata"><a href="#onloadedmetadata" class="headerlink" title="onloadedmetadata"></a>onloadedmetadata</h3><p>在获取视频总时长的时候，一直拿到的空值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">  <span class="keyword">const</span> target = <span class="keyword">this</span>.video</span><br><span class="line">  <span class="keyword">const</span> time = target.duration || <span class="number">0</span></span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>怀疑是不是因为这个 target 对象 获取的是空, 然后在添加了console，在控制台是可以看到的，查阅资料有人说这个因为视频资源数据没有被加载</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165ae0e042d85c34?w=795&amp;h=202&amp;f=png&amp;s=121115" alt="load"></p>
+<table>
+<thead>
+<tr>
+<th>事件</th>
+<th>触发机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loadeddata</td>
+<td>当当前帧的数据已加载，但没有足够的数据来播放指定音频/视频的下一帧时，会发生 loadeddata 事件</td>
+</tr>
+<tr>
+<td>loadedmetadata</td>
+<td>当指定的音频/视频的元数据已加载时，会发生 loadedmetadata 事件</td>
+</tr>
+</tbody>
+</table>
+<p>音频/视频的元数据包括：时长、尺寸（仅视频）以及文本轨道</p>
+<p>所以调整为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount () &#123;</span><br><span class="line">  <span class="keyword">const</span> target = <span class="keyword">this</span>.video</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 获取视频总时长</span></span><br><span class="line">  target.onloadedmetadata = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123; <span class="attr">time</span>: target.duration &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ontimeupdate"><a href="#ontimeupdate" class="headerlink" title="ontimeupdate"></a>ontimeupdate</h3><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>触发机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timeupdate</td>
+<td>在音频/视频（audio/video）的播放位置发生改变时触发</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target.ontimeupdate = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; currentTime, duration &#125; = target</span><br><span class="line">  <span class="keyword">this</span>.setState(&#123; <span class="attr">move</span>: currentTime, <span class="attr">width</span>: currentTime / duration &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个事件用于处理展示视频进度</p>
+<h2 id="控制栏"><a href="#控制栏" class="headerlink" title="控制栏"></a>控制栏</h2><p>调整之后，iOS  Android 在微信中的表现</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165ae7a26a512986?w=301&amp;h=433&amp;f=png&amp;s=143203" alt="control"></p>
+<p>只有进度条，播放按钮</p>
+<p>但是进入浏览器环境，发现还是有那个控制组件, 虽然并没有使用controls属性，也会显示控件</p>
+<p>后面查询文章，说在浏览器中无法处理这个问题</p>
+<p>有的人想的办法是，将视频设置的大一点，把自带的控件放在屏幕之外，这样用户就看不到了</p>
+<h2 id="poster"><a href="#poster" class="headerlink" title="poster"></a>poster</h2><p>video组件有设置 点击之后立即播放</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 播放视频</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> videoPlay = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> video = <span class="built_in">document</span>.querySelector(<span class="string">'video'</span>)</span><br><span class="line">  video &amp;&amp; video.play()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这个执行的时候，能看到黑屏展示</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165aeb4c78796f9b?w=307&amp;h=475&amp;f=png&amp;s=70669" alt="poster"></p>
+<p>给video元素添加一个poster属性, 这样会使用封面图填充缓冲时间</p>
+<blockquote>
+<p>poster 属性指定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像</p>
+</blockquote>
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><p><a href="https://github.com/mengxxSELF/Video" target="_blank" rel="noopener">项目Git地址</a></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/9/6/165ae0fe2d742de5?w=504&amp;h=340&amp;f=png&amp;s=103725" alt="progress"></p>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000006857675" target="_blank" rel="noopener">html5–移动端视频video的android兼容，去除播放控件、全屏等</a> </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react/" rel="tag"># react</a>
+          
+            <a href="/tags/video/" rel="tag"># video</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/04/moment-js使用/" rel="next" title="moment.js使用">
+                <i class="fa fa-chevron-left"></i> moment.js使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/07/object-fit/" rel="prev" title="object-fit">
+                object-fit <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件结构"><span class="nav-number">1.</span> <span class="nav-text">组件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件控制"><span class="nav-number">2.</span> <span class="nav-text">事件控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#onloadedmetadata"><span class="nav-number">2.1.</span> <span class="nav-text">onloadedmetadata</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ontimeupdate"><span class="nav-number">2.2.</span> <span class="nav-text">ontimeupdate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制栏"><span class="nav-number">3.</span> <span class="nav-text">控制栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#poster"><span class="nav-number">4.</span> <span class="nav-text">poster</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other"><span class="nav-number">5.</span> <span class="nav-text">other</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
