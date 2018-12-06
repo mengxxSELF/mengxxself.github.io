@@ -79,14 +79,22 @@
 
 
 
+<meta name="description" content="mocha + chai">
 <meta property="og:type" content="article">
 <meta property="og:title" content="单元测试">
 <meta property="og:url" content="http://yoursite.com/2018/12/06/单元测试/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="mocha + chai">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-06T03:53:46.000Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/6/167822385bf2576a?w=500&h=224&f=png&s=16627">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/6/167819f41d5fcc07?w=432&h=81&f=png&s=15009">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/5/1677e7efd6f6e106?w=840&h=198&f=png&s=32489">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/6/16781777cf7ef1ca?w=536&h=202&f=png&s=24940">
+<meta property="og:updated_time" content="2018-12-06T06:47:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单元测试">
+<meta name="twitter:description" content="mocha + chai">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/12/6/167822385bf2576a?w=500&h=224&f=png&s=16627">
 
 
 
@@ -316,7 +324,91 @@
       
 
       
-        
+        <p><img src="https://user-gold-cdn.xitu.io/2018/12/6/167822385bf2576a?w=500&amp;h=224&amp;f=png&amp;s=16627" alt="mocha"></p>
+<blockquote>
+<p>mocha + chai</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><blockquote>
+<p>单元测试是用来对一个模块、一个函数或者一个类来进行正确性检验的测试工作</p>
+</blockquote>
+<p>可以理解为对功能的基本验证</p>
+<p>目前node中的测试框架，一般使用的是 mocha +  断言库 chai </p>
+<p>安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install mocha -g</span><br><span class="line">npm install mocha</span><br><span class="line">npm install chai</span><br></pre></td></tr></table></figure>
+<h2 id="mocha-amp-amp-chai"><a href="#mocha-amp-amp-chai" class="headerlink" title="mocha &amp;&amp; chai"></a>mocha &amp;&amp; chai</h2><h3 id="mocha-API"><a href="#mocha-API" class="headerlink" title="mocha API"></a>mocha API</h3><h4 id="describe"><a href="#describe" class="headerlink" title="describe"></a>describe</h4><p> describe 是一个 用例测试集， 他可以进行嵌套</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'进行首页的测试'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="it"><a href="#it" class="headerlink" title="it"></a>it</h4><p>一个it对应一个单元测试用例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'测试接口xxx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// ....</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="only-skip"><a href="#only-skip" class="headerlink" title="only skip"></a>only skip</h4><p>only – 在当前的父describe块下，只执行该单元的测试</p>
+<p>skip – 在当前的父describe块下，跳过该单元的测试</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">describe(<span class="string">'Array'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  describe.only(<span class="string">'父describe块下只执行该测试单元'</span>, () =&gt; &#123;</span><br><span class="line">    it.skip(<span class="string">'跳过的测试单元'</span>, () =&gt; &#123; &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>describe 和 it 都可以使用这两个方法</p>
+<h4 id="timeout-设超时"><a href="#timeout-设超时" class="headerlink" title="timeout - 设超时"></a>timeout - 设超时</h4><p>测试集合上定义超时时间，会对这个测试集合中所有的测试用例和测试集合起作用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> sleep = <span class="function"><span class="params">time</span> =&gt;</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> setTimeout(resolve, time))</span><br><span class="line"> it(<span class="string">'timeout'</span>, <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.timeout(<span class="number">1000</span>)</span><br><span class="line">    <span class="keyword">await</span> sleep(<span class="number">3000</span>)</span><br><span class="line">    expect(<span class="literal">true</span>).to.be.ok</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/6/167819f41d5fcc07?w=432&amp;h=81&amp;f=png&amp;s=15009" alt="timeout"></p>
+<h4 id="hooks"><a href="#hooks" class="headerlink" title="hooks"></a>hooks</h4><p>提供了几个函数，在特定的事件发生时被触发</p>
+<p>before()、after()、beforeEach()、afterEach() </p>
+<p>同一个describe下的执行顺序为before、beforeEach、afterEach、after</p>
+<p>before, after 执行一次</p>
+<p>beforeEach，afterEach 每一个测试用例都会触发一次</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">before(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.info(<span class="string">'首页测试开始'</span>))</span><br><span class="line">after(<span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.info(<span class="string">'首页测试结束'</span>))</span><br><span class="line"></span><br><span class="line">beforeEach(<span class="string">'check check check '</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'i am check'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="chai-API"><a href="#chai-API" class="headerlink" title="chai API"></a>chai API</h3><p>chai有三种断言风格，expect，should，assert, 我的项目使用的是 expect</p>
+<h4 id="expect"><a href="#expect" class="headerlink" title="expect"></a>expect</h4><p>列出几个常用的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>equal</td>
+<td>相等（严格比较）</td>
+</tr>
+<tr>
+<td>not</td>
+<td>取反</td>
+</tr>
+<tr>
+<td>include</td>
+<td>包含</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>判断数据类型</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">expect(<span class="string">'username'</span>).to.be.a(<span class="string">'string'</span>)</span><br><span class="line">expect(<span class="literal">false</span>).to.be.a(<span class="string">'boolean'</span>)</span><br><span class="line">expect(obj).to.have.property(<span class="string">'foo'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="异步测试"><a href="#异步测试" class="headerlink" title="异步测试"></a>异步测试</h2><p>项目中的大部分函数为异步的，这个需要借助 done 来处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">`处理异步请求`</span>, (done) =&gt; &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  done()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>异步函数在函数内部手动调用done()表示测试成功，done(err)表示测试出错</p>
+<p>async await 可以不使用done </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">it(<span class="string">'更新用户对于文章的态度'</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> updateAttitude(&#123; <span class="attr">articleId</span>: <span class="number">123</span>, <span class="attr">userId</span>: <span class="number">131</span>, <span class="attr">status</span>: <span class="number">0</span>&#125;)</span><br><span class="line">  expect(result).to.be.a(<span class="string">'number'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>最常见的接口测试</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">it(<span class="string">'获取某一个频道下的所有文章列表'</span>, <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)  </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> result = <span class="keyword">await</span> chai</span><br><span class="line">    .request(app)</span><br><span class="line">    .get(<span class="string">'/articles/3/1'</span>)</span><br><span class="line">    .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> res.body</span><br><span class="line">    &#125;)</span><br><span class="line">  expect(result).to.have.property(<span class="string">'data'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h2 id="测试结果检查"><a href="#测试结果检查" class="headerlink" title="测试结果检查"></a>测试结果检查</h2><h3 id="测试报告"><a href="#测试报告" class="headerlink" title="测试报告"></a>测试报告</h3><p>生成测试报告使用的是 mochawesome 模块</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"mocha:report"</span>: <span class="string">"mocha --reporter mochawesome"</span></span><br></pre></td></tr></table></figure>
+<p>会自动在项目创建 一个 mochawesome-report 目录,</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/5/1677e7efd6f6e106?w=840&amp;h=198&amp;f=png&amp;s=32489" alt="report"></p>
+<h3 id="测试覆盖率"><a href="#测试覆盖率" class="headerlink" title="测试覆盖率"></a>测试覆盖率</h3><p>简单来说，就是判断你的测试用例对于函数的覆盖程度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g istanbul</span><br></pre></td></tr></table></figure>
+<p>生成测试率覆盖报告</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istanbul cover _mocha -- -R spec</span><br></pre></td></tr></table></figure>
+<p>注： 这里是 _mocha 不要丢掉这下划线</p>
+<p>会在项目中自动创建 coverage 文件夹</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/12/6/16781777cf7ef1ca?w=536&amp;h=202&amp;f=png&amp;s=24940" alt="coverage"></p>
+<p>在浏览器中打开</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">open coverage/lcov-report/index.html</span><br></pre></td></tr></table></figure>
+<h2 id="other"><a href="#other" class="headerlink" title="other"></a>other</h2><ul>
+<li>是否所有的函数都要编写测试用例</li>
+</ul>
+<p>接口是肯定需要编写测试用例的，至于是否需要对函数做处理，个人感觉可以对重要的函数进行测试</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ul>
+<li><a href="https://www.jianshu.com/p/f200a75a15d2" target="_blank" rel="noopener">Chai.js–API</a></li>
+</ul>
+
       
     </div>
     
@@ -400,8 +492,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -463,6 +564,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试"><span class="nav-number">1.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mocha-amp-amp-chai"><span class="nav-number">2.</span> <span class="nav-text">mocha &amp;&amp; chai</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mocha-API"><span class="nav-number">2.1.</span> <span class="nav-text">mocha API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#describe"><span class="nav-number">2.1.1.</span> <span class="nav-text">describe</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#it"><span class="nav-number">2.1.2.</span> <span class="nav-text">it</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#only-skip"><span class="nav-number">2.1.3.</span> <span class="nav-text">only skip</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timeout-设超时"><span class="nav-number">2.1.4.</span> <span class="nav-text">timeout - 设超时</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hooks"><span class="nav-number">2.1.5.</span> <span class="nav-text">hooks</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chai-API"><span class="nav-number">2.2.</span> <span class="nav-text">chai API</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#expect"><span class="nav-number">2.2.1.</span> <span class="nav-text">expect</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步测试"><span class="nav-number">3.</span> <span class="nav-text">异步测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试结果检查"><span class="nav-number">4.</span> <span class="nav-text">测试结果检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试报告"><span class="nav-number">4.1.</span> <span class="nav-text">测试报告</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试覆盖率"><span class="nav-number">4.2.</span> <span class="nav-text">测试覆盖率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other"><span class="nav-number">5.</span> <span class="nav-text">other</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">6.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
