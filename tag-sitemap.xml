@@ -346,13 +346,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/css3/</loc>
-        <lastmod>2018-10-25T02:42:54.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/rem/</loc>
         <lastmod>2018-10-25T02:42:54.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -418,6 +411,20 @@
     <url>
         <loc>http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/</loc>
         <lastmod>2018-12-21T06:30:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/css3/</loc>
+        <lastmod>2018-12-21T13:35:27.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/flex/</loc>
+        <lastmod>2018-12-21T13:35:27.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
