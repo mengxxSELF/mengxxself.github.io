@@ -276,13 +276,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/node/</loc>
-        <lastmod>2018-09-03T11:08:08.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/Linux/</loc>
         <lastmod>2018-09-03T11:08:08.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -388,13 +381,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E9%98%85%E8%AF%BB/</loc>
-        <lastmod>2018-12-11T13:31:37.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/tools/</loc>
         <lastmod>2018-12-14T03:51:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -409,8 +395,29 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/tags/%E9%98%85%E8%AF%BB/</loc>
+        <lastmod>2018-12-17T08:07:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2018-12-14T03:53:09.000Z</lastmod>
+        <lastmod>2018-12-17T08:07:20.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/node/</loc>
+        <lastmod>2018-12-21T06:30:25.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/</loc>
+        <lastmod>2018-12-21T06:30:25.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
