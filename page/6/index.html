@@ -354,7 +354,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/12/05/border-image/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/05/border-image/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/border-image/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -510,7 +510,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/12/03/一周计划6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/12/03/一周计划6/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/03/一周计划6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -666,7 +666,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/30/webpack-4-webpack的常用plugin/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/30/webpack-4-webpack的常用plugin/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/30/webpack-4-webpack的常用plugin/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -822,7 +822,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/22/一周计划5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/22/一周计划5/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/22/一周计划5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -956,7 +956,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/07/解析bilibili/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/07/解析bilibili/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/07/解析bilibili/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1107,7 +1107,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/06/JavaScript零碎/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/06/JavaScript零碎/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/JavaScript零碎/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1263,7 +1263,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/06/别人的读书笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/06/别人的读书笔记/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/别人的读书笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1393,7 +1393,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/06/http与https/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/06/http与https/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/http与https/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1548,7 +1548,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/06/http基础知识2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/06/http基础知识2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/http基础知识2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1705,7 +1705,7 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
                 <a href="/2017/11/06/一周计划4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/11/06/一周计划4/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/一周计划4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2047,14 +2047,6 @@
 
   
 
-    
-      <script id="dsq-count-scr" src="https://mengxxself.disqus.com/count.js" async></script>
-    
-
-    
-
-  
-
 
 
 
@@ -2070,12 +2062,38 @@
 
 
 
+  
 
 
 
 
 
 
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'gzMcxqf77gkRnI3DsD1VTBwx-gzGzoHsz',
+        appKey: 'PkDPltMpWV53JYeHJ9CVRJhE',
+        placeholder: 'Just go go',
+        avatar:'meng',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
