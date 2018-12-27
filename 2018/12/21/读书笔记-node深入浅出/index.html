@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/11/b3017842bdddd50386f54ffd64d5491c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/20/167cc24f5f4055e6?w=1464&h=531&f=png&s=79201">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&h=596&f=png&s=151626">
-<meta property="og:updated_time" content="2018-12-21T06:30:25.000Z">
+<meta property="og:updated_time" content="2018-12-26T02:33:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程">
 <meta name="twitter:description" content="第七章 网络编程">
@@ -438,9 +438,17 @@
 <p>在同一台计算机，两个不同的进程 （pid为进程的标识） 之前进行数据传递，可以通过共享内存等方式。那如果是不同计算机的两个进程呢，需要借助另外的方式处理 — 借助 端口（全称是协议端口号 (protocol port number)，简称端口）</p>
 <p>套接字概念 ： IP 层的 ip 地址可以唯一标识主机，而 TCP 层协议和端口号可以唯一标识主机的一个进程，这样我们可以利用：「ip地址＋协议＋端口号」唯一标示网络中的一个进程</p>
 <p>这就是说，虽然通信的重点是应用进程，但我们只要把要传送的报文交到目的主机的某一个合适的端口，剩下的工作就由 TCP 来完成了</p>
-<h3 id="tcp-服务端"><a href="#tcp-服务端" class="headerlink" title="tcp 服务端"></a>tcp 服务端</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：收到来自客户端的请求'</span>)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：收到客户端数据，内容为&#123;'</span> + data + <span class="string">'&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给客户端返回数据</span></span><br><span class="line">        socket.write(<span class="string">'你好，我是服务端'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：客户端连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="string">'8124'</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：开始监听来自客户端的请求'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h3><ul>
+<li>服务端</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：收到来自客户端的请求'</span>)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：收到客户端数据，内容为&#123;'</span> + data + <span class="string">'&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给客户端返回数据</span></span><br><span class="line">        socket.write(<span class="string">'你好，我是服务端'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：客户端连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="string">'8124'</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：开始监听来自客户端的请求'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>talnet 可以和服务器进行对话</p>
 <p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&amp;h=596&amp;f=png&amp;s=151626" alt="net"></p>
+<h3 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h3><p>udp 和 tcp 同属于网络传输层</p>
+<p>创建udp套接字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>)</span><br><span class="line"><span class="keyword">let</span> server = dgram.createSocket(<span class="string">'udp4'</span>)</span><br></pre></td></tr></table></figure>
+<p>server 既可以做为客户端发送数据 也可以作为服务端接受数据</p>
+<p>dgram模块用于创建基于UDP协议的网络服务，创建不分客户端不分客户端、服务器端，在一端使用dgram.createSocket即可发送数据也可以接收数据。</p>
 
       
     </div>
@@ -564,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">94</span>
+                  <span class="site-state-item-count">97</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -575,7 +583,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -586,7 +594,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">62</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -619,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">3.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp-服务端"><span class="nav-number">4.</span> <span class="nav-text">tcp 服务端</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">3.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp"><span class="nav-number">4.</span> <span class="nav-text">tcp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp"><span class="nav-number">5.</span> <span class="nav-text">udp</span></a></li></ol></div>
             
 
           </div>
