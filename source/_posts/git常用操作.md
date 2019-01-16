@@ -11,7 +11,7 @@ tags: [tools, git]
 
 <!-- More -->
 
-* 撤销commit
+#### 撤销commit
 
 1 查看每一commit的版本号  git log 
 
@@ -25,7 +25,7 @@ git reset --hard commit_id
 
 完成Commit命令的撤销，但是不对代码修改进行撤销，可以直接通过git commit 重新提交对本地代码的修改
 
-* 撤销 merge
+#### 撤销 merge
 
 1 查看版本号
 
@@ -35,6 +35,10 @@ git reflog
 
 git reset --hard xxx
 
-* fetch 分支
+#### fetch 分支
 
 git fetch origin 分支名称
+
+#### 强行push
+
+git push origin master -f
