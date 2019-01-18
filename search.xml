@@ -1,13 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search> 
   
+  
+    
+    <entry>
+      <title>一次shell手误的修复</title>
+      <link href="/2019/01/17/%E4%B8%80%E6%AC%A1shell%E6%89%8B%E8%AF%AF%E7%9A%84%E4%BF%AE%E5%A4%8D/"/>
+      <url>/2019/01/17/%E4%B8%80%E6%AC%A1shell%E6%89%8B%E8%AF%AF%E7%9A%84%E4%BF%AE%E5%A4%8D/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2019/1/17/16859dfeabf97b15?w=875&amp;h=385&amp;f=png&amp;s=67477" alt="error"></p><blockquote><p>手误之后 基本命令失效</p></blockquote><a id="more"></a><p>在shell中 变量的设置是 </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name=<span class="number">123</span></span><br></pre></td></tr></table></figure><p>变量的追加是</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name=$name:<span class="number">9090</span></span><br></pre></td></tr></table></figure><p>之前在使用 umi 创建项目的时候 为了解决出现的问题 在 ~/.zshrc 中添加了一个 PATH 路径</p><p>应该是</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> PATH=$PATH:<span class="regexp">/Users/</span>zhengzaijiazai/.nvm/versions/node/v8<span class="number">.11</span><span class="number">.2</span>/bin</span><br></pre></td></tr></table></figure><p>但是第一次写的时候 没有加 $PATH</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> PATH=<span class="regexp">/Users/</span>zhengzaijiazai/.nvm/versions/node/v8<span class="number">.11</span><span class="number">.2</span>/bin</span><br></pre></td></tr></table></figure><p>保存之后 source 使其生效 </p><p>然后，基本命令不可用了</p><p><img src="https://user-gold-cdn.xitu.io/2019/1/17/16859bec41c0a55e?w=257&amp;h=158&amp;f=png&amp;s=14748" alt="ls"></p><p>最常用的ls vim 都不可用了 这下想重新打开 zshrc 重新修改也没法了</p><p>解决方案  定义临时变量</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> PATH=<span class="regexp">/usr/</span>bin:<span class="regexp">/usr/</span>sbin:<span class="regexp">/bin:/</span>sbin:<span class="regexp">/usr/</span>X11R6/bin</span><br></pre></td></tr></table></figure><p>这个相当于定义了一个局部的  PATH 变量 然后基本命令可以使用了 重新vim 调整 zshrc 就可以了</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>react状态管理</title>
+      <link href="/2019/01/16/react%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/"/>
+      <url>/2019/01/16/react%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2019/1/15/168508594a753ef8?w=847&amp;h=193&amp;f=png&amp;s=40010" alt=""></p><blockquote><p>redux saga dva 科普篇</p></blockquote><a id="more"></a><h3 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h3><p>最基础的就是使用 redux 来处理</p><p>这里是展示组件结构</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; valueAdd, valueReduce &#125; <span class="keyword">from</span> <span class="string">'./redux/action'</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;header className=<span class="string">"App-header"</span>&gt;</span><br><span class="line">          &lt;p onClick=&#123;() =&gt; <span class="keyword">this</span>.props.valueAdd()&#125; &gt; 点击 + <span class="number">1</span> &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">          &lt;p onClick=&#123;() =&gt; this.props.valueReduce()&#125; &gt; 点击 - 1 &lt;/</span>p&gt;</span><br><span class="line">          &lt;div&gt; i am &#123;<span class="keyword">this</span>.props.number&#125; &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>header&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">const MainBox = connect(</span></span><br><span class="line"><span class="regexp">  (state) =&gt; &#123; return &#123; number: state.number &#125;&#125;,</span></span><br><span class="line"><span class="regexp">  dispatch =&gt; &#123;</span></span><br><span class="line"><span class="regexp">    return &#123;</span></span><br><span class="line"><span class="regexp">      addNumber: () =&gt; &#123; dispatch(valueAdd()) &#125;,</span></span><br><span class="line"><span class="regexp">      reduceNumber: () =&gt; &#123; dispatch(valueReduce()) &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">)(Main)</span></span><br><span class="line"><span class="regexp">export default MainBox</span></span><br></pre></td></tr></table></figure><p>借助 bindActionCreators 调整一下</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></span><br><span class="line"><span class="keyword">import</span> &#123; bindActionCreators &#125; <span class="keyword">from</span> <span class="string">'redux'</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> action <span class="keyword">from</span> <span class="string">'./redux/action'</span></span><br><span class="line"></span><br><span class="line">@connect(</span><br><span class="line">  (&#123;number&#125;) =&gt; (&#123;number&#125;),</span><br><span class="line">  dispatch =&gt; bindActionCreators(action, dispatch)</span><br><span class="line">)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;header className=<span class="string">"App-header"</span>&gt;</span><br><span class="line">          &lt;p onClick=&#123;() =&gt; <span class="keyword">this</span>.props.valueAdd()&#125; &gt; 点击 + <span class="number">1</span> &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">          &lt;p onClick=&#123;() =&gt; this.props.valueReduce()&#125; &gt; 点击 - 1 &lt;/</span>p&gt;</span><br><span class="line">          &lt;div&gt; i am &#123;<span class="keyword">this</span>.props.number&#125; &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>header&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">export default Main</span></span><br></pre></td></tr></table></figure><h3 id="redux-saga"><a href="#redux-saga" class="headerlink" title="redux-saga"></a>redux-saga</h3><p><a href="https://redux-saga-in-chinese.js.org/" target="_blank" rel="noopener">文档阅读</a></p><h4 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h4><table><thead><tr><th>方法</th><th>建议</th></tr></thead><tbody><tr><td>takeEvery</td><td>监听派发的动作，如果action type匹配的话，会执行对应的函数</td></tr><tr><td>put</td><td>派发Action， 可以理解成为redux中的dispatch函数</td></tr><tr><td>call</td><td>调用函数执行，阻塞</td></tr><tr><td>fork</td><td>调用函数执行，不会阻塞</td></tr></tbody></table><h4 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h4><p>对比于 redux，使用saga的时候只需要调整一下store的生成</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> createSagaMiddleware <span class="keyword">from</span> <span class="string">"redux-saga"</span>;</span><br><span class="line"><span class="keyword">import</span> rootSaga <span class="keyword">from</span> <span class="string">"./saga"</span> <span class="comment">//引入rootSaga</span></span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span></span><br><span class="line"><span class="keyword">let</span> sagaMiddleware = createSagaMiddleware()</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> store = createStore(</span><br><span class="line">  reducer,</span><br><span class="line">  applyMiddleware(sagaMiddleware),</span><br><span class="line">);</span><br><span class="line">sagaMiddleware.run(rootSaga); <span class="comment">// 开始执行rootSaga</span></span><br></pre></td></tr></table></figure><p>添加一个 saga 文件</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">add</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 派发Action</span></span><br><span class="line">  <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: ACTION_ADD &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">reduce</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: ACTION_REDUCER&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">watchAdd</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="comment">// 监听派发给仓库的动作，如果动作类型匹配的话，会执行对应的监听生成器</span></span><br><span class="line">  <span class="keyword">yield</span> takeEvery(ACTION_ADD_SAGA, add)</span><br><span class="line">  <span class="keyword">yield</span> takeEvery(ACTION_REDUCER_SAGA, reduce)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> * <span class="title">rootSaga</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> watchAdd()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>saga 有三种，做工作的 进行监听的 以及 rootsage</p><p>1 worker saga 做具体的工作，如调用API，进行异步请求，获取异步封装结果</p><p>2 watcher saga 监听被dispatch的actions,当接受到action或者知道其被触发时，调用worker执行任务</p><p>3 root saga 启动saga的唯一入口</p><h3 id="dva"><a href="#dva" class="headerlink" title="dva"></a>dva</h3><p>dva 可以视为内部封装了redux-saga </p><p>安装</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g dva-cli</span><br></pre></td></tr></table></figure><p>使用dva生成项目</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dva new xxxname</span><br></pre></td></tr></table></figure><p>dva 项目结构</p><p><img src="https://user-gold-cdn.xitu.io/2019/1/15/168503760db0ff26?w=338&amp;h=332&amp;f=png&amp;s=24953" alt="dva"></p><p>dva 的文件结构命名有点奇怪， 比如这个 routes 文件夹 其实不是路由处理，里面是组件，（与该路由对应的组件）</p><p>models 则是将 action  reducer action_type 编写到一起了</p><h4 id="入口文件-index-js"><a href="#入口文件-index-js" class="headerlink" title="入口文件 index.js"></a>入口文件 index.js</h4><p>在index.js 实现一些配置 比如 定义默认state 添加中间件 引入model=</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> dva <span class="keyword">from</span> <span class="string">'dva'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;createLogger&#125; <span class="keyword">from</span> <span class="string">'redux-logger'</span>;</span><br><span class="line"><span class="comment">// 1. Initialize </span></span><br><span class="line"><span class="keyword">const</span> app = dva(&#123;&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2. Plugins</span></span><br><span class="line"><span class="comment">// app.use(&#123;&#125;);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. Model</span></span><br><span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/main'</span>).default);</span><br><span class="line">app.model(<span class="built_in">require</span>(<span class="string">'./models/users'</span>).default);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. Router</span></span><br><span class="line">app.router(<span class="built_in">require</span>(<span class="string">'./router'</span>).default);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5. Start</span></span><br><span class="line">app.start(<span class="string">'#root'</span>);</span><br></pre></td></tr></table></figure><p>可以设置的全部属性参数为 </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> app = dva(&#123;</span><br><span class="line">  history, <span class="comment">// 路由控制 </span></span><br><span class="line">  initialState, <span class="comment">// 基础state 优先级高于 model 中的 state</span></span><br><span class="line">  onError, <span class="comment">// effect 执行错误或 subscription 通过 done 主动抛错时触发，可用于管理全局出错状态</span></span><br><span class="line">  onAction, <span class="comment">// 在action被dispatch时触发，用于注册 redux 中间件。支持函数或函数数组格式</span></span><br><span class="line">  onStateChange, <span class="comment">// 顾名思义，在state变动的时候触发</span></span><br><span class="line">  onReducer,</span><br><span class="line">  onEffect,</span><br><span class="line">  onHmr,</span><br><span class="line">  extraReducers,</span><br><span class="line">  extraEnhancers,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><ul><li>app.use</li></ul><p>可以添加中间件</p><ul><li>app.model</li></ul><p>所有的model都要通过这个方法挂载到app</p><ul><li>app.router</li></ul><p>挂载定义的路由</p><ul><li>app.start</li></ul><p>启动app</p><h4 id="核心部分-models"><a href="#核心部分-models" class="headerlink" title="核心部分 models"></a>核心部分 models</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> defult &#123;</span><br><span class="line">  namespace: <span class="string">''</span>,</span><br><span class="line">  state: <span class="string">''</span>,</span><br><span class="line">  reducers: &#123;&#125;,</span><br><span class="line">  effects: &#123;&#125;,</span><br><span class="line">  subscriptions: &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><table><thead><tr><th>key</th><th>含义</th></tr></thead><tbody><tr><td>namespace</td><td>model 的命名空间，是在全局 state 上的属性</td></tr><tr><td>state</td><td>state 初始值</td></tr><tr><td>reducers</td><td>唯一可以修改 state 的地方，由 action 触发</td></tr><tr><td>effects</td><td>用于处理异步操作和业务逻辑，不直接修改 state。由action 触发，</td></tr><tr><td>subscriptions</td><td>用于订阅一个数据源，然后根据需要 dispatch 相应的 action</td></tr></tbody></table><p>感觉如果项目决定使用 redux-saga 可以考虑直接使用 dva </p><p><img src="https://user-gold-cdn.xitu.io/2019/1/15/168508cae7c1ea33?w=845&amp;h=468&amp;f=png&amp;s=45164" alt="流程图"></p><h3 id="umi-呜咪"><a href="#umi-呜咪" class="headerlink" title="umi 呜咪"></a>umi 呜咪</h3><p><img src="https://user-gold-cdn.xitu.io/2019/1/15/168505a4c26e0964?w=560&amp;h=358&amp;f=png&amp;s=355038" alt="mimi"></p><p>（和喵喵并没有什么关系）</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -g umi</span><br></pre></td></tr></table></figure><p>创建文件</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir project &amp;&amp; cd project &amp;&amp; yarn create umi &amp;&amp; cnpm i</span><br></pre></td></tr></table></figure><p>这个没什么好说的，就一个项目创建脚手架，可以包含测试 编译 部署等流程 就像使用种组装了一辆汽车 而用户来选择需不需要加车窗 轮子等部件</p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul><li><a href="https://www.jianshu.com/p/21f8ed30e761" target="_blank" rel="noopener">dav 基本使用</a></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> react </tag>
+            
+            <tag> redux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>一个登陆的shell脚本</title>
+      <link href="/2019/01/15/%E4%B8%80%E4%B8%AA%E7%99%BB%E9%99%86%E7%9A%84shell%E8%84%9A%E6%9C%AC/"/>
+      <url>/2019/01/15/%E4%B8%80%E4%B8%AA%E7%99%BB%E9%99%86%E7%9A%84shell%E8%84%9A%E6%9C%AC/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2019/1/12/168426279e212857?w=796&amp;h=644&amp;f=png&amp;s=398044" alt=""></p><blockquote><p>编写一个shell脚本，不用每次都查询服务器地址了</p></blockquote><a id="more"></a><p>项目涉及到好多关于登陆的shell命令，比如登陆服务器，链接redis等</p><p>编写一个shell脚本，不用每次都查询服务器地址了</p><h3 id="shell脚本格式"><a href="#shell脚本格式" class="headerlink" title="shell脚本格式"></a>shell脚本格式</h3><ul><li>第一行是 #!/bin/bash  </li></ul><p>因为我们使用的是bash， 已 #!/bin/bash 开头声明文件语法是用的是bash语法。 当程序被执行的时候，会加载bash相关环境配置文件</p><p>如果不写的话，系统可能无法判断程序需要什么shell来执行</p><ul><li>#相当于注释</li></ul><p>除了在  #!/bin/bash 行出现的  # ，其余的在开头的 都表示的此行代码被注释</p><h3 id="通过命令输入变量"><a href="#通过命令输入变量" class="headerlink" title="通过命令输入变量"></a>通过命令输入变量</h3><p>可以编写命令行直接输入变量值</p><p>命令与变量的对应是</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">某一条命令 xxx xxx</span><br><span class="line">$0         $1  $2</span><br></pre></td></tr></table></figure><p>比如 写一个输入变量的shell脚本</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo i am variable &apos;$1&apos;, $1</span><br></pre></td></tr></table></figure><p>执行一下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh variable.sh mxtx</span><br><span class="line">// i am variable $1, mxtx</span><br></pre></td></tr></table></figure><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/168424c2fa11b524?w=816&amp;h=138&amp;f=png&amp;s=79062" alt="variable"></p><p>还有一些特殊的变量含义</p><p>$# 表示后面有几个参数</p><h3 id="与用户交互-read"><a href="#与用户交互-read" class="headerlink" title="与用户交互  read"></a>与用户交互  read</h3><p>read 命令可以获取到键盘输入信息</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read [-pt] variable</span><br></pre></td></tr></table></figure><p>其实感觉和创建了一个本地变量的概念类似</p><p>比如执行 </p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">read name // 命令行进入等待状态</span><br><span class="line"></span><br><span class="line">i am tom // 回车结束输入</span><br></pre></td></tr></table></figure><p>然后输出一下这个 name 的变量值</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $name // i am tom</span><br></pre></td></tr></table></figure><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/16842422e365015e?w=710&amp;h=158&amp;f=png&amp;s=66202" alt="read"></p><p>使用 -p 编写一个带有提示的命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read -p &quot;please enter your name:&quot;</span><br></pre></td></tr></table></figure><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/1684244bda769df2?w=1064&amp;h=204&amp;f=png&amp;s=94620" alt="variable"></p><h3 id="if-语句"><a href="#if-语句" class="headerlink" title="if 语句"></a>if 语句</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ 条件 ]; then </span><br><span class="line">  条件成立时候要执行的操作</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><p>这个格式必须这么固定 最后一行就是 fi  表示结束if 语句了</p><p>写一个例子，当输入的第一个变量值是 1 就输出 boy  就输出 否则 为 girl</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ $<span class="number">1</span> == <span class="number">1</span> ]; then</span><br><span class="line">  echo boy</span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">  echo gril</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/1684252cea9982a6" alt="variable"></p><p>如果是多个条件</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ 条件1 ]; then </span><br><span class="line">  条件1成立时候要执行的操作</span><br><span class="line">elif [ 条件2 ]; then  </span><br><span class="line">  条件2成立时候要执行的操作</span><br><span class="line">fi</span><br></pre></td></tr></table></figure><h3 id="shell脚本的调试"><a href="#shell脚本的调试" class="headerlink" title="shell脚本的调试"></a>shell脚本的调试</h3><p>脚本写完之后不一定保证写的正确，可以先进行一个语法的检查</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -n youshell.sh</span><br></pre></td></tr></table></figure><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/168425b99d5bd064?w=948&amp;h=126&amp;f=png&amp;s=73861" alt="shell"></p><p>有三个参数可以使用</p><table><thead><tr><th>参数</th><th>含义</th></tr></thead><tbody><tr><td>n</td><td>不执行脚本 只检查语法</td></tr><tr><td>v</td><td>执行前将脚本内容输出</td></tr><tr><td>x</td><td>将使用的内容输出</td></tr></tbody></table><p><img src="https://user-gold-cdn.xitu.io/2019/1/12/168425e372fbf0f1?w=834&amp;h=440&amp;f=png&amp;s=133434" alt="vx"></p><h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">read -p <span class="string">"enter your choice: "</span> choice</span><br><span class="line"></span><br><span class="line"># 定义变量</span><br><span class="line">test=<span class="string">'work@xxxx'</span></span><br><span class="line">master=<span class="string">'work@xxx'</span></span><br><span class="line">redis=<span class="string">'xxxxxxx'</span></span><br><span class="line"></span><br><span class="line">echo $choice</span><br><span class="line"></span><br><span class="line"># 根据输入值 进行条件判断</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $choice == test ]; then</span><br><span class="line"> ssh $test</span><br><span class="line">elif [ $choice == master ]; then</span><br><span class="line"> ssh $master</span><br><span class="line">elif [ $choice == redis ]; then</span><br><span class="line"> redis-cli -h $redis</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>react-refs</title>
+      <link href="/2019/01/08/react-refs/"/>
+      <url>/2019/01/08/react-refs/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>refs</p></blockquote><a id="more"></a><p>react 中通过设置ref可以获取react元素</p><ul><li>直接使用ref</li></ul><ul><li>createRef</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.myRef = React.createRef();</span><br><span class="line">  &#125;</span><br><span class="line">  values () &#123;</span><br><span class="line">    <span class="keyword">const</span> val = <span class="keyword">this</span>.myInput.current</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> &lt;div&gt;</span><br><span class="line">      &lt;div ref=&#123;this.myRef&#125; /&gt;</span><br><span class="line">      &lt;input ref=&#123;this.myInput&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://reactjs.org/docs/refs-and-the-dom.html" target="_blank" rel="noopener">refs and the dom</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> react </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> react </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>vue初探</title>
+      <link href="/2018/12/28/vue%E5%88%9D%E6%8E%A2/"/>
+      <url>/2018/12/28/vue%E5%88%9D%E6%8E%A2/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f487da679727d?w=1060&amp;h=392&amp;f=png&amp;s=62416" alt="vue"></p><blockquote><p>vue 初探</p></blockquote><a id="more"></a><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>vue的文件编译差不多也是react那一套 大概在loader会有不同 因为重点在熟悉Vue 而不是webpack 没有做单独的配置 直接使用vue-cli 生成</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm i vue-cli</span><br></pre></td></tr></table></figure><h3 id="router-的使用"><a href="#router-的使用" class="headerlink" title="router 的使用"></a>router 的使用</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span>;</span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span>;</span><br><span class="line">Vue.use(Router); <span class="comment">//挂载属性</span></span><br><span class="line"><span class="comment">//创建路由对象并配置路由规则</span></span><br><span class="line"><span class="keyword">let</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">    routes: [</span><br><span class="line">        <span class="comment">//定义路由对象</span></span><br><span class="line">        &#123; <span class="attr">path</span>: <span class="string">'/'</span>, <span class="attr">component</span>: Tabs &#125;,</span><br><span class="line">        &#123; <span class="attr">path</span>: <span class="string">'/article'</span>, <span class="attr">component</span>: Article &#125;,</span><br><span class="line">    ]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 在创建 vue实例的时候 要传入router</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#app'</span>,</span><br><span class="line">    <span class="comment">//让vue知道我们的路由规则</span></span><br><span class="line">    router: router, <span class="comment">//可以简写router</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><h4 id="使用router进行参数传递"><a href="#使用router进行参数传递" class="headerlink" title="使用router进行参数传递"></a>使用router进行参数传递</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;router-link :to=<span class="string">"&#123;name:'detail',params:&#123; id: id, title: title &#125;, query :&#123;author&#125;&#125;"</span>&gt;detail&lt;<span class="regexp">/router-link&gt;</span></span><br></pre></td></tr></table></figure><p>子页面做解析</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;h3&gt; &#123;&#123;$route.params.title&#125;&#125; &lt;<span class="regexp">/h3&gt;</span></span><br></pre></td></tr></table></figure><p>有一个奇怪的问题，就是进入子页面刷新，子页面数据就没有了，</p><p>为了确定这个现象，在组件的 mounted 生命周期 log 一下 参数</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.$route.params.title)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>初次进入是有的，但是刷新的话的确是没有的。 目前没有看懂为什么会这样</p><h4 id="解析router"><a href="#解析router" class="headerlink" title="解析router"></a>解析router</h4><table><thead><tr><th>属性</th><th>含义</th></tr></thead><tbody><tr><td>$route.path</td><td>对应当前路由的路径</td></tr><tr><td>$route.params</td><td>key/value 对象</td></tr><tr><td>$route.query</td><td>传参对象</td></tr><tr><td>$route.hash</td><td>当前路由的 hash 值 (不带 #)</td></tr><tr><td>$route.fullPath</td><td>完成解析后的 URL，包含查询参数和 hash 的完整路径</td></tr><tr><td>$route.matched</td><td>数组格式，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象</td></tr><tr><td>$route.name</td><td>当前路径名字</td></tr></tbody></table><h4 id="404"><a href="#404" class="headerlink" title="404"></a>404</h4><p>vue有一个有意思的功能 页面404</p><p>直接在路由页面中添加</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'*'</span>,</span><br><span class="line">  component: <span class="built_in">Error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>当用户访问的路径不存在时，就会展示这个组件</p><h3 id="vue-生命周期"><a href="#vue-生命周期" class="headerlink" title="vue 生命周期"></a>vue 生命周期</h3><p>vue 几个常用的生命周期函数</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f48987e3b7b2a?w=516&amp;h=758&amp;f=png&amp;s=86242" alt="vue">)</p><p>相对于react 来说， vue的生命周期函数要多一些，而且有的看起来，性质差不多，比如 create 和 mounted 无法从字面感受有什么区别</p><p>在组件里打几个log看一下</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/28/167f49d880b7e2da?w=716&amp;h=614&amp;f=png&amp;s=91842" alt="fn"></p><p>beforecreated：el 和 data 并未初始化 </p><p>created:完成了 data 数据的初始化，el没有</p><p>beforeMount：完成了 el 和 data 初始化 </p><p>mounted ：完成挂载</p><h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><h4 id="引入子组件"><a href="#引入子组件" class="headerlink" title="引入子组件"></a>引入子组件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">components: [</span><br><span class="line">  Table,</span><br><span class="line">  Model</span><br><span class="line">]</span><br></pre></td></tr></table></figure><h4 id="组件之间的数据传递"><a href="#组件之间的数据传递" class="headerlink" title="组件之间的数据传递"></a>组件之间的数据传递</h4><ul><li>子级组件使用父级组件的方法</li></ul><p>父级通过 v-on 绑定</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Form v-if=&quot;isShow&quot; v-on:hideForm=&quot;hideModal&quot; &gt;&lt;/Form&gt;</span><br></pre></td></tr></table></figure><p>子级通过 $emit 触发</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button @click=<span class="string">"$emit('hideForm')"</span>&gt;取消&lt;<span class="regexp">/el-button&gt;</span></span><br></pre></td></tr></table></figure><h4 id="UI库"><a href="#UI库" class="headerlink" title="UI库"></a>UI库</h4><p>vue的比较常用的UI库 有<a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">element</a>  </p><h4 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h4><ul><li>引入第三方css</li></ul><p>提供了三种方式</p><p>1 入口js文件引入</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">'swiper/dist/css/swiper.css'</span></span><br></pre></td></tr></table></figure><p>2 写到 html 模板文件中</p><p>3 组件中引入</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">import</span> <span class="string">'swiper/dist/css/swiper.css'</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> vue </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
     
     <entry>
       <title>mock数据</title>
       <link href="/2018/12/26/mock%E6%95%B0%E6%8D%AE/"/>
       <url>/2018/12/26/mock%E6%95%B0%E6%8D%AE/</url>
       
-        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167ee440eb91144c?w=1160&amp;h=634&amp;f=png&amp;s=383086" alt="mock"></p><blockquote><p>前端可通过 <a href="http://mockjs.com/" target="_blank" rel="noopener">Mockjs</a> 模拟数据 独立与后端开发 </p></blockquote><a id="more"></a><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i mockjs -D</span><br><span class="line"><span class="keyword">import</span> mock <span class="keyword">from</span> <span class="string">'mockjs'</span></span><br></pre></td></tr></table></figure><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>Mock.mock(template)</p><p>mock 接受一个模板，将根据定义的模板生成对应格式的数据</p><h4 id="数据模板"><a href="#数据模板" class="headerlink" title="数据模板"></a>数据模板</h4><p>template 可以是一个数据对象 – 属性名、生成规则、属性值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'name|rule'</span>: value</span><br></pre></td></tr></table></figure><p>比如生成一个长度为 3 的数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = Mock.mock(&#123;</span><br><span class="line">  <span class="string">'id|3'</span>: [<span class="number">1</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// &#123; id: [ 1, 1, 1 ] &#125;</span></span><br></pre></td></tr></table></figure><ul><li>‘name|min-max’: value</li></ul><table><thead><tr><th>value格式</th><th>作用</th></tr></thead><tbody><tr><td>string</td><td>重复string生成结果，重复次数区间[min, max]</td></tr><tr><td>number</td><td>生成整数, 区间[min, max]。 也就是这里的 value 并没有什么意义</td></tr><tr><td>object</td><td>随机选取 object 中 min 到 max 个属性 生成新对象</td></tr><tr><td>array</td><td>重复属性值 array 生成一个新数组，重复次数区间[min, max]</td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'name|1-3'</span>: <span class="string">'中文'</span> <span class="comment">// name: '中文中文中文' </span></span><br><span class="line"><span class="string">'id|1-3'</span>: <span class="number">18</span> <span class="comment">// id: 3</span></span><br></pre></td></tr></table></figure><ul><li>‘name|count’: values</li></ul><table><thead><tr><th>value格式</th><th>作用</th></tr></thead><tbody><tr><td>string</td><td>重复string生成结果，重复次数 count</td></tr><tr><td>object</td><td>从对象 object 中随机选取 count 个属性</td></tr><tr><td>array</td><td>重复属性值 array 生成一个新数组，重复次数区间[min, max]</td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'users|2'</span>: &#123;</span><br><span class="line">  name: <span class="string">'tome'</span>,</span><br><span class="line">  age: <span class="number">20</span>,</span><br><span class="line">  habit: <span class="string">'listen'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  users: &#123; age: 20, habit: 'listen' &#125; </span></span><br><span class="line"><span class="comment">//  users: &#123; name: 'tome', habit: 'listen' &#125;</span></span><br></pre></td></tr></table></figure><ul><li>other</li></ul><p>‘name|1’: boolean </p><p>随机生成一个布尔值, true/false 的概率各为50%</p><h4 id="数据占位符-占位符"><a href="#数据占位符-占位符" class="headerlink" title="数据占位符 @占位符"></a>数据占位符 @占位符</h4><p>template 可以是一个占位符</p><p>Mock.Random 是一个工具类，用于生成各种随机数据。Mock.Random 的方法在数据模板中称为“占位符”，引用格式为 @占位符(参数 [, 参数])</p><p>这里简单列举几个常用的占位符</p><p>比如生成 长度为5 的字符 </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">'@string(5)'</span>) </span><br><span class="line">Mock.mock(<span class="string">'@csentence(5)'</span>) <span class="comment">// 中文</span></span><br></pre></td></tr></table></figure><p>生成 图片</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random.image(<span class="string">'200x100'</span>, <span class="string">'#50B347'</span>, <span class="string">'#FFF'</span>, <span class="string">'Mock.js'</span>)</span><br></pre></td></tr></table></figure><p><a href="http://mockjs.com/examples.html#DPD" target="_blank" rel="noopener">具体点击查看文档</a></p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul><li><a href="https://juejin.im/entry/564b293c60b259caed3e7e2c" target="_blank" rel="noopener">Mock.js - 模拟数据生成器</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167ee440eb91144c?w=1160&amp;h=634&amp;f=png&amp;s=383086" alt="mock"></p><blockquote><p>前端可通过 <a href="http://mockjs.com/" target="_blank" rel="noopener">Mockjs</a> 模拟数据 独立与后端开发 </p></blockquote><a id="more"></a><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cnpm i mockjs -D</span><br><span class="line"><span class="keyword">import</span> mock <span class="keyword">from</span> <span class="string">'mockjs'</span></span><br></pre></td></tr></table></figure><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>Mock.mock(template)</p><p>mock 接受一个模板，将根据定义的模板生成对应格式的数据</p><h4 id="数据模板"><a href="#数据模板" class="headerlink" title="数据模板"></a>数据模板</h4><p>template 可以是一个数据对象 – 属性名、生成规则、属性值</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'name|rule'</span>: value</span><br></pre></td></tr></table></figure><p>比如生成一个长度为 3 的数组</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = Mock.mock(&#123;</span><br><span class="line">  <span class="string">'id|3'</span>: [<span class="number">1</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// &#123; id: [ 1, 1, 1 ] &#125;</span></span><br></pre></td></tr></table></figure><ul><li>‘name|min-max’: value</li></ul><table><thead><tr><th>value格式</th><th>作用</th></tr></thead><tbody><tr><td>string</td><td>重复string生成结果，重复次数区间[min, max]</td></tr><tr><td>number</td><td>生成整数, 区间[min, max]。 也就是这里的 value 并没有什么意义</td></tr><tr><td>object</td><td>随机选取 object 中 min 到 max 个属性 生成新对象</td></tr><tr><td>array</td><td>重复属性值 array 生成一个新数组，重复次数区间[min, max]</td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'name|1-3'</span>: <span class="string">'中文'</span> <span class="comment">// name: '中文中文中文' </span></span><br><span class="line"><span class="string">'id|1-3'</span>: <span class="number">18</span> <span class="comment">// id: 3</span></span><br></pre></td></tr></table></figure><ul><li>‘name|count’: values</li></ul><table><thead><tr><th>value格式</th><th>作用</th></tr></thead><tbody><tr><td>string</td><td>重复string生成结果，重复次数 count</td></tr><tr><td>object</td><td>从对象 object 中随机选取 count 个属性</td></tr><tr><td>array</td><td>重复属性值 array 生成一个新数组，重复次数区间[min, max]</td></tr></tbody></table><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'users|2'</span>: &#123;</span><br><span class="line">  name: <span class="string">'tome'</span>,</span><br><span class="line">  age: <span class="number">20</span>,</span><br><span class="line">  habit: <span class="string">'listen'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//  users: &#123; age: 20, habit: 'listen' &#125; </span></span><br><span class="line"><span class="comment">//  users: &#123; name: 'tome', habit: 'listen' &#125;</span></span><br></pre></td></tr></table></figure><ul><li>other</li></ul><p>‘name|1’: boolean </p><p>随机生成一个布尔值, true/false 的概率各为50%</p><h4 id="数据占位符-占位符"><a href="#数据占位符-占位符" class="headerlink" title="数据占位符 @占位符"></a>数据占位符 @占位符</h4><p>template 可以是一个占位符</p><p>Mock.Random 是一个工具类，用于生成各种随机数据。Mock.Random 的方法在数据模板中称为“占位符”，引用格式为 @占位符(参数 [, 参数])</p><p>这里简单列举几个常用的占位符</p><p>比如生成 长度为5 的字符 </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">'@string(5)'</span>) </span><br><span class="line">Mock.mock(<span class="string">'@csentence(5)'</span>) <span class="comment">// 中文</span></span><br></pre></td></tr></table></figure><p>生成 图片</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Random.image(<span class="string">'200x100'</span>, <span class="string">'#50B347'</span>, <span class="string">'#FFF'</span>, <span class="string">'Mock.js'</span>)</span><br></pre></td></tr></table></figure><p><a href="http://mockjs.com/examples.html#DPD" target="_blank" rel="noopener">具体点击查看文档</a></p><h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>获取文章列表数据</p><p>比如</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167eea5edf07e162?w=926&amp;h=348&amp;f=png&amp;s=81273" alt="lists"></p><p>主要的参数为 id img title</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> getArticles = <span class="function">(<span class="params">tabId = <span class="number">1</span></span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> data = Mock.mock(&#123;</span><br><span class="line">    <span class="string">'articles|10'</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">'id|+1'</span>: <span class="number">0</span>,</span><br><span class="line">        img: Random.image(<span class="string">'200x100'</span>, <span class="string">'#f1f1f1'</span>, <span class="string">'#FFF'</span>, <span class="string">'ARTICLE BANNER'</span>),</span><br><span class="line">        title: tabId + <span class="string">'@csentence(3, 10)'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> data</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><a href="https://github.com/mengxxSELF/vue-shop/blob/master/Mock/index.js" target="_blank" rel="noopener">点击git查看</a></p><h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><ul><li><a href="https://juejin.im/entry/564b293c60b259caed3e7e2c" target="_blank" rel="noopener">Mock.js - 模拟数据生成器</a></li></ul>]]></content>
       
       
       <categories>
@@ -26,6 +130,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>react源码解析</title>
@@ -50,12 +156,14 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>文章阅读笔记-技术杂谈</title>
       <link href="/2018/12/24/%E6%96%87%E7%AB%A0%E7%AC%94%E8%AE%B0-%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/"/>
       <url>/2018/12/24/%E6%96%87%E7%AB%A0%E7%AC%94%E8%AE%B0-%E6%8A%80%E6%9C%AF%E6%9D%82%E8%B0%88/</url>
       
-        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/8/31/1659022b84159eb5?w=1354&amp;h=544&amp;f=png&amp;s=43243" alt="tips"></p><blockquote><p>在阅读文章的时候，一些有意思的知识点</p></blockquote><a id="more"></a><ul><li>css </li></ul><h3 id="Chrome-调试技巧"><a href="#Chrome-调试技巧" class="headerlink" title="Chrome - 调试技巧"></a>Chrome - <a href="https://juejin.im/post/5c09a80151882521c81168a2" target="_blank" rel="noopener">调试技巧</a></h3><ul><li><p>$ </p></li><li><p>console.table</p></li></ul><p>当想要输出的对象是一个数组的时候 可以用这个以表格形式查看</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/24/167de48407e61b1f?w=587&amp;h=467&amp;f=png&amp;s=69031" alt="table"></p><ul><li>h 隐藏、显示元素</li></ul><p>选中元素后 按一下’h’来轻松隐藏你在元素面板中选择的元素。再次按下’h’可以使它出现</p><ul><li>run commend</li></ul>]]></content>
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/8/31/1659022b84159eb5?w=1354&amp;h=544&amp;f=png&amp;s=43243" alt="tips"></p><blockquote><p>在阅读文章的时候，一些有意思的知识点</p></blockquote><a id="more"></a><ul><li>css </li></ul><h3 id="Chrome-调试技巧"><a href="#Chrome-调试技巧" class="headerlink" title="Chrome - 调试技巧"></a>Chrome - <a href="https://juejin.im/post/5c09a80151882521c81168a2" target="_blank" rel="noopener">调试技巧</a></h3><ul><li><p>$ </p></li><li><p>console.table</p></li></ul><p>当想要输出的对象是一个数组的时候 可以用这个以表格形式查看</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/24/167de48407e61b1f?w=587&amp;h=467&amp;f=png&amp;s=69031" alt="table"></p><ul><li>h 隐藏、显示元素</li></ul><p>选中元素后 按一下’h’来轻松隐藏你在元素面板中选择的元素。再次按下’h’可以使它出现</p><ul><li>run commend</li></ul><h3 id="qconf"><a href="#qconf" class="headerlink" title="qconf"></a>qconf</h3><ul><li>qconf 启动中报错 <a href="https://github.com/Qihoo360/QConf/wiki/FAQ" target="_blank" rel="noopener">处理共享内存</a></li></ul>]]></content>
       
       
       <categories>
@@ -74,6 +182,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>img在flex布局中的表现</title>
@@ -100,12 +210,14 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>网络编程</title>
       <link href="/2018/12/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-node%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/"/>
       <url>/2018/12/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-node%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</url>
       
-        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167ceda84509da96?w=920&amp;h=450&amp;f=png&amp;s=122361" alt="network"></p><blockquote><p>第七章 网络编程</p></blockquote><a id="more"></a><h3 id="OSI-七层模型"><a href="#OSI-七层模型" class="headerlink" title="OSI 七层模型"></a>OSI 七层模型</h3><p>OSI定义了网络互连的七层框架（物理层、数据链路层、网络层、传输层、会话层、表示层、应用层）</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/20/167cc05df95ccae3?w=982&amp;h=532&amp;f=png&amp;s=68841" alt="model"></p><p>每一层实现各自的功能和协议，并完成与相邻层的接口通信。</p><ul><li>物理层</li></ul><p>网线 </p><ul><li>数据链路层 </li></ul><p>比如网卡，处理与物理设备做交互</p><ul><li>网络层</li></ul><p>ip 协议什么的，基础的网络</p><p>数据在网络中分组传输，网络层处理这些分组数据</p><ul><li>传输层</li></ul><p>tcp 协议什么的</p><p>处理端口之间的通信</p><ul><li><p>会话层</p></li><li><p>表示层</p></li></ul><p>处理数据安全等</p><ul><li>应用层</li></ul><p>http  https</p><p>处理网络数据和应用程序的交互</p><p>平时有用过的那个 nginx 是处理的7层，http协议部分</p><p>在四层中（数据链路层 、网络层、 传输层、应用层）运行的协议，称之为 TCP/IP协议族</p><h3 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h3><p><img src="https://user-gold-cdn.xitu.io/2017/11/11/b3017842bdddd50386f54ffd64d5491c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="tcp"></p><p>数据传输的时候 在每一层会做加工处理</p><p>通过上图可以看出来，这七层，每一层都可以做的事情</p><p>1 将上层传递数据包装为满足该层协议的数据包</p><p>2 将下层的数据解析为满足该层协议的数据包</p><p>3 与其余层的数据交互</p><p>看一下常见的协议与七层的关系</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/20/167cc24f5f4055e6?w=1464&amp;h=531&amp;f=png&amp;s=79201" alt="tcp"></p><h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><p>TCP 的包是不包含 IP 地址信息的，那是 IP 层上的事，但是有源端口和目的端口。</p><p>端口是传输层的东西</p><p>在同一台计算机，两个不同的进程 （pid为进程的标识） 之前进行数据传递，可以通过共享内存等方式。那如果是不同计算机的两个进程呢，需要借助另外的方式处理 — 借助 端口（全称是协议端口号 (protocol port number)，简称端口）</p><p>套接字概念 ： IP 层的 ip 地址可以唯一标识主机，而 TCP 层协议和端口号可以唯一标识主机的一个进程，这样我们可以利用：「ip地址＋协议＋端口号」唯一标示网络中的一个进程</p><p>这就是说，虽然通信的重点是应用进程，但我们只要把要传送的报文交到目的主机的某一个合适的端口，剩下的工作就由 TCP 来完成了</p><h3 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h3><ul><li>服务端</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：收到来自客户端的请求'</span>)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：收到客户端数据，内容为&#123;'</span> + data + <span class="string">'&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给客户端返回数据</span></span><br><span class="line">        socket.write(<span class="string">'你好，我是服务端'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：客户端连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="string">'8124'</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：开始监听来自客户端的请求'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>talnet 可以和服务器进行对话</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&amp;h=596&amp;f=png&amp;s=151626" alt="net"></p><h3 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h3><p>udp 和 tcp 同属于网络传输层</p><p>创建udp套接字</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>)</span><br><span class="line"><span class="keyword">let</span> server = dgram.createSocket(<span class="string">'udp4'</span>)</span><br></pre></td></tr></table></figure><p>server 既可以做为客户端发送数据 也可以作为服务端接受数据</p><p>dgram模块用于创建基于UDP协议的网络服务，创建不分客户端不分客户端、服务器端，在一端使用dgram.createSocket即可发送数据也可以接收数据。</p>]]></content>
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167ceda84509da96?w=920&amp;h=450&amp;f=png&amp;s=122361" alt="network"></p><blockquote><p>第七章 网络编程</p></blockquote><a id="more"></a><h3 id="OSI-七层模型"><a href="#OSI-七层模型" class="headerlink" title="OSI 七层模型"></a>OSI 七层模型</h3><p>OSI定义了网络互连的七层框架（物理层、数据链路层、网络层、传输层、会话层、表示层、应用层）</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/20/167cc05df95ccae3?w=982&amp;h=532&amp;f=png&amp;s=68841" alt="model"></p><p>每一层实现各自的功能和协议，并完成与相邻层的接口通信。</p><ul><li>物理层</li></ul><p>网线 </p><ul><li>数据链路层 </li></ul><p>比如网卡，处理与物理设备做交互</p><ul><li>网络层</li></ul><p>ip 协议什么的，基础的网络</p><p>数据在网络中分组传输，网络层处理这些分组数据</p><ul><li>传输层</li></ul><p>tcp 协议什么的</p><p>处理端口之间的通信</p><ul><li><p>会话层</p></li><li><p>表示层</p></li></ul><p>处理数据安全等</p><ul><li>应用层</li></ul><p>http  https</p><p>处理网络数据和应用程序的交互</p><p>平时有用过的那个 nginx 是处理的7层，http协议部分</p><p>在四层中（数据链路层 、网络层、 传输层、应用层）运行的协议，称之为 TCP/IP协议族</p><h3 id="TCP-IP协议族"><a href="#TCP-IP协议族" class="headerlink" title="TCP/IP协议族"></a>TCP/IP协议族</h3><p><img src="https://user-gold-cdn.xitu.io/2017/11/11/b3017842bdddd50386f54ffd64d5491c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="tcp"></p><p>数据传输的时候 在每一层会做加工处理</p><p>通过上图可以看出来，这七层，每一层都可以做的事情</p><p>1 将上层传递数据包装为满足该层协议的数据包</p><p>2 将下层的数据解析为满足该层协议的数据包</p><p>3 与其余层的数据交互</p><p>看一下常见的协议与七层的关系</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/20/167cc24f5f4055e6?w=1464&amp;h=531&amp;f=png&amp;s=79201" alt="tcp"></p><h3 id="端口"><a href="#端口" class="headerlink" title="端口"></a>端口</h3><p>TCP 的包是不包含 IP 地址信息的，那是 IP 层上的事，但是有源端口和目的端口。</p><p>端口是传输层的东西</p><p>在同一台计算机，两个不同的进程 （pid为进程的标识） 之前进行数据传递，可以通过共享内存等方式。那如果是不同计算机的两个进程呢，需要借助另外的方式处理 — 借助 端口（全称是协议端口号 (protocol port number)，简称端口）</p><p>套接字概念 ： IP 层的 ip 地址可以唯一标识主机，而 TCP 层协议和端口号可以唯一标识主机的一个进程，这样我们可以利用：「ip地址＋协议＋端口号」唯一标示网络中的一个进程</p><p>这就是说，虽然通信的重点是应用进程，但我们只要把要传送的报文交到目的主机的某一个合适的端口，剩下的工作就由 TCP 来完成了</p><h3 id="IP协议-（Internet-Protocol）"><a href="#IP协议-（Internet-Protocol）" class="headerlink" title="IP协议 （Internet Protocol）"></a>IP协议 （Internet Protocol）</h3><p>按层次分,IP(Internet Protocol)网际协议位于网络层。</p><p>TCP/IP 协议族中的 IP 指的就是网际协 议,协议名称中占据了一半位置,其重要性可见一斑。可能有人会把“IP”和“IP 地址”搞混,“IP”其实是一种协 议的名称。<br>IP 协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里,则需要满足各类条件。其中两个 重要的条件是 IP 地址和 MAC 地址(Media Access Control Address)</p><p>IP 地址指明了节点被分配到的地址,MAC 地址是指网卡所属的固定地址。IP 地址可以和 MAC 地址进行配 对。IP 地址可变换,但 MAC 地址基本上不会更改</p><ul><li>ARP 协议 </li></ul><p>IP 间的通信依赖 MAC 地址。在网络上,通信的双方在同一局域网(LAN)内的情况是很少的,通常是经过多台计算机和网络设备中转才能连接到对方。</p><p>而在进行中转时,会利用下一站中转设备的 MAC 地址来搜索下一 个中转目标。这时,会采用 ARP 协议(Address Resolution Protocol)。</p><p>ARP 是一种用以解析地址的协议, 根据通信方的 IP 地址就可以反查出对应的 MAC 地址。</p><h3 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h3><p>按层次分,TCP 位于传输层,提供可靠的字节流服务。</p><ul><li>字节流服务(Byte Stream Service)</li></ul><p>为了方便传输,将大块数据分割成以报文段(segment) 为单位的数据包进行管理。而可靠的传输服务是指,能够把数据准确可靠地传给对方。一言以蔽之,TCP 协 议为了更容易传送大数据才把数据分割,而且 TCP 协议能够确认数据最终是否送达到对方。</p><ul><li>三次握手</li></ul><p>为了准确无误地将数据送达目标处,TCP 协议采用了三次握手(three-way handshaking)策略。用 TCP 协议把数据包送出去后, TCP 不会对传送后的情况置之不理,它一定会向对方确认是否成功送达</p><ul><li>服务端</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：收到来自客户端的请求'</span>)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：收到客户端数据，内容为&#123;'</span> + data + <span class="string">'&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给客户端返回数据</span></span><br><span class="line">        socket.write(<span class="string">'你好，我是服务端'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：客户端连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="string">'8124'</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：开始监听来自客户端的请求'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>talnet 可以和服务器进行对话</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&amp;h=596&amp;f=png&amp;s=151626" alt="net"></p><h3 id="udp"><a href="#udp" class="headerlink" title="udp"></a>udp</h3><p>udp 和 tcp 同属于网络传输层</p><p>创建udp套接字</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>)</span><br><span class="line"><span class="keyword">let</span> server = dgram.createSocket(<span class="string">'udp4'</span>)</span><br></pre></td></tr></table></figure><p>server 既可以做为客户端发送数据 也可以作为服务端接受数据</p><p>dgram模块用于创建基于UDP协议的网络服务，创建不分客户端不分客户端、服务器端，在一端使用dgram.createSocket即可发送数据也可以接收数据。</p><h3 id="DNS-Domain-Name-System"><a href="#DNS-Domain-Name-System" class="headerlink" title="DNS (Domain Name System)"></a>DNS (Domain Name System)</h3><p>DNS 服务是和 HTTP 协议一样位于应用层的协议。它提供域名到 IP 地址之间的解析服务 (也可以逆向从 IP 地址反查域名 的服务)</p><h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167ef852f76f0686?w=1040&amp;h=636&amp;f=png&amp;s=88930" alt="data"></p><p>首先作为发送端的客户端在应用层(HTTP 协议)发出一个想看某个 Web 页面的 HTTP 请求。<br>接着,为了传输方便,在传输层(TCP 协议)把从应用层处收到的数据(HTTP 请求报文)进行分割,并在 各个报文上打上标记序号及端口号后转发给网络层。<br>在网络层(IP 协议),增加作为通信目的地的 MAC 地址后转发给链路层。这样一来,发往网络的通信请求 就准备齐全了。<br>接收端的服务器在链路层接收到数据,按序往上层发送,一直到应用层。当传输到应用层,才能算真正接收 到由客户端发送过来的 HTTP 请求。</p><ul><li>三次握手</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><ul><li>请求报文</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /life/index HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9997</span></span><br><span class="line">User-Agent: curl/<span class="number">7.43</span><span class="number">.0</span></span><br><span class="line">Accept: *<span class="comment">/*</span></span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>含义</th></tr></thead><tbody><tr><td>GET</td><td>表示请求访问服务器的类型</td></tr><tr><td>/life/index</td><td>请求的资源对象</td></tr><tr><td>HTTP/1.1</td><td>客户端使用的 HTTP 协议</td></tr></tbody></table><p>这段请求内容的意思是:请求访问某台 HTTP 服务器上的 /life/index 资源</p><p>请求报文是由请求方法、请求 URI、协议版本、可选的请求首部字段和内容实体构成的。</p><ul><li>相应报文</li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Type: text/html; charset=utf<span class="number">-8</span></span><br><span class="line">Content-Length: <span class="number">13976</span></span><br><span class="line"><span class="built_in">Date</span>: Thu, <span class="number">27</span> Dec <span class="number">2018</span> <span class="number">12</span>:<span class="number">32</span>:<span class="number">38</span> GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;html ....</span><br></pre></td></tr></table></figure><table><thead><tr><th>参数</th><th>含义</th></tr></thead><tbody><tr><td>HTTP/1.1</td><td>服务器使用的 HTTP 协议</td></tr><tr><td>200 ok</td><td>请求的处理结果的状态码(status code)和原因短语(reason-phrase)</td></tr></tbody></table><p>响应报文基本上由协议版本、状态码(表示请求成功或失败的数字代码)、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成</p>]]></content>
       
       
       <categories>
@@ -125,6 +237,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>单元测试</title>
       <link href="/2018/12/06/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
@@ -136,12 +250,14 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>git常用操作</title>
       <link href="/2018/12/06/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/"/>
       <url>/2018/12/06/git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C/</url>
       
-        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/14/167aad6f6ad558c8?w=1177&amp;h=507&amp;f=png&amp;s=131075" alt="git"></p><blockquote><p>git</p></blockquote><a id="more"></a><ul><li>撤销commit</li></ul><p>1 查看每一commit的版本号  git log </p><p>2 代码恢复</p><p>git reset –hard commit_id</p><p>完成撤销,同时将代码恢复到前一commit_id 对应的版本。</p><p>3 git reset commit_id  – 取消commit</p><p>完成Commit命令的撤销，但是不对代码修改进行撤销，可以直接通过git commit 重新提交对本地代码的修改</p><ul><li>撤销 merge</li></ul><p>1 查看版本号</p><p>git reflog</p><p>2 代码恢复</p><p>git reset –hard xxx</p>]]></content>
+        <content type="html"><![CDATA[<p><img src="https://user-gold-cdn.xitu.io/2018/12/14/167aad6f6ad558c8?w=1177&amp;h=507&amp;f=png&amp;s=131075" alt="git"></p><blockquote><p>git</p></blockquote><a id="more"></a><h4 id="撤销commit"><a href="#撤销commit" class="headerlink" title="撤销commit"></a>撤销commit</h4><p>1 查看每一commit的版本号  git log </p><p>2 代码恢复</p><p>git reset –hard commit_id</p><p>完成撤销,同时将代码恢复到前一commit_id 对应的版本。</p><p>3 git reset commit_id  – 取消commit</p><p>完成Commit命令的撤销，但是不对代码修改进行撤销，可以直接通过git commit 重新提交对本地代码的修改</p><h4 id="撤销-merge"><a href="#撤销-merge" class="headerlink" title="撤销 merge"></a>撤销 merge</h4><p>1 查看版本号</p><p>git reflog</p><p>2 代码恢复</p><p>git reset –hard xxx</p><h4 id="fetch-分支"><a href="#fetch-分支" class="headerlink" title="fetch 分支"></a>fetch 分支</h4><p>git fetch origin 分支名称</p><h4 id="强行push"><a href="#强行push" class="headerlink" title="强行push"></a>强行push</h4><p>git push origin master -f</p>]]></content>
       
       
       <categories>
@@ -161,6 +277,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack升级v4</title>
       <link href="/2018/11/02/webpack%E5%8D%87%E7%BA%A7v4/"/>
@@ -171,6 +289,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>Node中包的查找机制</title>
@@ -194,6 +314,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>1030一期文章分享</title>
@@ -220,6 +342,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>nginx使用指南</title>
       <link href="/2018/10/22/nginx%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
@@ -243,6 +367,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>sequelize入门篇</title>
       <link href="/2018/10/21/sequelize%E5%85%A5%E9%97%A8%E7%AF%87/"/>
@@ -253,6 +379,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>rem基本原理</title>
@@ -279,6 +407,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>typescript-react</title>
       <link href="/2018/09/28/typescript-react/"/>
@@ -295,6 +425,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>类以及继承</title>
@@ -319,6 +451,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>每日一练第七期</title>
       <link href="/2018/09/17/%E6%AF%8F%E6%97%A5%E4%B8%80%E7%BB%83%E7%AC%AC%E4%B8%83%E6%9C%9F/"/>
@@ -342,6 +476,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>每日一练第六期</title>
       <link href="/2018/09/10/%E6%AF%8F%E6%97%A5%E4%B8%80%E7%BB%83%E7%AC%AC%E5%85%AD%E6%9C%9F/"/>
@@ -364,6 +500,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>object-fit</title>
@@ -390,6 +528,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>react组件Video</title>
       <link href="/2018/09/06/react%E7%BB%84%E4%BB%B6Video/"/>
@@ -407,13 +547,15 @@
       
         <tags>
             
-            <tag> video </tag>
-            
             <tag> react </tag>
+            
+            <tag> video </tag>
             
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>moment.js使用</title>
@@ -438,6 +580,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>每日一练第五期</title>
       <link href="/2018/09/03/%E6%AF%8F%E6%97%A5%E4%B8%80%E7%BB%83%E7%AC%AC%E4%BA%94%E6%9C%9F/"/>
@@ -448,6 +592,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>每日一练第四期</title>
@@ -471,6 +617,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>有趣的tips</title>
@@ -499,6 +647,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>每日一练第二期</title>
       <link href="/2018/08/06/%E6%AF%8F%E6%97%A5%E4%B8%80%E7%BB%83%E7%AC%AC%E4%BA%8C%E6%9C%9F/"/>
@@ -521,6 +671,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>每日一练第一期</title>
@@ -545,6 +697,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>代码规范</title>
       <link href="/2018/07/31/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
@@ -568,6 +722,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>认识typescript</title>
       <link href="/2018/07/18/%E8%AE%A4%E8%AF%86typescript/"/>
@@ -584,6 +740,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>安全令牌JWT</title>
@@ -607,6 +765,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>服务器三大件的升级</title>
@@ -635,6 +795,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>一周计划9</title>
       <link href="/2018/07/02/%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%929/"/>
@@ -659,6 +821,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>服务器部署</title>
@@ -687,6 +851,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>ssh-copy-id</title>
       <link href="/2018/05/26/ssh-copy-id/"/>
@@ -709,6 +875,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>深拷贝与浅拷贝</title>
@@ -733,6 +901,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack系列之-优化篇</title>
       <link href="/2018/05/08/webpack%E7%B3%BB%E5%88%97%E4%B9%8B-%E4%BC%98%E5%8C%96%E7%AF%87/"/>
@@ -756,6 +926,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack系列之-功能篇</title>
       <link href="/2018/05/07/webpack%E7%B3%BB%E5%88%97%E4%B9%8B-%E5%8A%9F%E8%83%BD%E7%AF%87/"/>
@@ -778,6 +950,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>读书笔记-linux私房菜</title>
@@ -804,6 +978,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack系列之-原理篇</title>
       <link href="/2018/05/02/webpack%E7%B3%BB%E5%88%97%E4%B9%8B-%E5%8E%9F%E7%90%86%E7%AF%87/"/>
@@ -826,6 +1002,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>异步流程处理</title>
@@ -852,6 +1030,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack-7编译原理</title>
       <link href="/2018/02/03/webpack-7%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
@@ -874,6 +1054,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>API文档工具</title>
@@ -900,6 +1082,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>发送请求的第三方插件</title>
       <link href="/2018/01/21/%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%AC%AC%E4%B8%89%E6%96%B9%E6%8F%92%E4%BB%B6/"/>
@@ -910,6 +1094,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>webpack-6配置问题</title>
@@ -933,6 +1119,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划8</title>
@@ -959,6 +1147,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>一周计划7</title>
       <link href="/2018/01/14/%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%927/"/>
@@ -984,6 +1174,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>如何进行项目调试</title>
       <link href="/2018/01/06/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E9%A1%B9%E7%9B%AE%E8%B0%83%E8%AF%95/"/>
@@ -1006,6 +1198,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>hi,2018</title>
@@ -1034,6 +1228,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webapck-5</title>
       <link href="/2017/12/30/webpack-5/"/>
@@ -1056,6 +1252,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>webpack阅读笔记</title>
@@ -1080,6 +1278,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack文章记录</title>
       <link href="/2017/12/24/webpack%E6%96%87%E7%AB%A0%E8%AE%B0%E5%BD%95/"/>
@@ -1102,6 +1302,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>读书笔记- mysql 必知必会</title>
@@ -1128,6 +1330,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>border-image</title>
       <link href="/2017/12/05/border-image/"/>
@@ -1152,6 +1356,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划6</title>
@@ -1178,6 +1384,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack-4 - webpack的常用plugin</title>
       <link href="/2017/11/30/webpack-4-webpack%E7%9A%84%E5%B8%B8%E7%94%A8plugin/"/>
@@ -1200,6 +1408,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划5</title>
@@ -1226,6 +1436,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>解析bilibili</title>
       <link href="/2017/11/07/%E8%A7%A3%E6%9E%90bilibili/"/>
@@ -1236,6 +1448,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>JavaScript零碎</title>
@@ -1259,6 +1473,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>别人的读书笔记</title>
@@ -1285,6 +1501,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>http与https</title>
       <link href="/2017/11/06/http%E4%B8%8Ehttps/"/>
@@ -1295,6 +1513,8 @@
       
       
     </entry>
+    
+    
     
     <entry>
       <title>http基础知识2</title>
@@ -1318,6 +1538,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划4</title>
@@ -1344,6 +1566,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>客户端与服务端交互模型</title>
       <link href="/2017/11/05/%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%B8%8E%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%BA%A4%E4%BA%92%E6%A8%A1%E5%9E%8B/"/>
@@ -1369,6 +1593,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>http基础篇</title>
       <link href="/2017/11/04/http%E5%9F%BA%E7%A1%80%E7%AF%87/"/>
@@ -1391,6 +1617,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>缓存</title>
@@ -1417,6 +1645,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>一周计划3</title>
       <link href="/2017/11/01/%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%923/"/>
@@ -1442,6 +1672,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>video.js的API</title>
       <link href="/2017/11/01/video-js%E7%9A%84API/"/>
@@ -1464,6 +1696,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>有趣的css属性</title>
@@ -1488,6 +1722,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>node基础</title>
       <link href="/2017/10/25/node%E5%9F%BA%E7%A1%80/"/>
@@ -1510,6 +1746,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>video 和 audio在移动端的表现</title>
@@ -1536,6 +1774,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>redis-数据类型及其使用</title>
       <link href="/2017/10/12/redis-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E4%BD%BF%E7%94%A8/"/>
@@ -1559,6 +1799,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>项目组推荐</title>
       <link href="/2017/10/10/%E6%8E%A8%E8%8D%90%E9%98%85%E8%AF%BB/"/>
@@ -1581,6 +1823,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划2</title>
@@ -1606,6 +1850,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>call、apply、bind</title>
@@ -1636,6 +1882,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>swiper.js</title>
       <link href="/2017/10/07/swiper-js/"/>
@@ -1661,6 +1909,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>rn-下拉刷新</title>
       <link href="/2017/10/05/rn-%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0/"/>
@@ -1683,6 +1933,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>rn-swiper</title>
@@ -1707,6 +1959,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>react-native1</title>
       <link href="/2017/10/04/react-native1/"/>
@@ -1729,6 +1983,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>pm2</title>
@@ -1753,6 +2009,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>留言反馈墙</title>
       <link href="/2017/10/01/%E7%95%99%E8%A8%80%E5%8F%8D%E9%A6%88%E5%A2%99/"/>
@@ -1775,6 +2033,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>屏幕尺寸、分辨率等</title>
@@ -1799,6 +2059,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>canvas</title>
       <link href="/2017/09/27/canvas/"/>
@@ -1821,6 +2083,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>一周计划</title>
@@ -1847,6 +2111,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>SVG + CSS3动画实现文字描边</title>
       <link href="/2017/09/24/svg/"/>
@@ -1872,6 +2138,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack-3</title>
       <link href="/2017/09/21/webpack-3/"/>
@@ -1894,6 +2162,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>读书笔记-web工程师的自我修养</title>
@@ -1920,6 +2190,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>函数预解释</title>
       <link href="/2017/09/09/%E5%87%BD%E6%95%B0%E9%A2%84%E8%A7%A3%E9%87%8A/"/>
@@ -1942,6 +2214,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>告别</title>
@@ -1970,6 +2244,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack-2</title>
       <link href="/2017/09/02/webpack-2/"/>
@@ -1992,6 +2268,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>读书笔记-js高程</title>
@@ -2022,6 +2300,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>图片上传</title>
       <link href="/2017/08/31/%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/"/>
@@ -2049,6 +2329,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>canvas,blob,file,base64格式的转换</title>
       <link href="/2017/08/30/canvas-blob-file-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%BD%AC%E6%8D%A2/"/>
@@ -2074,6 +2356,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>webpack-1</title>
       <link href="/2017/08/27/webpack-1/"/>
@@ -2096,6 +2380,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>react-hammer</title>
@@ -2120,6 +2406,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>js实现截屏效果</title>
       <link href="/2017/08/26/js%E5%AE%9E%E7%8E%B0%E6%88%AA%E5%B1%8F%E6%95%88%E6%9E%9C/"/>
@@ -2142,6 +2430,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>关于文件的那点事</title>
@@ -2168,6 +2458,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>正则基本知识</title>
       <link href="/2017/08/22/%E6%AD%A3%E5%88%99%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86/"/>
@@ -2190,6 +2482,8 @@
         </tags>
       
     </entry>
+    
+    
     
     <entry>
       <title>数组</title>
@@ -2214,6 +2508,8 @@
       
     </entry>
     
+    
+    
     <entry>
       <title>继承</title>
       <link href="/2016/12/10/%E7%BB%A7%E6%89%BF/"/>
@@ -2236,6 +2532,7 @@
         </tags>
       
     </entry>
+    
     
   
   

@@ -92,7 +92,8 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/11/11/b3017842bdddd50386f54ffd64d5491c?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/20/167cc24f5f4055e6?w=1464&h=531&f=png&s=79201">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&h=596&f=png&s=151626">
-<meta property="og:updated_time" content="2018-12-26T02:33:39.000Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/27/167ef852f76f0686?w=1040&h=636&f=png&s=88930">
+<meta property="og:updated_time" content="2019-01-16T06:09:40.470Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程">
 <meta name="twitter:description" content="第七章 网络编程">
@@ -448,7 +449,25 @@
 <p>在同一台计算机，两个不同的进程 （pid为进程的标识） 之前进行数据传递，可以通过共享内存等方式。那如果是不同计算机的两个进程呢，需要借助另外的方式处理 — 借助 端口（全称是协议端口号 (protocol port number)，简称端口）</p>
 <p>套接字概念 ： IP 层的 ip 地址可以唯一标识主机，而 TCP 层协议和端口号可以唯一标识主机的一个进程，这样我们可以利用：「ip地址＋协议＋端口号」唯一标示网络中的一个进程</p>
 <p>这就是说，虽然通信的重点是应用进程，但我们只要把要传送的报文交到目的主机的某一个合适的端口，剩下的工作就由 TCP 来完成了</p>
-<h3 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h3><ul>
+<h3 id="IP协议-（Internet-Protocol）"><a href="#IP协议-（Internet-Protocol）" class="headerlink" title="IP协议 （Internet Protocol）"></a>IP协议 （Internet Protocol）</h3><p>按层次分,IP(Internet Protocol)网际协议位于网络层。</p>
+<p>TCP/IP 协议族中的 IP 指的就是网际协 议,协议名称中占据了一半位置,其重要性可见一斑。可能有人会把“IP”和“IP 地址”搞混,“IP”其实是一种协 议的名称。<br>IP 协议的作用是把各种数据包传送给对方。而要保证确实传送到对方那里,则需要满足各类条件。其中两个 重要的条件是 IP 地址和 MAC 地址(Media Access Control Address)</p>
+<p>IP 地址指明了节点被分配到的地址,MAC 地址是指网卡所属的固定地址。IP 地址可以和 MAC 地址进行配 对。IP 地址可变换,但 MAC 地址基本上不会更改</p>
+<ul>
+<li>ARP 协议 </li>
+</ul>
+<p>IP 间的通信依赖 MAC 地址。在网络上,通信的双方在同一局域网(LAN)内的情况是很少的,通常是经过多台计算机和网络设备中转才能连接到对方。</p>
+<p>而在进行中转时,会利用下一站中转设备的 MAC 地址来搜索下一 个中转目标。这时,会采用 ARP 协议(Address Resolution Protocol)。</p>
+<p>ARP 是一种用以解析地址的协议, 根据通信方的 IP 地址就可以反查出对应的 MAC 地址。</p>
+<h3 id="tcp"><a href="#tcp" class="headerlink" title="tcp"></a>tcp</h3><p>按层次分,TCP 位于传输层,提供可靠的字节流服务。</p>
+<ul>
+<li>字节流服务(Byte Stream Service)</li>
+</ul>
+<p>为了方便传输,将大块数据分割成以报文段(segment) 为单位的数据包进行管理。而可靠的传输服务是指,能够把数据准确可靠地传给对方。一言以蔽之,TCP 协 议为了更容易传送大数据才把数据分割,而且 TCP 协议能够确认数据最终是否送达到对方。</p>
+<ul>
+<li>三次握手</li>
+</ul>
+<p>为了准确无误地将数据送达目标处,TCP 协议采用了三次握手(three-way handshaking)策略。用 TCP 协议把数据包送出去后, TCP 不会对传送后的情况置之不理,它一定会向对方确认是否成功送达</p>
+<ul>
 <li>服务端</li>
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> net = <span class="built_in">require</span>(<span class="string">'net'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> server = net.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：收到来自客户端的请求'</span>)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：收到客户端数据，内容为&#123;'</span> + data + <span class="string">'&#125;'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给客户端返回数据</span></span><br><span class="line">        socket.write(<span class="string">'你好，我是服务端'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    socket.on(<span class="string">'close'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'服务端：客户端连接断开'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">server.listen(<span class="string">'8124'</span>, <span class="string">'localhost'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'服务端：开始监听来自客户端的请求'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -459,6 +478,64 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dgram = <span class="built_in">require</span>(<span class="string">'dgram'</span>)</span><br><span class="line"><span class="keyword">let</span> server = dgram.createSocket(<span class="string">'udp4'</span>)</span><br></pre></td></tr></table></figure>
 <p>server 既可以做为客户端发送数据 也可以作为服务端接受数据</p>
 <p>dgram模块用于创建基于UDP协议的网络服务，创建不分客户端不分客户端、服务器端，在一端使用dgram.createSocket即可发送数据也可以接收数据。</p>
+<h3 id="DNS-Domain-Name-System"><a href="#DNS-Domain-Name-System" class="headerlink" title="DNS (Domain Name System)"></a>DNS (Domain Name System)</h3><p>DNS 服务是和 HTTP 协议一样位于应用层的协议。它提供域名到 IP 地址之间的解析服务 (也可以逆向从 IP 地址反查域名 的服务)</p>
+<h3 id="http"><a href="#http" class="headerlink" title="http"></a>http</h3><p><img src="https://user-gold-cdn.xitu.io/2018/12/27/167ef852f76f0686?w=1040&amp;h=636&amp;f=png&amp;s=88930" alt="data"></p>
+<p>首先作为发送端的客户端在应用层(HTTP 协议)发出一个想看某个 Web 页面的 HTTP 请求。<br>接着,为了传输方便,在传输层(TCP 协议)把从应用层处收到的数据(HTTP 请求报文)进行分割,并在 各个报文上打上标记序号及端口号后转发给网络层。<br>在网络层(IP 协议),增加作为通信目的地的 MAC 地址后转发给链路层。这样一来,发往网络的通信请求 就准备齐全了。<br>接收端的服务器在链路层接收到数据,按序往上层发送,一直到应用层。当传输到应用层,才能算真正接收 到由客户端发送过来的 HTTP 请求。</p>
+<ul>
+<li>三次握手</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>请求报文</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /life/index HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">9997</span></span><br><span class="line">User-Agent: curl/<span class="number">7.43</span><span class="number">.0</span></span><br><span class="line">Accept: *<span class="comment">/*</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td>表示请求访问服务器的类型</td>
+</tr>
+<tr>
+<td>/life/index</td>
+<td>请求的资源对象</td>
+</tr>
+<tr>
+<td>HTTP/1.1</td>
+<td>客户端使用的 HTTP 协议</td>
+</tr>
+</tbody>
+</table>
+<p>这段请求内容的意思是:请求访问某台 HTTP 服务器上的 /life/index 资源</p>
+<p>请求报文是由请求方法、请求 URI、协议版本、可选的请求首部字段和内容实体构成的。</p>
+<ul>
+<li>相应报文</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Content-Type: text/html; charset=utf<span class="number">-8</span></span><br><span class="line">Content-Length: <span class="number">13976</span></span><br><span class="line"><span class="built_in">Date</span>: Thu, <span class="number">27</span> Dec <span class="number">2018</span> <span class="number">12</span>:<span class="number">32</span>:<span class="number">38</span> GMT</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">&lt;!doctype html&gt;html ....</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HTTP/1.1</td>
+<td>服务器使用的 HTTP 协议</td>
+</tr>
+<tr>
+<td>200 ok</td>
+<td>请求的处理结果的状态码(status code)和原因短语(reason-phrase)</td>
+</tr>
+</tbody>
+</table>
+<p>响应报文基本上由协议版本、状态码(表示请求成功或失败的数字代码)、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成</p>
 
       
     </div>
@@ -585,7 +662,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">102</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -607,7 +684,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -640,7 +717,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">3.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp"><span class="nav-number">4.</span> <span class="nav-text">tcp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp"><span class="nav-number">5.</span> <span class="nav-text">udp</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">3.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP协议-（Internet-Protocol）"><span class="nav-number">4.</span> <span class="nav-text">IP协议 （Internet Protocol）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp"><span class="nav-number">5.</span> <span class="nav-text">tcp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp"><span class="nav-number">6.</span> <span class="nav-text">udp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number">7.</span> <span class="nav-text">DNS (Domain Name System)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">8.</span> <span class="nav-text">http</span></a></li></ol></div>
             
 
           </div>
@@ -660,7 +737,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -339,27 +339,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/tools/</loc>
-        <lastmod>2018-12-14T03:51:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/git/</loc>
-        <lastmod>2018-12-14T03:51:35.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/linux/</loc>
-        <lastmod>2018-12-17T08:07:20.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/css3/</loc>
         <lastmod>2018-12-21T13:35:27.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -388,20 +367,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E9%98%85%E8%AF%BB/</loc>
-        <lastmod>2018-12-25T03:50:38.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/</loc>
-        <lastmod>2018-12-25T03:50:38.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
         <lastmod>2018-12-25T03:54:35.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -409,29 +374,78 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/</loc>
-        <lastmod>2018-12-26T02:33:39.000Z</lastmod>
+        <loc>http://yoursite.com/tags/mockjs/</loc>
+        <lastmod>2018-12-27T07:54:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E9%98%85%E8%AF%BB/</loc>
+        <lastmod>2018-12-27T08:08:19.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/%E5%AD%A6%E4%B9%A0/</loc>
+        <lastmod>2018-12-27T08:08:19.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/tools/</loc>
+        <lastmod>2019-01-16T06:07:33.441Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/git/</loc>
+        <lastmod>2019-01-16T06:07:33.441Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/node/</loc>
-        <lastmod>2018-12-27T06:05:56.000Z</lastmod>
+        <lastmod>2019-01-16T06:09:40.470Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite.com/tags/mockjs/</loc>
-        <lastmod>2018-12-27T06:05:56.000Z</lastmod>
+        <loc>http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/</loc>
+        <lastmod>2019-01-16T06:09:40.470Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/redux/</loc>
+        <lastmod>2019-01-16T06:14:41.818Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>http://yoursite.com/tags/react/</loc>
-        <lastmod>2018-12-27T06:08:56.000Z</lastmod>
+        <lastmod>2019-01-16T06:15:43.165Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/vue/</loc>
+        <lastmod>2019-01-16T06:38:33.768Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/tags/linux/</loc>
+        <lastmod>2019-01-17T03:35:27.262Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -88,7 +88,7 @@
 <meta property="og:description" content="git">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/14/167aad6f6ad558c8?w=1177&h=507&f=png&s=131075">
-<meta property="og:updated_time" content="2018-12-14T03:51:35.000Z">
+<meta property="og:updated_time" content="2019-01-16T06:07:33.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git常用操作">
 <meta name="twitter:description" content="git">
@@ -396,22 +396,18 @@
 <p>git</p>
 </blockquote>
 <a id="more"></a>
-<ul>
-<li>撤销commit</li>
-</ul>
-<p>1 查看每一commit的版本号  git log </p>
+<h4 id="撤销commit"><a href="#撤销commit" class="headerlink" title="撤销commit"></a>撤销commit</h4><p>1 查看每一commit的版本号  git log </p>
 <p>2 代码恢复</p>
 <p>git reset –hard commit_id</p>
 <p>完成撤销,同时将代码恢复到前一commit_id 对应的版本。</p>
 <p>3 git reset commit_id  – 取消commit</p>
 <p>完成Commit命令的撤销，但是不对代码修改进行撤销，可以直接通过git commit 重新提交对本地代码的修改</p>
-<ul>
-<li>撤销 merge</li>
-</ul>
-<p>1 查看版本号</p>
+<h4 id="撤销-merge"><a href="#撤销-merge" class="headerlink" title="撤销 merge"></a>撤销 merge</h4><p>1 查看版本号</p>
 <p>git reflog</p>
 <p>2 代码恢复</p>
 <p>git reset –hard xxx</p>
+<h4 id="fetch-分支"><a href="#fetch-分支" class="headerlink" title="fetch 分支"></a>fetch 分支</h4><p>git fetch origin 分支名称</p>
+<h4 id="强行push"><a href="#强行push" class="headerlink" title="强行push"></a>强行push</h4><p>git push origin master -f</p>
 
       
     </div>
@@ -511,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -529,7 +534,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">102</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +556,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">66</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -575,6 +580,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#撤销commit"><span class="nav-number">1.</span> <span class="nav-text">撤销commit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#撤销-merge"><span class="nav-number">2.</span> <span class="nav-text">撤销 merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fetch-分支"><span class="nav-number">3.</span> <span class="nav-text">fetch 分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强行push"><span class="nav-number">4.</span> <span class="nav-text">强行push</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -588,7 +609,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
