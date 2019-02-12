@@ -164,3 +164,6 @@ elif [ $choice == redis ]; then
 fi
 ```
 
+### 项目编写
+
+根据添加的配置信息 生成shell脚本
