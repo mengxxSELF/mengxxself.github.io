@@ -26,3 +26,7 @@ JavaScript零碎知识点
 4 JavaScript 基本数据类型
 
 Undefined Null Number String Boolean
+
+5 函数返回值出现undefined：
+
+无return 或者 return 后面没东西
