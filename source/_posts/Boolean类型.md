@@ -1,6 +1,6 @@
 ---
 title: Boolean 类型
-date: 2019-02-11 10:16:16
+date: 2017-02-11 10:16:16
 categories: javascript基础
 tags: [笔记迁移, boolean]
 ---

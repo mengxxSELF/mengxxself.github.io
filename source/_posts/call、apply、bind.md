@@ -2,12 +2,14 @@
 title: call、apply、bind
 date: 2017-10-07 18:53:19
 categories: javascript基础
-tags: [this, call, apply, bind]
+tags: [this, 笔记迁移]
 ---
 
-call apply bind 这三个方法都是Function 函数类上的方法
+> 笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加
 
-<!--more-->
+<!-- More -->
+
+call apply bind 这三个方法都是Function 函数类上的方法
 
 ## call
 

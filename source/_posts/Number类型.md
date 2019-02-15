@@ -1,6 +1,6 @@
 ---
 title: Number 类型
-date: 2019-02-13 11:16:16
+date: 2017-02-13 11:16:16
 categories: javascript基础
 tags: [笔记迁移, number]
 ---

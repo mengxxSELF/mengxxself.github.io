@@ -132,3 +132,14 @@ function common(object,attr){
   return (attr in object) && !object.hasOwPprototype(attr);
 }
 ```
+4.3 isPropertyOf
+
+```js
+obj1.isPropertyOf(obj2)
+```
+
+判断 前者是不是在后者的原型链上
+
+4.4 for in
+
+循环自定义属性,公有加私有
