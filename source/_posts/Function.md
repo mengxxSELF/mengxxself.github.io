@@ -1,5 +1,5 @@
 ---
-title: Fuynction
+title: Function
 date: 2017-10-15 19:31:32
 categories: javascript基础
 tags: [笔记迁移, 对象]
