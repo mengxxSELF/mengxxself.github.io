@@ -43,12 +43,12 @@ let data = Mock.mock({
 
 * 'name|min-max': value
 
-| value格式 | 作用 |
-| ------------- | -------------  |
-| string | 重复string生成结果，重复次数区间[min, max] |
-| number | 生成整数, 区间[min, max]。 也就是这里的 value 并没有什么意义 | 
-| object | 随机选取 object 中 min 到 max 个属性 生成新对象 |
-| array  | 重复属性值 array 生成一个新数组，重复次数区间[min, max] | 
+| value格式 | 作用                                                         |
+| --------- | ------------------------------------------------------------ |
+| string    | 重复string生成结果，重复次数区间[min, max]                   |
+| number    | 生成整数, 区间[min, max]。 也就是这里的 value 并没有什么意义 |
+| object    | 随机选取 object 中 min 到 max 个属性 生成新对象              |
+| array     | 重复属性值 array 生成一个新数组，重复次数区间[min, max]      |
 
 ```js
   'name|1-3': '中文' // name: '中文中文中文' 
@@ -57,11 +57,11 @@ let data = Mock.mock({
 
 * 'name|count': values
 
-| value格式 | 作用 |
-| ------------- | -------------  |
-| string | 重复string生成结果，重复次数 count |
-| object | 从对象 object 中随机选取 count 个属性 | 
-| array  | 重复属性值 array 生成一个新数组，重复次数区间[min, max] | 
+| value格式 | 作用                                                    |
+| --------- | ------------------------------------------------------- |
+| string    | 重复string生成结果，重复次数 count                      |
+| object    | 从对象 object 中随机选取 count 个属性                   |
+| array     | 重复属性值 array 生成一个新数组，重复次数区间[min, max] |
 
 
 ```js

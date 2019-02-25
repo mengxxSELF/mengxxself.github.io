@@ -72,3 +72,10 @@ Cmd+f12(win Ctrl+f12)跳转到函数的实现处
 #### 参考文章
 
 [文章来源](https://segmentfault.com/a/1190000017949680) 
+
+
+#### markdown 中表格自动化
+
+快捷键 - option + shift + f
+
+[clicke me](https://segmentfault.com/a/1190000018271405)
