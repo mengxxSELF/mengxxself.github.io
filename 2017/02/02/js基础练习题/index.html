@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记迁移,练习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
+<meta name="keywords" content="笔记迁移,练习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js基础练习题">
+<meta property="og:url" content="http://yoursite.com/2017/02/02/js基础练习题/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-15T12:23:13.428Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js基础练习题">
+<meta name="twitter:description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/02/js基础练习题/">
+
+
+
+
+
+  <title>js基础练习题 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/js基础练习题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js基础练习题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-02T09:31:55+08:00">
+                2017-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript基础/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/02/js基础练习题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/02/js基础练习题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="传入任意参数，求出其中被3和5整除的之和"><a href="#传入任意参数，求出其中被3和5整除的之和" class="headerlink" title="传入任意参数，求出其中被3和5整除的之和"></a>传入任意参数，求出其中被3和5整除的之和</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> total =<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="built_in">arguments</span>.length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> cur = <span class="built_in">arguments</span>[i];</span><br><span class="line">        <span class="keyword">if</span>(cur%<span class="number">3</span>==<span class="number">0</span> &amp;&amp; cur%<span class="number">5</span>==<span class="number">0</span>)&#123;</span><br><span class="line">            total += cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> total;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">'div'</span>).innerHTML = add(<span class="number">15</span>,<span class="number">2</span>,<span class="number">30</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】"><a href="#十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】" class="headerlink" title="十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】"></a>十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n=<span class="number">0</span>;</span><br><span class="line">getN ();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getN</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> str=<span class="string">''</span>;</span><br><span class="line">    <span class="keyword">while</span>(str.length!=<span class="number">4</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> cur = <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*(<span class="number">60</span>));</span><br><span class="line">        <span class="keyword">if</span>(str.indexOf(cur)==<span class="number">-1</span>)&#123;</span><br><span class="line">            str += cur;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[<span class="number">0</span>].innerHTML= str+<span class="string">','</span>+n;</span><br><span class="line">    n++;</span><br><span class="line">    clearTimeout(timer)</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">10</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> timer = setTimeout(getN,<span class="number">1000</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="输出一个四位不重复，从指定字符中选择。"><a href="#输出一个四位不重复，从指定字符中选择。" class="headerlink" title="输出一个四位不重复，从指定字符中选择。"></a>输出一个四位不重复，从指定字符中选择。</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str = <span class="string">'qazwsxedcrfvtgbyhnujmiklop123456780'</span></span><br><span class="line"><span class="keyword">let</span> end =<span class="string">''</span></span><br><span class="line"><span class="keyword">while</span>(end.length!=<span class="number">4</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> cur = <span class="built_in">Math</span>.round(<span class="built_in">Math</span>.random()*(str.length))</span><br><span class="line">    <span class="keyword">let</span> code = str.charAt(cur)</span><br><span class="line">    <span class="keyword">if</span>(end.indexOf(cur)==<span class="number">-1</span>)&#123;</span><br><span class="line">        end+= code;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">document</span>.getElementsByTagName(<span class="string">'div'</span>)[<span class="number">0</span>].innerHTML= end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数创建"><a href="#函数创建" class="headerlink" title="函数创建"></a>函数创建</h4><p>请创建一个函数 该函数参数值为一个整数 函数返回值为一个数字 该数字由整数中相同数字组成 但是该数字要比传入的参数值大</p>
+<p>如果无法获取更大的数字 返回-1</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nextBigger(<span class="number">33</span>) -&gt; <span class="number">-1</span></span><br><span class="line">nextBigger(<span class="number">123</span>) -&gt; <span class="number">213</span></span><br><span class="line">nextBigger(<span class="number">303</span>) -&gt; <span class="number">330</span></span><br></pre></td></tr></table></figure>
+<p>思路分析</p>
+<p>将传入的参数转化为数组形式 该数组位数从左到右依次降低  以输入 2017为例 得到数组 [2,0,1,7]</p>
+<p>则依次对应位置为 千分为 百分为  十位 个位</p>
+<p>所以从右边开始依次与左边进行比较 一旦左侧数字小于右侧 两者进行位置交换 一旦数组中有发生一次位置交换 则停止遍历 输出此时的值</p>
+<p>代码展示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextBigger</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (num &lt; <span class="number">10</span> || <span class="keyword">typeof</span> num != <span class="string">'number'</span>) &#123;</span><br><span class="line"> <span class="comment">// 小于10 各位数字 直接返回 -1</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> originAry = <span class="built_in">String</span>(num).split(<span class="string">''</span>) <span class="comment">// [3, 3, 3]</span></span><br><span class="line"> <span class="comment">// 进行一次数组去重</span></span><br><span class="line"> <span class="keyword">let</span> newAry = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(originAry))</span><br><span class="line"> <span class="keyword">if</span> (newAry.length === <span class="number">1</span>) &#123;</span><br><span class="line"> <span class="comment">// 如果数组去重之后长度为1 表示参数类型为多位相同值重复</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">// 从右到左依次判断 如果左侧大 则进行位置交换 只要发生一次位置交换 则可将数值返回</span></span><br><span class="line"> <span class="keyword">let</span> i = originAry.length - <span class="number">1</span></span><br><span class="line"> <span class="keyword">while</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line"> <span class="keyword">let</span> right = originAry[i]</span><br><span class="line"> <span class="keyword">let</span> left = originAry[i - <span class="number">1</span>]</span><br><span class="line"> <span class="keyword">if</span> (right &gt; left) &#123;</span><br><span class="line">   <span class="comment">// 交换位置</span></span><br><span class="line">   originAry.splice(i - <span class="number">1</span>, <span class="number">2</span>, right, left)</span><br><span class="line">   i = <span class="number">0</span></span><br><span class="line">   <span class="keyword">break</span></span><br><span class="line"> &#125;</span><br><span class="line">   i--</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> lastNum = <span class="built_in">Number</span>(originAry.join(<span class="string">''</span>))</span><br><span class="line"> <span class="keyword">let</span> endNum = num === lastNum ? <span class="number">-1</span> : lastNum</span><br><span class="line"> <span class="keyword">return</span> endNum</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其实最开始的时候没有看清题目要求  我之间返回了进行重新排列之后最大的数字</p>
+<p>代码展示</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">nextBigger</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (num &lt; <span class="number">10</span> || <span class="keyword">typeof</span> num != <span class="string">'number'</span>) &#123;</span><br><span class="line"> <span class="comment">// 小于10 各位数字 直接返回 -1</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> originAry = <span class="built_in">String</span>(num).split(<span class="string">''</span>).sort() <span class="comment">// [3, 3, 3]</span></span><br><span class="line"> <span class="comment">// 进行一次数组去重</span></span><br><span class="line"> <span class="keyword">let</span> newAry = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(originAry))</span><br><span class="line"> <span class="keyword">if</span> (newAry.length === <span class="number">1</span>) &#123;</span><br><span class="line"> <span class="comment">// 如果数组去重之后长度为1 表示参数类型为多位相同值重复</span></span><br><span class="line"> <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">let</span> lastNum = <span class="built_in">Number</span>(originAry.reverse().join(<span class="string">''</span>))</span><br><span class="line"> <span class="keyword">let</span> endNum = num === lastNum ? <span class="number">-1</span> : lastNum</span><br><span class="line"> <span class="keyword">return</span> endNum</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="数组的问题"><a href="#数组的问题" class="headerlink" title="数组的问题"></a>数组的问题</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>要求输出 每个元素出现的次数 并且按照次数排序</p>
+<p>处理方案</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = [<span class="number">12</span>,<span class="number">12</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">88</span>]</span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">ary.map( <span class="function">(<span class="params">item</span>) =&gt;</span> obj[item] = obj[item] ? obj[item] + <span class="number">1</span> : <span class="number">1</span> )</span><br><span class="line">conosle.log(obj)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>变动题目为</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr=[<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<p>要求输出的 按照Value进行排序 【出现次数】</p>
+<p>比如<br> 1:5<br> 3:4<br> 2:3</p>
+<p>解决思路</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ary = [<span class="number">12</span>,<span class="number">12</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">6</span>,<span class="number">88</span>,<span class="number">234</span>,<span class="number">234</span>,<span class="number">88</span>,<span class="number">88</span>,<span class="number">11</span>]</span><br><span class="line"><span class="keyword">let</span> obj = &#123;&#125;</span><br><span class="line">ary.map( <span class="function">(<span class="params">item</span>) =&gt;</span> obj[item] = obj[item] ? obj[item] + <span class="number">1</span> : <span class="number">1</span> )</span><br><span class="line"><span class="keyword">let</span> newAry = <span class="built_in">Object</span>.keys(obj)</span><br><span class="line"><span class="keyword">let</span> endAry = []</span><br><span class="line">newAry.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">let</span> once = &#123;&#125;</span><br><span class="line">once[item] = obj[item]</span><br><span class="line">endAry.push(once)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">let</span> ans = endAry.sort(<span class="function">(<span class="params">a,b</span>) =&gt;</span> <span class="built_in">Object</span>.values(b)[<span class="number">0</span>] - <span class="built_in">Object</span>.values(a)[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">console</span>.log(ans)</span><br></pre></td></tr></table></figure>
+<p>思路2</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arys = [<span class="number">123</span>,<span class="number">123</span>,<span class="number">44</span>,<span class="number">55</span>,<span class="number">22</span>,<span class="number">44</span>,<span class="number">123</span>,<span class="number">0</span>]</span><br><span class="line"><span class="keyword">let</span> shortAry = <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arys))</span><br><span class="line"><span class="keyword">let</span> endAry = []</span><br><span class="line">shortAry.map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="keyword">let</span> obj = &#123;<span class="attr">key</span>: <span class="literal">null</span>, <span class="attr">val</span>: <span class="literal">null</span>&#125; <span class="comment">// key 是谁出现 val 出现次数</span></span><br><span class="line">obj.key = item</span><br><span class="line"><span class="keyword">while</span> (arys.includes(item)) &#123;</span><br><span class="line">obj.val ++</span><br><span class="line">arys.splice(arys.indexOf(item), <span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">endAry.push(obj)</span><br><span class="line">&#125;)</span><br><span class="line">endAry.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> b.val - a.val ) <span class="comment">// 按照val 出现次数 进行排序</span></span><br><span class="line"><span class="built_in">console</span>.log(endAry)</span><br></pre></td></tr></table></figure>
+<h4 id="函数分析"><a href="#函数分析" class="headerlink" title="函数分析"></a>函数分析</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> x= <span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>((<span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;)())&#123;</span><br><span class="line">    x += <span class="keyword">typeof</span> f</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(x);</span><br></pre></td></tr></table></figure>
+<p>这个是输出1 因为if条件不成立 所以不执行代码</p>
+<p>函数执行 没写return 返回值是undefined  在js中 条件为false的情况是 undefined null  0 ‘’  NaN  false</p>
+<h4 id="统计字符串中出现最多的字符"><a href="#统计字符串中出现最多的字符" class="headerlink" title="统计字符串中出现最多的字符"></a>统计字符串中出现最多的字符</h4><p>请封装一个函数，该函数的功能是：</p>
+<p>1 传入任意字符串,统计该字符串中出现最多的字符并输出结果.不用考虑出现次数相同的字符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比如</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">   <span class="comment">// 函数体内部代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myStr = <span class="string">'5ssffflsjkssssmddnjkdkuuua6'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(get(myStr)) <span class="comment">// 控制台输出:    字符出现次数最多的是s,出现次数为7</span></span><br></pre></td></tr></table></figure>
+<p>2 进阶版</p>
+<p>传入任意字符串,统计该字符串中出现最多的字符并输出结果。并且考虑出现次数相同的字符。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 比如</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">   <span class="comment">// 函数体内部代码</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> myStr = <span class="string">'wwwdddcccvvvnklkopl'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(get(myStr)) <span class="comment">// 控制台输出:    字符出现次数最多的是w,d,c,v,出现次数全部为3</span></span><br></pre></td></tr></table></figure>
+<p>基础版思路分析</p>
+<p>1 思路1 利用对象<br>A 基础版<br>A1 创建空对象 循环字符串 将字符串保存为属性名 出现次数为属性值，重复出现次数加1<br>A2 创建新数组 for in循环对象 将每一个属性值存入数组<br>A3 利用Math 查找数组中最大值保存为max -》 出现的最多次数数值<br>A4 for in循环对象 当属性值==max 输出该属性名 -》 就是出现次数最多的字符</p>
+<p>2 思路2 利用数组<br>A 基础版<br>A1 创建两个空数组：字符数组与数值数组，循环字符串<br>将字符存入第一个数组 将字符出现次数存入第二个数组<br>A2 利用Math查找次数数组中最大值并记录位置index -》 出现的最多次数数值<br>A3 输出字符数组index位置处的字符 -》 就是出现次数最多的字符</p>
+<p>3 思路3 利用正则的重复子项<br>A1 将分开的相同字符写到一起。也就是利用sort重新排序。字符串转数组-》sort排序-》join重新拼接<br>A2 利用重复子项查找字符出现次数<br>以下代码为利用对象基础版</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getStr</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> obj=&#123;&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.length;i++)&#123;</span><br><span class="line">        <span class="keyword">var</span> cur=str[i];</span><br><span class="line">        <span class="keyword">if</span>(obj[cur])&#123;</span><br><span class="line">            obj[cur]++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            obj[cur]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> ary=[];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        ary.push(obj[key])</span><br><span class="line">    &#125;</span><br><span class="line">    ary.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a-b;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> key <span class="keyword">in</span> obj)&#123;</span><br><span class="line">        <span class="keyword">if</span>(obj[key]==ary[ary.length<span class="number">-1</span>])&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"出现次数最多的字符是"</span>+key+<span class="string">"共"</span>+obj[key]+<span class="string">"次"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> str=<span class="string">"2399llaaaaaa"</span></span><br><span class="line"><span class="built_in">console</span>.log(getStr(str));</span><br></pre></td></tr></table></figure>
+<p>以下代码为利用数组方式</p>
+<p>1 基础版<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'aafabgbbcgcfffaaddd'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMax</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> endCode=<span class="string">''</span>, max=<span class="number">0</span>,codeAry =[], codeNum=[];</span><br><span class="line">    <span class="comment">/* 1 循环字符串  第一个数组 放入字符  第二个放入次数   这样两个数组之间形成映射关系</span></span><br><span class="line"><span class="comment">  2 次数数组查找最大值  查找对应位置 index  </span></span><br><span class="line"><span class="comment"> 3 根据index输出第一组对应位置的字符  */</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(codeAry.indexOf(str[i])==<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="comment">/* 字符不存在放入数组*/</span></span><br><span class="line">            codeAry.push(str[i]);</span><br><span class="line">            codeNum[codeAry.indexOf(str[i])] = <span class="number">1</span>; <span class="comment">// codeNum 对应位置字符次数 为1</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">/* 字符存在 */</span></span><br><span class="line">            codeNum[codeAry.indexOf(str[i])] += <span class="number">1</span>; <span class="comment">// codeNum 对应位置字符次数 +1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>,codeNum); <span class="comment">// 找到最大数字</span></span><br><span class="line">    <span class="keyword">var</span> cur = codeNum.indexOf(max);<span class="comment">// max 在 codeNum 中出现的第一次的位置</span></span><br><span class="line">    endCode = codeAry[cur];</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'字符出现次数最多的是'</span>+ endCode+<span class="string">',出现次数为'</span>+max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(findMax(str));</span><br></pre></td></tr></table></figure></p>
+<p>2 进阶版</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'bab233c33222aeeeacbbace'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findMax</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> endCode=<span class="string">''</span>, max=<span class="number">0</span>,codeAry =[], codeNum=[];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;str.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(codeAry.indexOf(str[i])==<span class="number">-1</span>)&#123;</span><br><span class="line">            <span class="comment">/* 字符不存在放入数组*/</span></span><br><span class="line">            codeAry.push(str[i]);</span><br><span class="line">            codeNum[codeAry.indexOf(str[i])] = <span class="number">1</span>; <span class="comment">// codeNum 对应位置字符次数 为1</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">/* 字符存在 */</span></span><br><span class="line">            codeNum[codeAry.indexOf(str[i])] += <span class="number">1</span>; <span class="comment">// codeNum 对应位置字符次数 +1</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> max = <span class="built_in">Math</span>.max.apply(<span class="built_in">Math</span>,codeNum); <span class="comment">// 找到最大数字</span></span><br><span class="line">    <span class="comment">//cur = codeNum.indexOf(max);// max 在 codeNum 中出现的第一次的位置</span></span><br><span class="line">    <span class="keyword">while</span>( codeNum.indexOf(max) != <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">var</span> cur = codeNum.indexOf(max);</span><br><span class="line">        endCode += codeAry[cur];</span><br><span class="line">        codeNum.splice(cur,<span class="number">1</span>,<span class="string">'change'</span>);</span><br><span class="line"><span class="comment">// max 在 codeNum 中出现的第一次的位置 使用新字符进行替换 </span></span><br><span class="line"><span class="comment">// 注意这里不能删除 如果使用删除 会导致位置变化，两个数组之间映射关系会出错</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'字符出现次数最多的是'</span>+ endCode+<span class="string">',出现次数为'</span>+max;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(findMax(str));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>利用正则重复子项</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'aaCAcCDcDFF'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">regFind</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    str = str.split(<span class="string">''</span>).sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;<span class="keyword">return</span> a.localeCompare(b)&#125;).join(<span class="string">''</span>);</span><br><span class="line">    <span class="comment">// console.log(str);  这里会得到一个重新排序后的按照各自顺序aaAccCCDDFF</span></span><br><span class="line">    <span class="keyword">var</span> reg = <span class="regexp">/(\w)\1+/gi</span> ; <span class="comment">// 利用重复子项  这里忽略大小写</span></span><br><span class="line">    <span class="keyword">var</span> max=<span class="number">0</span>,maxCode =<span class="string">''</span>;</span><br><span class="line">    str.replace(reg,<span class="function"><span class="keyword">function</span>(<span class="params">$<span class="number">0</span>,$<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);<span class="comment">// ['aaA' 'a' 0  原字符串]  利用第一第二个参数</span></span><br><span class="line">        <span class="keyword">if</span>($<span class="number">0.</span>length&gt;max)&#123;</span><br><span class="line">            max = $<span class="number">0.</span>length;</span><br><span class="line">            maxCode = $<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;<span class="comment">// 最大值相同时  进行拼接</span></span><br><span class="line">            maxCode += $<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> (<span class="string">'重复次数最高为 '</span>+max+<span class="string">'，重复代码是'</span>+maxCode);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">document</span>.write(regFind(str));</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记迁移/" rel="tag"># 笔记迁移</a>
+          
+            <a href="/tags/练习/" rel="tag"># 练习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/22/正则基本知识/" rel="next" title="正则基本知识">
+                <i class="fa fa-chevron-left"></i> 正则基本知识
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/04/String类型/" rel="prev" title="String类型">
+                String类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400" alt="草木">
+            
+              <p class="site-author-name" itemprop="name">草木</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#传入任意参数，求出其中被3和5整除的之和"><span class="nav-number">1.</span> <span class="nav-text">传入任意参数，求出其中被3和5整除的之和</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】"><span class="nav-number">2.</span> <span class="nav-text">十秒之内每秒返回一个不重复的四位随机数，每一位都在【0-60】</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出一个四位不重复，从指定字符中选择。"><span class="nav-number">3.</span> <span class="nav-text">输出一个四位不重复，从指定字符中选择。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数创建"><span class="nav-number">4.</span> <span class="nav-text">函数创建</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组的问题"><span class="nav-number">5.</span> <span class="nav-text">数组的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数分析"><span class="nav-number">6.</span> <span class="nav-text">函数分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计字符串中出现最多的字符"><span class="nav-number">7.</span> <span class="nav-text">统计字符串中出现最多的字符</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">草木</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'gzMcxqf77gkRnI3DsD1VTBwx-gzGzoHsz',
+        appKey: 'PkDPltMpWV53JYeHJ9CVRJhE',
+        placeholder: '添加评论',
+        avatar:'meng',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -88,7 +88,7 @@
 <meta property="og:description" content="es6的继承">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/27/166197e8f34e3ccd?w=1996&h=772&f=png&s=500608">
-<meta property="og:updated_time" content="2018-09-28T12:35:45.000Z">
+<meta property="og:updated_time" content="2019-02-12T10:55:45.139Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类以及继承">
 <meta name="twitter:description" content="es6的继承">
@@ -397,7 +397,7 @@
 <h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><p>用来初始化新创建的对象的函数是构造函数 如 Move </p>
 <p>通过构造函数的new操作创建的对象是实例对象 如 move</p>
 <p>构造函数有一个prototype属性，指向实例对象的原型对象。同一个构造函数实例化的多个对象是具有相同的原型对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var move1 = new Move(1, 2)</span><br><span class="line">var move2 = new Move(2, 3)</span><br><span class="line">move1.__propto__ === move2.__propto__ // true</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> move1 = <span class="keyword">new</span> Move(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">var</span> move2 = <span class="keyword">new</span> Move(<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">move1.__proto__ === move2.__proto__ <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 <p>原型对象有一个constructor属性，指向该原型对象对应的构造函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Move.prototype.contructor === Move // true</span><br></pre></td></tr></table></figure>
 <p>由于实例对象可以继承原型对象的属性，所以实例对象也拥有constructor属性，同样指向原型对象对应的构造函数</p>
@@ -588,7 +588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -610,7 +610,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

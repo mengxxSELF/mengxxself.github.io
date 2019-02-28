@@ -94,7 +94,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/12/1684252cea9982a6">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/12/168425b99d5bd064?w=948&h=126&f=png&s=73861">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/12/168425e372fbf0f1?w=834&h=440&f=png&s=133434">
-<meta property="og:updated_time" content="2019-01-16T06:14:14.800Z">
+<meta property="og:updated_time" content="2019-01-18T10:03:51.523Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个登陆的shell脚本">
 <meta name="twitter:description" content="编写一个shell脚本，不用每次都查询服务器地址了">
@@ -447,6 +447,7 @@
 </table>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/12/168425e372fbf0f1?w=834&amp;h=440&amp;f=png&amp;s=133434" alt="vx"></p>
 <h3 id="编写脚本"><a href="#编写脚本" class="headerlink" title="编写脚本"></a>编写脚本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">read -p <span class="string">"enter your choice: "</span> choice</span><br><span class="line"></span><br><span class="line"># 定义变量</span><br><span class="line">test=<span class="string">'work@xxxx'</span></span><br><span class="line">master=<span class="string">'work@xxx'</span></span><br><span class="line">redis=<span class="string">'xxxxxxx'</span></span><br><span class="line"></span><br><span class="line">echo $choice</span><br><span class="line"></span><br><span class="line"># 根据输入值 进行条件判断</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ $choice == test ]; then</span><br><span class="line"> ssh $test</span><br><span class="line">elif [ $choice == master ]; then</span><br><span class="line"> ssh $master</span><br><span class="line">elif [ $choice == redis ]; then</span><br><span class="line"> redis-cli -h $redis</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h3 id="项目编写"><a href="#项目编写" class="headerlink" title="项目编写"></a>项目编写</h3><p>根据添加的配置信息 生成shell脚本</p>
 
       
     </div>
@@ -571,7 +572,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -593,7 +594,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -626,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本格式"><span class="nav-number">1.</span> <span class="nav-text">shell脚本格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过命令输入变量"><span class="nav-number">2.</span> <span class="nav-text">通过命令输入变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与用户交互-read"><span class="nav-number">3.</span> <span class="nav-text">与用户交互  read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-语句"><span class="nav-number">4.</span> <span class="nav-text">if 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本的调试"><span class="nav-number">5.</span> <span class="nav-text">shell脚本的调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写脚本"><span class="nav-number">6.</span> <span class="nav-text">编写脚本</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本格式"><span class="nav-number">1.</span> <span class="nav-text">shell脚本格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过命令输入变量"><span class="nav-number">2.</span> <span class="nav-text">通过命令输入变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与用户交互-read"><span class="nav-number">3.</span> <span class="nav-text">与用户交互  read</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-语句"><span class="nav-number">4.</span> <span class="nav-text">if 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell脚本的调试"><span class="nav-number">5.</span> <span class="nav-text">shell脚本的调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写脚本"><span class="nav-number">6.</span> <span class="nav-text">编写脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#项目编写"><span class="nav-number">7.</span> <span class="nav-text">项目编写</span></a></li></ol></div>
             
 
           </div>

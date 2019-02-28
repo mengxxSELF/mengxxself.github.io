@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="预解释,">
+  <meta name="keywords" content="笔记迁移,预解释,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="1 预解释 var 和function 2 函数操作过程，四步。 3 奇怪的预解释">
-<meta name="keywords" content="预解释">
+<meta name="description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
+<meta name="keywords" content="笔记迁移,预解释">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数预解释">
 <meta property="og:url" content="http://yoursite.com/2017/09/09/函数预解释/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1 预解释 var 和function 2 函数操作过程，四步。 3 奇怪的预解释">
+<meta property="og:description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T11:03:40.000Z">
+<meta property="og:updated_time" content="2019-02-15T09:40:37.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数预解释">
-<meta name="twitter:description" content="1 预解释 var 和function 2 函数操作过程，四步。 3 奇怪的预解释">
+<meta name="twitter:description" content="笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加">
 
 
 
@@ -389,10 +389,13 @@
       
 
       
-        <p>1 预解释 var 和function</p>
+        <blockquote>
+<p>笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加</p>
+</blockquote>
+<a id="more"></a>
+<p>1 预解释 var 和 function</p>
 <p>2 函数操作过程，四步。</p>
 <p>3 奇怪的预解释</p>
-<a id="more"></a>
 <h3 id="js中的预解释"><a href="#js中的预解释" class="headerlink" title="js中的预解释"></a>js中的预解释</h3><h4 id="什么是预解释"><a href="#什么是预解释" class="headerlink" title="什么是预解释"></a>什么是预解释</h4><p>js中，在代码执行前，带var 和function关键字是需要预解释的。</p>
 <p>在当前作用域下，在JS代码执行之前，浏览器会对带var和带function的，进行提前声明或定义；</p>
 <ul>
@@ -405,7 +408,7 @@
 <p>3 变量预解释</p>
 <p>4 代码从上到下执行</p>
 <h4 id="预解释是在私有作用域的"><a href="#预解释是在私有作用域的" class="headerlink" title="预解释是在私有作用域的"></a>预解释是在私有作用域的</h4><h5 id="私有作用域"><a href="#私有作用域" class="headerlink" title="私有作用域"></a>私有作用域</h5><p>函数运行时会形成一个自己的私有作用域，预解释是在函数私有作用域进行的。</p>
-<p>作用域链：<br>当函数被调用的时候，会形成一个私有作用域，</p>
+<p>作用域链：当函数被调用的时候，会形成一个私有作用域，</p>
 <p>我们看该私有作用域下，是否有私有变量A：</p>
 <p>1）如果有私有变量A：那么该作用域中的A，都是私有变量，跟外界没有任何关系<br>2）如果没有私有变量A：到上级作用域进行查找，如果没有，继续往上找，找到window全局作用域还没有的话，报错；</p>
 <p>在私有作用域内有变量a，则与外界作用域无关</p>
@@ -416,27 +419,31 @@
 <p>2 堆内存保存引用数据类型的数据，其中对象以键值对形式保存，函数以字符串形式保存</p>
 <h5 id="关于带var-的和不带var-的"><a href="#关于带var-的和不带var-的" class="headerlink" title="关于带var 的和不带var 的"></a>关于带var 的和不带var 的</h5><p>如果是全局变量，无论是带不带var，都属于全局window</p>
 <p>而带var的会进行预解释，不带var的则不进行预解释</p>
-<h5 id="内存释放"><a href="#内存释放" class="headerlink" title="内存释放"></a>内存释放</h5><p>3.5.1 堆内存释放</p>
-<p>var a =[‘hi’];<br>a=null; // 内存释放<br>3.5.2 栈内存释放</p>
-<p>栈内存，是形成js’代码的执行环境，也就是私有作用域和全局作用域。所以需要进行作用域的销毁。</p>
+<h5 id="内存释放"><a href="#内存释放" class="headerlink" title="内存释放"></a>内存释放</h5><ul>
+<li>堆内存释放</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =[<span class="string">'hi'</span>];</span><br><span class="line"></span><br><span class="line">a=<span class="literal">null</span>; <span class="comment">// 内存释放</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>栈内存释放</li>
+</ul>
+<p>栈内存，是形成js代码的执行环境，也就是私有作用域和全局作用域。所以需要进行作用域的销毁。</p>
 <p>全局作用域的产生是伴随浏览器而形成，所以当关闭浏览器，全局作用域自然销毁。</p>
 <p>私有作用域一般情况下，当函数执行完毕就会被js的垃圾回收机制自动销毁。</p>
 <p>特殊情况有两种分为，1 不销毁 2 暂时不销毁</p>
 <p>不销毁状态： 函数内部有东西被外部变量占用</p>
 <p>暂时不销毁：一般是内层函数执行完毕先销毁内层之后外层函数进行销毁</p>
 <h3 id="奇怪的预解释"><a href="#奇怪的预解释" class="headerlink" title="奇怪的预解释"></a>奇怪的预解释</h3><p>3.1 对于var在左侧的，只进行变量声明</p>
-<p>3.2  已经声明过的，不会重复声明。但是可以进行赋值操作。</p>
+<p>3.2 已经声明过的，不会重复声明。但是可以进行赋值操作。</p>
 <p>3.3 预解释阶段，函数优先级高于var 变量</p>
 <p>3.4 自执行函数，不会进行预解释。只有执行到的时候，就是开始那个函数的四步操作</p>
 <p>3.5 条件判断语句中，无论条件是否成立，都会进行预解释</p>
 <p>3.6 return后面的语句不会进行预解释，但是return下面的，会进行预解释</p>
-<h5 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h5><p>5.1 运算符：</p>
-<p>算数&gt; 比较 &gt; 逻辑 &gt; 赋值</p>
-<p>5.2 函数返回值出现undefined：</p>
-<p>1 无return</p>
-<p>2 return 后面没东西</p>
-<p>5.3  上级作用域只跟函数在哪里开辟内存空间有关，与在哪里执行无关</p>
-<p>6  练习</p>
+<h5 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h5><ul>
+<li><p>上级作用域只跟函数在哪里开辟内存空间有关，与在哪里执行无关</p>
+</li>
+<li><p>练习</p>
+</li>
+</ul>
 <p>6.1</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n=<span class="number">9</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(n)</span><br><span class="line">    <span class="keyword">var</span> n=<span class="number">9</span>;</span><br><span class="line">&#125;</span><br><span class="line">fn()</span><br></pre></td></tr></table></figure>
 <p>上面的结果输出值为 undefined。函数运行分析</p>
@@ -451,6 +458,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">'i am inner'</span>)&#125;</span><br></pre></td></tr></table></figure>
 <p>函数解释：</p>
 <p>当fn2执行时，在函数内部形成作用域，作用域内发生了变量预解释。function关键字的预解释不但有声明，而且有定义，所以可以输出函数内部定义的fn，而不是全局变量中的fn</p>
+<h3 id="es6"><a href="#es6" class="headerlink" title="es6"></a>es6</h3><p>let const 已经不存在预解释了</p>
 
       
     </div>
@@ -467,6 +475,8 @@
     <footer class="post-footer">
       
         <div class="post-tags">
+          
+            <a href="/tags/笔记迁移/" rel="tag"># 笔记迁移</a>
           
             <a href="/tags/预解释/" rel="tag"># 预解释</a>
           
@@ -575,7 +585,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -597,7 +607,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -630,7 +640,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#js中的预解释"><span class="nav-number">1.</span> <span class="nav-text">js中的预解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是预解释"><span class="nav-number">1.1.</span> <span class="nav-text">什么是预解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的四个步骤"><span class="nav-number">1.2.</span> <span class="nav-text">函数的四个步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预解释是在私有作用域的"><span class="nav-number">1.3.</span> <span class="nav-text">预解释是在私有作用域的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#私有作用域"><span class="nav-number">1.3.1.</span> <span class="nav-text">私有作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#私有变量【两种】"><span class="nav-number">1.3.2.</span> <span class="nav-text">私有变量【两种】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆内存和栈内存"><span class="nav-number">1.3.3.</span> <span class="nav-text">堆内存和栈内存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于带var-的和不带var-的"><span class="nav-number">1.3.4.</span> <span class="nav-text">关于带var 的和不带var 的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存释放"><span class="nav-number">1.3.5.</span> <span class="nav-text">内存释放</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇怪的预解释"><span class="nav-number">2.</span> <span class="nav-text">奇怪的预解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Other"><span class="nav-number">2.0.1.</span> <span class="nav-text">Other</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#js中的预解释"><span class="nav-number">1.</span> <span class="nav-text">js中的预解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是预解释"><span class="nav-number">1.1.</span> <span class="nav-text">什么是预解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的四个步骤"><span class="nav-number">1.2.</span> <span class="nav-text">函数的四个步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预解释是在私有作用域的"><span class="nav-number">1.3.</span> <span class="nav-text">预解释是在私有作用域的</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#私有作用域"><span class="nav-number">1.3.1.</span> <span class="nav-text">私有作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#私有变量【两种】"><span class="nav-number">1.3.2.</span> <span class="nav-text">私有变量【两种】</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆内存和栈内存"><span class="nav-number">1.3.3.</span> <span class="nav-text">堆内存和栈内存</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于带var-的和不带var-的"><span class="nav-number">1.3.4.</span> <span class="nav-text">关于带var 的和不带var 的</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#内存释放"><span class="nav-number">1.3.5.</span> <span class="nav-text">内存释放</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇怪的预解释"><span class="nav-number">2.</span> <span class="nav-text">奇怪的预解释</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Other"><span class="nav-number">2.0.1.</span> <span class="nav-text">Other</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#es6"><span class="nav-number">3.</span> <span class="nav-text">es6</span></a></li></div>
             
 
           </div>

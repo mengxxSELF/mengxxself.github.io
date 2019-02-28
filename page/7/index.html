@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/JavaScript零碎/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/30/webpack-5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -300,7 +300,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/06/JavaScript零碎/" itemprop="url">JavaScript零碎</a></h1>
+                <a class="post-title-link" href="/2017/12/30/webpack-5/" itemprop="url">webapck-5</a></h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T15:25:07+08:00">
-                2017-11-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-30T20:22:02+08:00">
+                2017-12-30
               </time>
             
 
@@ -335,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
                   </a>
                 </span>
 
@@ -353,8 +353,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/06/JavaScript零碎/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/JavaScript零碎/" itemprop="commentCount"></span>
+                <a href="/2017/12/30/webpack-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/30/webpack-5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -383,10 +383,14 @@
 
       
         
-          <p>JavaScript零碎知识点</p>
+          <h3 id="hash-与-chunkhash"><a href="#hash-与-chunkhash" class="headerlink" title="hash 与 chunkhash"></a>hash 与 chunkhash</h3><p>hash 指打包文件的hash值</p>
+<p>chunkhash：每个chunk的hash值，你可以理解为版本号或则md5值，主要是保证每个文件的唯一性。</p>
+<p>测试中发现</p>
+<p>hash 有的时候代码不变动 保存的时候 也会新增 index.hash文件</p>
+<p>chunkhash 只有当变动代码的时候 才会新生成文件</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/06/JavaScript零碎/#more" rel="contents">
+            <a class="btn" href="/2017/12/30/webpack-5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -437,7 +441,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/别人的读书笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/24/webpack阅读笔记/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -456,7 +460,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/06/别人的读书笔记/" itemprop="url">别人的读书笔记</a></h1>
+                <a class="post-title-link" href="/2017/12/24/webpack阅读笔记/" itemprop="url">webpack阅读笔记</a></h1>
         
 
         <div class="post-meta">
@@ -468,8 +472,484 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T15:17:19+08:00">
-                2017-11-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T16:15:27+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/24/webpack阅读笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/24/webpack阅读笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="output"><a href="#output" class="headerlink" title="output"></a>output</h2><p>配置 output 选项可以控制 webpack 如何向硬盘写入编译文件。注意，即使可以存在多个入口起点，但只指定一个输出配置。</p>
+<h2 id="Loader-特性"><a href="#Loader-特性" class="headerlink" title="Loader 特性"></a>Loader 特性</h2><p>loader 支持链式传递。能够对资源使用流水线(pipeline)。<br>一组链式的 loader 将按照先后顺序进行编译。loader 链中的第一个 loader 返回值给下一个 loader。在最后一个 loader，返回 webpack 所预期的 JavaScript。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/24/webpack阅读笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/24/webpack文章记录/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/24/webpack文章记录/" itemprop="url">webpack文章记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-24T12:15:50+08:00">
+                2017-12-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/24/webpack文章记录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/24/webpack文章记录/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><ul>
+<li><a href="https://github.com/renaesop/blog/issues/16" target="_blank" rel="noopener">webpack的主要对象</a>  </li>
+</ul>
+<p>没看懂</p>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><ul>
+<li><a href="https://github.com/webpack/webpack/blob/master/lib/WebpackOptionsApply.js#L70-L185" target="_blank" rel="noopener">WebpackOptionsApply</a></li>
+</ul>
+<h2 id="AST"><a href="#AST" class="headerlink" title="AST"></a>AST</h2><p>抽象语法树（Abstract Syntax Tree）也称为AST语法树，指的是源代码语法所对应的树状结构。</p>
+<p>也就是说，对于一种具体编程语言下的源代码，通过构建语法树的形式将源代码中的语句映射到树中的每一个节点上。</p>
+<p><a href="http://www.iteye.com/news/30731" target="_blank" rel="noopener">AST</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/函数分析题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/15/函数分析题/" itemprop="url">函数分析题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T19:01:27+08:00">
+                2017-12-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript基础/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/15/函数分析题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/15/函数分析题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/12/15/函数分析题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/10/读书笔记-mysql 必知必会/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/10/读书笔记-mysql 必知必会/" itemprop="url">读书笔记- mysql 必知必会</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-10T11:57:31+08:00">
+                2017-12-10
               </time>
             
 
@@ -509,8 +989,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/06/别人的读书笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/别人的读书笔记/" itemprop="commentCount"></span>
+                <a href="/2017/12/10/读书笔记-mysql 必知必会/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/10/读书笔记-mysql 必知必会/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -540,7 +1020,148 @@
       
         
           
-            <h3 id="server"><a href="#server" class="headerlink" title="server"></a>server</h3><h4 id="http"><a href="#http" class="headerlink" title="http"></a>http</h4><p>1 <a href="https://sunshinevvv.coding.me/blog/2017/01/26/%E5%9B%BE%E8%A7%A3HTTP-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">《图解HTTP》读书笔记</a></p>
+            <a id="more"></a>
+<h2 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE <span class="string">`ACTIVITY20180529_DAILY`</span> (</span><br><span class="line">  <span class="string">`lid`</span> int(<span class="number">11</span>) NOT NULL COMMENT <span class="string">'这里是相关注释'</span>,</span><br><span class="line">  <span class="string">`day`</span> int(<span class="number">11</span>) NOT NULL,</span><br><span class="line">  <span class="string">`uid`</span> int(<span class="number">11</span>) NOT NULL DEFAULT <span class="string">'0'</span>,</span><br><span class="line">  <span class="string">`count`</span> int(<span class="number">11</span>) NOT NULL DEFAULT <span class="string">'0'</span>,</span><br><span class="line">  <span class="string">`time`</span> timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,</span><br><span class="line">  <span class="string">`lan`</span> char(<span class="number">11</span>) NOT NULL DEFAULT <span class="string">'en'</span>,</span><br><span class="line">  PRIMARY KEY (<span class="string">`uid`</span>,<span class="string">`lid`</span>,<span class="string">`day`</span>)</span><br><span class="line">) ENGINE=InnoDB DEFAULT CHARSET=utf8</span><br></pre></td></tr></table></figure>
+<h2 id="表数据操作"><a href="#表数据操作" class="headerlink" title="表数据操作"></a>表数据操作</h2><h3 id="查询表数据"><a href="#查询表数据" class="headerlink" title="查询表数据"></a>查询表数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT uid FROM TABLEBA</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询不同行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT uid FROM TABLEBA</span><br></pre></td></tr></table></figure>
+<p>相当于查询每一个不重复的UID</p>
+<p>注意： DISTINCT 关键字应用与后面所有的列</p>
+<h4 id="limit"><a href="#limit" class="headerlink" title="limit"></a>limit</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT uid FROM TABLEBA  LIMIT start, number</span><br></pre></td></tr></table></figure>
+<p>表示从start 查询 number 个 等同于</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT uid FROM TABLEBA  LIMIT start OFFSET number</span><br></pre></td></tr></table></figure>
+<p>如果LIMIT的后面只写一个 则表示取Number 个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DISTINCT uid FROM TABLEBA  LIMIT number</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">`select id, uid, goods_id as goodsId, live_id from <span class="subst">$&#123;TABLE[<span class="string">'game'</span>]&#125;</span> where uid = <span class="subst">$&#123;uid&#125;</span> order by datetime desc limit <span class="subst">$&#123;number&#125;</span>`</span></span><br></pre></td></tr></table></figure>
+<p>表示选取number 个</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">`select id, uid, goods_id, live_id from <span class="subst">$&#123;TABLE[<span class="string">'game'</span>]&#125;</span> where uid = <span class="subst">$&#123;uid&#125;</span> order by datetime desc limit <span class="subst">$&#123;start&#125;</span>, 20`</span></span><br></pre></td></tr></table></figure>
+<p>这里的limit m, n</p>
+<p>表示从m 开始 选取n 个</p>
+<h3 id="排序-order-by"><a href="#排序-order-by" class="headerlink" title="排序 order by"></a>排序 order by</h3><p>查询的结果按照某列排序</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea order by count</span><br></pre></td></tr></table></figure>
+<ul>
+<li>按照多列排序</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea order by count, day</span><br></pre></td></tr></table></figure>
+<p>多列排序的时候， 会先按照count排序 当count相等的时候 再按照day排序</p>
+<h4 id="order-by-xxx-desc"><a href="#order-by-xxx-desc" class="headerlink" title="order by xxx desc"></a>order by xxx desc</h4><p>默认排序是从小到大。如果希望从大到小排序。则需要添加关键字 desc</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea order by count desc, day</span><br></pre></td></tr></table></figure>
+<ul>
+<li>desc 只针对于紧挨着关键字的列排序 如果想多列都降序排序 则需要将每一列都添加 DESC</li>
+</ul>
+<h3 id="筛选数据-WHERE"><a href="#筛选数据-WHERE" class="headerlink" title="筛选数据 WHERE"></a>筛选数据 WHERE</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea where day &gt; <span class="number">20180412</span> order by count desc, day</span><br></pre></td></tr></table></figure>
+<p>where 子句</p>
+<table>
+<thead>
+<tr>
+<th>含义</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等于</td>
+<td>=</td>
+</tr>
+<tr>
+<td>不等于</td>
+<td>!= 或者 &lt;&gt;</td>
+</tr>
+<tr>
+<td>大于</td>
+<td>&gt;</td>
+</tr>
+<tr>
+<td>大于等于</td>
+<td>&gt;=</td>
+</tr>
+<tr>
+<td>小于</td>
+<td>&lt;</td>
+</tr>
+<tr>
+<td>小于等于</td>
+<td>&lt;=</td>
+</tr>
+<tr>
+<td>在两者之间</td>
+<td>between</td>
+</tr>
+</tbody>
+</table>
+<h4 id="关于查找-值为-null-的列"><a href="#关于查找-值为-null-的列" class="headerlink" title="关于查找 值为 null 的列"></a>关于查找 值为 null 的列</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea where day is <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<p>这样虽然能查到结果 但是不建议这么操作 [未知具有特殊含义 数据库不知道他们是否匹配]</p>
+<p>可以将 默认值 NULL 修改为字符串null 然后 where day &lt;&gt; ‘null’</p>
+<h4 id="操作符-OR-AND-IN"><a href="#操作符-OR-AND-IN" class="headerlink" title="操作符 OR  AND IN"></a>操作符 OR  AND IN</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea where day = <span class="number">20180412</span> or day =<span class="number">20180414</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea where day = <span class="number">20180412</span> and city = <span class="string">'th'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select uid <span class="keyword">from</span> tablea where uid <span class="keyword">in</span> (<span class="number">123</span>, <span class="number">345</span>, <span class="number">567</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="NOT"><a href="#NOT" class="headerlink" title="NOT"></a>NOT</h4><p>用于否定跟在之后的条件 </p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><h4 id="insert-into"><a href="#insert-into" class="headerlink" title="insert into"></a>insert into</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`insert into $&#123;TABLE&#125; (uid, name) values ($&#123;uid&#125;, $&#123;name&#125;)`</span><br></pre></td></tr></table></figure>
+<p>如果想一次批量插入 先将语句利用循环进行拼接</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> all = []</span><br><span class="line">end.forEach(<span class="function">(<span class="params">uid, name</span>) =&gt;</span> &#123;</span><br><span class="line">  all.push(<span class="string">`(<span class="subst">$&#123;uid&#125;</span>, <span class="subst">$&#123;name&#125;</span>)`</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="string">`insert into <span class="subst">$&#123;TABLE&#125;</span> (uid, name) values (<span class="subst">$&#123;all.join(<span class="string">','</span>)&#125;</span>)`</span></span><br></pre></td></tr></table></figure>
+<p>insert into 中如果有一列是 主键 则如果插入相同值的时候 会报错</p>
+<h4 id="insert-ignore"><a href="#insert-ignore" class="headerlink" title="insert ignore"></a>insert ignore</h4><p>没有就进行插入 有就不做任何操作</p>
+<ul>
+<li>这个一般会有性能问题 不建议使用</li>
+</ul>
+<h4 id="插入检索出来的数据"><a href="#插入检索出来的数据" class="headerlink" title="插入检索出来的数据"></a>插入检索出来的数据</h4><p>从TABLEA 检索数据 放入 TABLEB 中</p>
+<ul>
+<li><p>从A中查询出所有数据然后 在放入 TABLEB中</p>
+</li>
+<li><p>直接放入从A检索处理来的数据</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO ACTIVITY20180529_ANCHOR (uid) SELECT uid FROM ACTIVITY20180529_ROOM</span><br></pre></td></tr></table></figure>
+<p>注意，通过这种方式插入的列数据 不是根据列名去插入 而是根据写的位置去插入  比如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO TABLEA (uid, city, time) SELECT city, uid, day FROM TABLEB</span><br></pre></td></tr></table></figure>
+<p>如果是这样写的话 从TABLEB 中查询出来的 city 列 会进入 TABLEA 的 uid 列</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">update $&#123;TABLE&#125; set name = $&#123;name&#125; where uid = <span class="number">4</span> limit <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>这个更新有一个问题  无法批量进行更新</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`DELETE FROM <span class="subst">$&#123;TABLE&#125;</span> WHERE id=3`</span></span><br></pre></td></tr></table></figure>
+<h2 id="日期和时间处理函数"><a href="#日期和时间处理函数" class="headerlink" title="日期和时间处理函数"></a>日期和时间处理函数</h2><h3 id="时间戳-amp-amp-时间"><a href="#时间戳-amp-amp-时间" class="headerlink" title="时间戳 &amp;&amp; 时间"></a>时间戳 &amp;&amp; 时间</h3><ul>
+<li>时间戳 -》时间</li>
+</ul>
+<p>如果表中存放的是时间戳 但是想获取的是普通时间格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`select FROM_UNIXTIME(1516243968)`</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>时间 -》时间戳</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`select UNIX_TIMESTAMP('2017-01-01')`</span></span><br></pre></td></tr></table></figure>
+<h2 id="汇总函数"><a href="#汇总函数" class="headerlink" title="汇总函数"></a>汇总函数</h2><table>
+<thead>
+<tr>
+<th>含义</th>
+<th>操作符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>求和</td>
+<td>SUM</td>
+</tr>
+<tr>
+<td>返回某列的行数</td>
+<td>COUNT</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>sum </li>
+</ul>
+<p>求和</p>
+<p>比如 计算某一个用户收到的礼物总和</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT SUM(beans) FORM TABLE WHER UID = <span class="number">131</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>count </li>
+</ul>
+<p>计算行的出现次数</p>
+<p>比如，筛选某一个用户抽奖次数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(uid) FORM TABLE WHER UID = <span class="number">131</span></span><br></pre></td></tr></table></figure>
+<p>注： 如果使用的 COUNT(<em>) 则将会包含 NULL 值的那些行  如果不是用时</em>  那么会忽略掉 NULL  行</p>
+<h2 id="分组-GROUP-BY"><a href="#分组-GROUP-BY" class="headerlink" title="分组 GROUP BY"></a>分组 GROUP BY</h2><p>GROUP BY xxx</p>
 
           
         
@@ -589,7 +1210,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/http与https/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/05/border-image/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -608,7 +1229,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/06/http与https/" itemprop="url">http与https</a></h1>
+                <a class="post-title-link" href="/2017/12/05/border-image/" itemprop="url">border-image</a></h1>
         
 
         <div class="post-meta">
@@ -620,141 +1241,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T14:03:12+08:00">
-                2017-11-06
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/06/http与https/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/http与https/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在Internet中所有的传输都是通过TCP/IP进行的。HTTP协议作为TCP/IP模型中应用层的协议也不例外。HTTP协议通常承载于TCP协议之上，有时也承载于TLS或SSL协议层之上，这个时候，就成了我们常说的HTTPS。如下图所示：</p>
-<!--nore-->
-<p><img src="/img/http/https.png" alt="https"></p>
-<p>HTTP默认的端口号为80，HTTPS的端口号为443。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/http基础知识2/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="草木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/06/http基础知识2/" itemprop="url">http基础知识2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T13:55:26+08:00">
-                2017-11-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-05T11:03:44+08:00">
+                2017-12-05
               </time>
             
 
@@ -776,8 +1264,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
+                  <a href="/categories/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
                   </a>
                 </span>
 
@@ -794,8 +1282,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/06/http基础知识2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/http基础知识2/" itemprop="commentCount"></span>
+                <a href="/2017/12/05/border-image/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/05/border-image/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -824,11 +1312,10 @@
 
       
         
-          <p>http 的报文由起始行 头部 主体构成 包含许多信息</p>
-<p>请求行包含用于请求的方法，请求 URI 和 HTTP 版本。 状态行包含表明响应结果的状态码，原因短语和 HTTP 版本</p>
+          <p>有处理到一个CSS问题 内容列表区域展示部分 边框是图片形式的~ css画不出来~~</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/06/http基础知识2/#more" rel="contents">
+            <a class="btn" href="/2017/12/05/border-image/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -879,7 +1366,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/06/一周计划4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/03/一周计划6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -898,7 +1385,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/06/一周计划4/" itemprop="url">一周计划4</a></h1>
+                <a class="post-title-link" href="/2017/12/03/一周计划6/" itemprop="url">一周计划6</a></h1>
         
 
         <div class="post-meta">
@@ -910,8 +1397,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T10:14:39+08:00">
-                2017-11-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-03T22:35:56+08:00">
+                2017-12-03
               </time>
             
 
@@ -951,8 +1438,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/06/一周计划4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/06/一周计划4/" itemprop="commentCount"></span>
+                <a href="/2017/12/03/一周计划6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/12/03/一周计划6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -984,7 +1471,7 @@
           <p><img src="https://user-gold-cdn.xitu.io/2018/9/3/1659f1969e015231?w=1424&amp;h=698&amp;f=png&amp;s=1887559" alt="plan"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/06/一周计划4/#more" rel="contents">
+            <a class="btn" href="/2017/12/03/一周计划6/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1035,7 +1522,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/05/客户端与服务端交互模型/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/30/webpack-4-webpack的常用plugin/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -1054,7 +1541,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/05/客户端与服务端交互模型/" itemprop="url">客户端与服务端交互模型</a></h1>
+                <a class="post-title-link" href="/2017/11/30/webpack-4-webpack的常用plugin/" itemprop="url">webpack-4 - webpack的常用plugin</a></h1>
         
 
         <div class="post-meta">
@@ -1066,8 +1553,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-05T14:13:19+08:00">
-                2017-11-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-30T17:14:19+08:00">
+                2017-11-30
               </time>
             
 
@@ -1089,8 +1576,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/前端自动化/" itemprop="url" rel="index">
+                    <span itemprop="name">前端自动化</span>
                   </a>
                 </span>
 
@@ -1107,8 +1594,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/05/客户端与服务端交互模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/05/客户端与服务端交互模型/" itemprop="commentCount"></span>
+                <a href="/2017/11/30/webpack-4-webpack的常用plugin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/30/webpack-4-webpack的常用plugin/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1137,263 +1624,10 @@
 
       
         
-          
-            <p>客户端与服务器端</p>
-<p>当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。</p>
-<!--nore-->
-<p>什么是客户端</p>
-<p>能向服务器端发送请求并且接受内容的都是客户端</p>
-<p>什么是服务器端</p>
-<p>能接受客户端请求并且返回内容给客户端的都是服务器端</p>
-<p>2  详细步骤</p>
-<p>1 购买一个服务器 在连上网后  获得了一个外网IP地址</p>
-<p>2 通过ftp上传项目资源文件 到服务器</p>
-<p>3买一个域名 进行DNS域名解析</p>
-<p>在DNS 服务器    将域名  <a href="http://www.webmxx,com" target="_blank" rel="noopener">www.webmxx,com</a>  解析到购买的那服务器端 IP地址</p>
-<p>4 在服务器上创建一个服务。</p>
-<p>这个服务接受客户端的请求，把客户端的想要的内容返回给客户。为了区分每一个服务，给其监听一个端口号。</p>
-<p>如何创建服务</p>
-<p>4.1 指定当前服务负责哪个文件目录</p>
-<p>4.2 不同的服务   端口号不同</p>
-<p>3 当用户在客户端输入一个网址，在点击enter 到页面被渲染出来，中间经历了什么事情。</p>
-<p>1 通过域名  找到DNS 上对应的外网IP  就是服务器主机IP 【就是所谓的外网IP】</p>
-<p>2 通过外网IP找到对应的服务器</p>
-<p>3 通过地址栏端口号找到相应服务</p>
-<p>4 到相应目录中找到所需要的文件</p>
-<p>5 服务器端这个服务会把资源文件中的源代码发回给客户端浏览器</p>
-<p>6 客户端浏览器获取到源代码后进行解析渲染</p>
-<p>以上123属于请求阶段  Request     45 属于响应阶段 Response</p>
-<p>4 URL URI URN</p>
-<p><a href="http://mxx2015web.gotoip2.com/wp-admin/post.php?post=633&amp;action=edit" target="_blank" rel="noopener">http://mxx2015web.gotoip2.com/wp-admin/post.php?post=633&amp;action=edit</a></p>
-<p><a href="http://www.webmxx.com/dest/JSTEST/Canvas/canvas-girl.html" target="_blank" rel="noopener">http://www.webmxx.com/dest/JSTEST/Canvas/canvas-girl.html</a></p>
-<p>这个严格意义上是叫URI</p>
-<p>URI  统一资源标识符</p>
-<p>URL  统一资源定位符</p>
-<p><a href="http://mxx2015web.gotoip2.com/wp-admin/post.php" target="_blank" rel="noopener">http://mxx2015web.gotoip2.com/wp-admin/post.php</a><br>URN 统一资源名称</p>
-<p>wp-admin/post.php?post=633&amp;action=edit<br>URI 包含了 URI 和 URN</p>
-<p>不过一般将那个地址称为URL ，之后本文也以URL指代。</p>
-<p>5 解析URL</p>
-<p>以 <a href="http://www.webmxx.com:80/wp-admin/post.php?post=633&amp;action=edit#video" target="_blank" rel="noopener">http://www.webmxx.com:80/wp-admin/post.php?post=633&amp;action=edit#video</a> 为例</p>
-<p>5.1 http</p>
-<p>传输协议。作为一个传输载体，可以帮客户端把内容传递给服务器 也可以帮服务器把内容传递给客户端。通俗理解为快递员。</p>
-<p>常用的传输协议</p>
-<p>1 HTTP</p>
-<p>超文本传输协议   [除了传递文本内容之外 还可以传递其他内容 例如 二进制编码 XML格式数据 Base64 的等等]</p>
-<p>2 HTTPS   【HTTP SSL】</p>
-<p>更加安全的超文本传输协议  相对于HTTP  传输的时候 进行了一层加密</p>
-<p>3 FTP</p>
-<p>文件上传下载协议 一般应用于把本地项目资源文件上传到服务器上  特点:传递的文件比较大</p>
-<p>以前那种点击下载文件的就是通过FTP做的</p>
-<p>5.2  <a href="http://www.webmxx.com" target="_blank" rel="noopener">www.webmxx.com</a></p>
-<p>域名  作用 就是设定一个方便用户记忆的名字</p>
-<p>1 后缀名有</p>
-<p>.com  .cn   .net  .com.cn  .org  .gov  等等<br>2 一级域名 二级域名 三级域名</p>
-<p>一级域名  例 <a href="http://www.qq.com" target="_blank" rel="noopener">www.qq.com</a></p>
-<p>二级域名  例 sports.qq.com</p>
-<p>三级域名  例 kbs.sports.qq.com</p>
-<p>只要购买了一级域名，二级域名 三级域名 就是自己基于一级域名下分的</p>
-<p>5.3 端口号  80</p>
-<p>区分不同的服务</p>
-<p>同一台服务器上 可创建多个服务 每一个都有自己的端口号</p>
-<p>端口号取值范围 0 -65535 之间 ,也就是最大能创建65536个服务。但是一般在1-5 个左右</p>
-<p>一般项目是不需要用户输入端口号的,浏览器这边会根据传输协议的不同 ,会添加不同的默认端口号</p>
-<p>比如 HTTP 默认端口号 80  HTTPS 默认端口号443  FTP默认端口号21</p>
-<p>5.4 /wp-admin/post.php</p>
-<p>需要请求的资源文件目录</p>
-<p>第一个/  表示请求的是当前项目根目录下的wp-admin文件夹中的post.php文件</p>
-<p>5.5  ?后面的  ?post=633&amp;action=edit</p>
-<p>问号传参</p>
-<p>把这些信息以问号的方式追加在URL末尾 把内容传递给服务器</p>
-<p>5.5.1 可以通过这种方式传递给服务器指定的内容 从而获取到指定信息</p>
-<p>例如，要获取name=’tom’ 的信息 ，需要把name=‘tom’传递给服务器</p>
-<p>5.5.2 通过问号传参，将数据在两个页面之间传递</p>
-<p>例如 A为列表页 B为详情页</p>
-<p>点击A中记录可跳转到B中页面  就是在B页面中展示不同的详细信息 所以B需要知道A点击的是谁</p>
-<p>所以在点击A中记录的时候 不仅要跳转到B 还需要通过问号传参的方式 传递过去一些标识即可</p>
-<p>5.6 #video   #后面的   -》 hash  哈希值</p>
-<p>1 锚点定位</p>
-<p>当页面加载的时候 或者 点击a 标签 可以直接跳转到 具有该ID的元素位置</p>
-<p>2 前端路由 [单页面应用]</p>
-<p>3 传递给服务器进行标识 [不常用 一般都是用问号传参进行标识]</p>
-<p>6 客户端拿到服务器返回的东西 之后  渲染页面 解析数据</p>
-<p>6.1 为什么代码放在浏览器中可以呈现出页面样式。</p>
-<p>W3C  万维网联盟  一个制定编程语言的非联盟组织</p>
-<p>代码写完运行在浏览器中</p>
-<p>浏览器制造商   制定编译规范</p>
-<p>WEB开发者  按照W3C 规则编写网页</p>
-<p>6.2 浏览器制造商</p>
-<p>从浏览器内核[引擎] 来分</p>
-<p>6.2.1 webkit 内核  又称 V8引擎</p>
-<p>移动端浏览器都是V8引擎</p>
-<p>chrome  谷歌        safari</p>
-<p>-webkit-</p>
-<p>6.2.2  Trident内核代表产品Internet Explorer，又称其为IE内核</p>
-<p>-ms-</p>
-<p>6.2.3 Gecko内核代表作品Mozilla  火狐</p>
-<p>-moz-</p>
-<p>6.2.4 Presto内核代表作品Opera</p>
-<p>-0-</p>
-<p>6.2.5 中国版浏览器 Trident 或者 webkit</p>
-<p>6.4</p>
-<p>从服务器把原代码获取到之后 教给浏览器内核进行解析 在解析过程中 遇到标签 link  video  audio  script iframe</p>
-<p>等的时候，需要重新向服务器发送请求 把内容获取到 进行解析。这样导致 一个页面在加载完毕 会向服务器发送多次请求</p>
-<p>在chrome的network中 可以看到所有的客户端与服务器的交互信息 [请求 响应]  而且信息非常完整</p>
-<p>6.5  前端优化</p>
-<p>前端优化: 用户打开页面的时候 能迅速打开页面</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/04/http基础篇/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="草木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/04/http基础篇/" itemprop="url">http基础篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-04T15:32:26+08:00">
-                2017-11-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/http/" itemprop="url" rel="index">
-                    <span itemprop="name">http</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/04/http基础篇/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/04/http基础篇/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="什么是http"><a href="#什么是http" class="headerlink" title="什么是http"></a>什么是http</h2><p>HTTP是Hyper Text Transfer Protocol（超文本传输协议）的缩写  目前使用的大多是HTTP 1.1版本</p>
+          <p>webpack的常用plugin</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/04/http基础篇/#more" rel="contents">
+            <a class="btn" href="/2017/11/30/webpack-4-webpack的常用plugin/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1444,7 +1678,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/缓存/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/22/一周计划5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -1463,7 +1697,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/01/缓存/" itemprop="url">缓存</a></h1>
+                <a class="post-title-link" href="/2017/11/22/一周计划5/" itemprop="url">一周计划5</a></h1>
         
 
         <div class="post-meta">
@@ -1475,164 +1709,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T19:02:22+08:00">
-                2017-11-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/11/01/缓存/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/01/缓存/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>现在的大型网站，随便一个页面都是一两百个请求，每天 pv 都是亿级别，如果没有缓存，用户体验会急剧下降、同时服务器压力和网络带宽都面临严重的考验。  缓存和重用以前获取的资源的是优化网页性能很重要的一个方面。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/11/01/缓存/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/一周计划3/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="草木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/01/一周计划3/" itemprop="url">一周计划3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T18:37:18+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-22T13:53:48+08:00">
+                2017-11-22
               </time>
             
 
@@ -1672,8 +1750,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/01/一周计划3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/01/一周计划3/" itemprop="commentCount"></span>
+                <a href="/2017/11/22/一周计划5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/22/一周计划5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1705,7 +1783,7 @@
           <p><img src="https://user-gold-cdn.xitu.io/2018/9/3/1659f1969e015231?w=1424&amp;h=698&amp;f=png&amp;s=1887559" alt="plan"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/01/一周计划3/#more" rel="contents">
+            <a class="btn" href="/2017/11/22/一周计划5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1756,7 +1834,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/01/video-js的API/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/12/事件练习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="草木">
@@ -1775,7 +1853,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/11/01/video-js的API/" itemprop="url">video.js的API</a></h1>
+                <a class="post-title-link" href="/2017/11/12/事件练习/" itemprop="url">事件练习</a></h1>
         
 
         <div class="post-meta">
@@ -1787,8 +1865,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-01T10:30:43+08:00">
-                2017-11-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-12T20:14:54+08:00">
+                2017-11-12
               </time>
             
 
@@ -1810,8 +1888,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/第三方插件使用/" itemprop="url" rel="index">
-                    <span itemprop="name">第三方插件使用</span>
+                  <a href="/categories/javascript基础/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript基础</span>
                   </a>
                 </span>
 
@@ -1828,8 +1906,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/11/01/video-js的API/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/01/video-js的API/" itemprop="commentCount"></span>
+                <a href="/2017/11/12/事件练习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/11/12/事件练习/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1858,13 +1936,12 @@
 
       
         
-          <p>视频第三方插件库 video.js 的API文档并不清晰  查阅的时候比较麻烦  自己整理了一篇API</p>
-<p><a href="http://videojs.com/" target="_blank" rel="noopener">官网</a></p>
-<p><a href="https://www.npmjs.com/package/video.js" target="_blank" rel="noopener">npm</a></p>
-<p><a href="https://github.com/videojs/video.js" target="_blank" rel="noopener">Github</a></p>
+          <blockquote>
+<p>笔记迁移系列，由于原始笔记所在网站即将下线，现将笔记全部迁移，并对原有笔记进行修正或添加</p>
+</blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/11/01/video-js的API/#more" rel="contents">
+            <a class="btn" href="/2017/11/12/事件练习/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1906,7 +1983,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1954,7 +2031,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-count">136</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1976,7 +2053,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
