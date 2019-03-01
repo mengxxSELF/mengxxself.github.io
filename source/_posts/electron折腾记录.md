@@ -10,6 +10,41 @@ tags:
 
 > electron
 
+
+### electron
+
+#### 一些基本概念
+
+#### 主进程 && 渲染进程
+
+渲染进程像是一个普通的web组件,主进程中一看就是偏向 node 风格
+
+运行 package.json 里 main 脚本的进程被称为主进程。在主进程运行的脚本可以以创建 web 页面的形式展示 GUI - 相当于一个 Chrome的浏览器
+
+由于 Electron 使用 Chromium 来展示页面，所以 Chromium 的多进程结构也被充分利用。每个 Electron 的页面都在运行着自己的进程，也就是渲染进程。主进程管理所有页面和与之对应的渲染进程。每个渲染进程都是相互独立的，并且只关心他们自己的网页。
+
+### electron-vue 
+
+electron-vue  是一个结合 vue-cli 与 electron 的项目，主要避免了使用 vue 手动建立起 electron 应用程序，很方便。
+
+### electron-packager vs electron-builder
+
+提供了两种打包方式
+
+* electron-packager
+
+![pack](https://user-gold-cdn.xitu.io/2019/3/1/16937ea5221f9ae7?w=1746&h=868&f=png&s=256326)
+
+针对个人系统选择打包之后的结果是
+
+
+* electron-builder
+
+![build](https://user-gold-cdn.xitu.io/2019/3/1/16937ec93bd86a85?w=1714&h=728&f=png&s=196330)
+
+
+### 个人应用
+
 之前用vue写了一个本地开启服务器demo，[git 地址](https://github.com/mengxxSELF/vue-link)  核心思路是在server端直接开启一个启动shell脚本的子进程。本来想丢到服务器给大家用，这样不用每次都去翻服务器配置文件了。
 
 核心代码为
@@ -27,15 +62,9 @@ tags:
 项目之前是vue版本的，刚好vue 有一套配合electron的轮子可以直接用。
 
 
-### 项目安装
+* 项目安装
 
 vue init simulatedgreg/electron-vue vvbuild
-
-* 选择区别
-
-electron-packager vs electron-builder
-
-后者会帮助配置一些打包相关的问题，要比前面的全
 
 ### 开发
 
