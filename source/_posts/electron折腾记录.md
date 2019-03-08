@@ -23,6 +23,43 @@ tags:
 
 由于 Electron 使用 Chromium 来展示页面，所以 Chromium 的多进程结构也被充分利用。每个 Electron 的页面都在运行着自己的进程，也就是渲染进程。主进程管理所有页面和与之对应的渲染进程。每个渲染进程都是相互独立的，并且只关心他们自己的网页。
 
+##### 进程通信
+
+electron分为主进程和渲染进程，主进程和渲染进程进行通信的时候，就需要用到ipc这个特性。而ipc又分为ipcMain和ipcRenderer两个方面，分别用于主进程和渲染进程。
+
+* 主进程
+
+```js
+const electron = require('electron'); //electron 对象的引用
+const { app, ipcMain } = electron;
+
+// 接受信息
+ipcMain.on('checkVersion', function(event, arg) {
+  event.sender.send('send back', "主进程接受到消息了')
+}
+
+// 发送信息
+mainWindow.webContents.send('message', { message, data });
+
+```
+
+* 渲染进程
+  
+```js
+  const electron = require('electron')
+
+  const ipcRenderer = electron.ipcRenderer
+
+  // 接受信息
+  ipcRenderer.on('newversion', function (event, message) {
+    console.log('newversion')
+  })
+
+  // 发送信息
+  ipcRenderer.send('checkVersion');
+
+```
+
 ### electron-vue 
 
 electron-vue  是一个结合 vue-cli 与 electron 的项目，主要避免了使用 vue 手动建立起 electron 应用程序，很方便。
@@ -41,6 +78,10 @@ electron-vue  是一个结合 vue-cli 与 electron 的项目，主要避免了�
 * electron-builder
 
 ![build](https://user-gold-cdn.xitu.io/2019/3/1/16937ec93bd86a85?w=1714&h=728&f=png&s=196330)
+
+### electron-upadter
+
+打包之后可以进一步实现自动更新
 
 
 ### 个人应用
