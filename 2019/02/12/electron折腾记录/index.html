@@ -85,12 +85,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/12/168e0ca57656a566?w=1556&h=732&f=png&s=242686">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/1/16937ea5221f9ae7?w=1746&h=868&f=png&s=256326">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/1/16937ec93bd86a85?w=1714&h=728&f=png&s=196330">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/31/168a2f22a898a688?w=1050&h=1324&f=png&s=243579">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/31/168a2ef8a7ec4f42?w=189&h=172&f=png&s=54222">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/2/1/168a78ccc529b72a?w=1096&h=120&f=png&s=13034">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/1687575fa826f103?w=1291&h=115&f=png&s=23819">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/1/22/16874ece27f3f6d9?w=774&h=638&f=png&s=210608">
-<meta property="og:updated_time" content="2019-02-12T08:20:03.582Z">
+<meta property="og:updated_time" content="2019-03-08T05:43:23.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="electron折腾记录">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/2/12/168e0ca57656a566?w=1556&h=732&f=png&s=242686">
@@ -375,7 +377,31 @@
 <blockquote>
 <p>electron</p>
 </blockquote>
-<p>之前用vue写了一个本地开启服务器demo，<a href="https://github.com/mengxxSELF/vue-link" target="_blank" rel="noopener">git 地址</a>  核心思路是在server端直接开启一个启动shell脚本的子进程。本来想丢到服务器给大家用，这样不用每次都去翻服务器配置文件了。</p>
+<h3 id="electron"><a href="#electron" class="headerlink" title="electron"></a>electron</h3><h4 id="一些基本概念"><a href="#一些基本概念" class="headerlink" title="一些基本概念"></a>一些基本概念</h4><h4 id="主进程-amp-amp-渲染进程"><a href="#主进程-amp-amp-渲染进程" class="headerlink" title="主进程 &amp;&amp; 渲染进程"></a>主进程 &amp;&amp; 渲染进程</h4><p>渲染进程像是一个普通的web组件,主进程中一看就是偏向 node 风格</p>
+<p>运行 package.json 里 main 脚本的进程被称为主进程。在主进程运行的脚本可以以创建 web 页面的形式展示 GUI - 相当于一个 Chrome的浏览器</p>
+<p>由于 Electron 使用 Chromium 来展示页面，所以 Chromium 的多进程结构也被充分利用。每个 Electron 的页面都在运行着自己的进程，也就是渲染进程。主进程管理所有页面和与之对应的渲染进程。每个渲染进程都是相互独立的，并且只关心他们自己的网页。</p>
+<h5 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h5><p>electron分为主进程和渲染进程，主进程和渲染进程进行通信的时候，就需要用到ipc这个特性。而ipc又分为ipcMain和ipcRenderer两个方面，分别用于主进程和渲染进程。</p>
+<ul>
+<li>主进程</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> electron = <span class="built_in">require</span>(<span class="string">'electron'</span>); <span class="comment">//electron 对象的引用</span></span><br><span class="line"><span class="keyword">const</span> &#123; app, ipcMain &#125; = electron;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接受信息</span></span><br><span class="line">ipcMain.on(<span class="string">'checkVersion'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event, arg</span>) </span>&#123;</span><br><span class="line">  event.sender.send(<span class="string">'send back'</span>, <span class="string">"主进程接受到消息了')</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// 发送信息</span></span><br><span class="line"><span class="string">mainWindow.webContents.send('message', &#123; message, data &#125;);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>渲染进程</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> electron = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> ipcRenderer = electron.ipcRenderer</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接受信息</span></span><br><span class="line">ipcRenderer.on(<span class="string">'newversion'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">event, message</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'newversion'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送信息</span></span><br><span class="line">ipcRenderer.send(<span class="string">'checkVersion'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="electron-vue"><a href="#electron-vue" class="headerlink" title="electron-vue"></a>electron-vue</h3><p>electron-vue  是一个结合 vue-cli 与 electron 的项目，主要避免了使用 vue 手动建立起 electron 应用程序，很方便。</p>
+<h3 id="electron-packager-vs-electron-builder"><a href="#electron-packager-vs-electron-builder" class="headerlink" title="electron-packager vs electron-builder"></a>electron-packager vs electron-builder</h3><p>提供了两种打包方式</p>
+<ul>
+<li>electron-packager</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/1/16937ea5221f9ae7?w=1746&amp;h=868&amp;f=png&amp;s=256326" alt="pack"></p>
+<p>针对个人系统选择打包之后的结果是</p>
+<ul>
+<li>electron-builder</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/1/16937ec93bd86a85?w=1714&amp;h=728&amp;f=png&amp;s=196330" alt="build"></p>
+<h3 id="electron-upadter"><a href="#electron-upadter" class="headerlink" title="electron-upadter"></a>electron-upadter</h3><p>打包之后可以进一步实现自动更新</p>
+<h3 id="个人应用"><a href="#个人应用" class="headerlink" title="个人应用"></a>个人应用</h3><p>之前用vue写了一个本地开启服务器demo，<a href="https://github.com/mengxxSELF/vue-link" target="_blank" rel="noopener">git 地址</a>  核心思路是在server端直接开启一个启动shell脚本的子进程。本来想丢到服务器给大家用，这样不用每次都去翻服务器配置文件了。</p>
 <p>核心代码为</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/1/31/168a2f22a898a688?w=1050&amp;h=1324&amp;f=png&amp;s=243579" alt=""></p>
 <p>然而，组内大佬过来看了两眼就发现问题了：开启登录服务器的那个进程是在server端处理的，那么项目如果部署到服务器之后，怎么能开启用户自己的 终端去登录服务器呢？</p>
@@ -383,12 +409,10 @@
 <p>大佬建议使用electron包裹一层，也就是把开启终端的那个部分的逻辑放到electron操作 而不是在server中处理</p>
 <p>赞！</p>
 <p>项目之前是vue版本的，刚好vue 有一套配合electron的轮子可以直接用。</p>
-<h3 id="项目安装"><a href="#项目安装" class="headerlink" title="项目安装"></a>项目安装</h3><p>vue init simulatedgreg/electron-vue vvbuild</p>
 <ul>
-<li>选择区别</li>
+<li>项目安装</li>
 </ul>
-<p>electron-packager vs electron-builder</p>
-<p>后者会帮助配置一些打包相关的问题，要比前面的全</p>
+<p>vue init simulatedgreg/electron-vue vvbuild</p>
 <h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><h4 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h4><p>在 oackage.json 中的main参数 是electron的入口文件 （ 主进程 ） </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"main"</span>: <span class="string">"./dist/electron/main.js"</span>,</span><br></pre></td></tr></table></figure>
 <p>electron运行package.json中的main字段标明脚本的进程称为主进程</p>
@@ -539,7 +563,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -594,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目安装"><span class="nav-number">1.</span> <span class="nav-text">项目安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">2.</span> <span class="nav-text">开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#入口文件"><span class="nav-number">2.1.</span> <span class="nav-text">入口文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-组件部分"><span class="nav-number">2.2.</span> <span class="nav-text">vue 组件部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Table"><span class="nav-number">2.2.1.</span> <span class="nav-text">Table</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启进程"><span class="nav-number">2.3.</span> <span class="nav-text">开启进程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#build-停滞"><span class="nav-number">3.1.</span> <span class="nav-text">build 停滞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开开发者工具"><span class="nav-number">3.2.</span> <span class="nav-text">打开开发者工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译之后的APP-打开出错"><span class="nav-number">3.3.</span> <span class="nav-text">编译之后的APP 打开出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#莫名其妙的问题"><span class="nav-number">3.4.</span> <span class="nav-text">莫名其妙的问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#electron"><span class="nav-number">1.</span> <span class="nav-text">electron</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">一些基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主进程-amp-amp-渲染进程"><span class="nav-number">1.2.</span> <span class="nav-text">主进程 &amp;&amp; 渲染进程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#进程通信"><span class="nav-number">1.2.1.</span> <span class="nav-text">进程通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#electron-vue"><span class="nav-number">2.</span> <span class="nav-text">electron-vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#electron-packager-vs-electron-builder"><span class="nav-number">3.</span> <span class="nav-text">electron-packager vs electron-builder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#electron-upadter"><span class="nav-number">4.</span> <span class="nav-text">electron-upadter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人应用"><span class="nav-number">5.</span> <span class="nav-text">个人应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发"><span class="nav-number">6.</span> <span class="nav-text">开发</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#入口文件"><span class="nav-number">6.1.</span> <span class="nav-text">入口文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vue-组件部分"><span class="nav-number">6.2.</span> <span class="nav-text">vue 组件部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Table"><span class="nav-number">6.2.1.</span> <span class="nav-text">Table</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开启进程"><span class="nav-number">6.3.</span> <span class="nav-text">开启进程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">7.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#build-停滞"><span class="nav-number">7.1.</span> <span class="nav-text">build 停滞</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打开开发者工具"><span class="nav-number">7.2.</span> <span class="nav-text">打开开发者工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译之后的APP-打开出错"><span class="nav-number">7.3.</span> <span class="nav-text">编译之后的APP 打开出错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#莫名其妙的问题"><span class="nav-number">7.4.</span> <span class="nav-text">莫名其妙的问题</span></a></li></ol></li></ol></div>
             
 
           </div>

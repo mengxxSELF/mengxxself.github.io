@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/9/3/1659f1969e015231?w=1424&h=698&f=png&s=1887559">
-<meta property="og:updated_time" content="2019-02-28T03:06:05.635Z">
+<meta property="og:updated_time" content="2019-02-28T03:15:30.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一周计划0225">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/9/3/1659f1969e015231?w=1424&h=698&f=png&s=1887559">
@@ -414,7 +414,7 @@
 <h4 id="本周小练习"><a href="#本周小练习" class="headerlink" title="本周小练习"></a>本周小练习</h4><ul>
 <li>连字符转驼峰</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'get_users_info'</span></span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/_(.&#123;1&#125;)/g</span></span><br><span class="line">str.splice(reg, ($<span class="number">0</span>, $<span class="number">1</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'get_users_info'</span></span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/(_.&#123;1&#125;)/g</span></span><br><span class="line">str.replace(reg, ($<span class="number">1</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> newCode = $<span class="number">1</span>[<span class="number">1</span>].toUpperCase()</span><br><span class="line">  <span class="keyword">return</span> newCode</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -540,7 +540,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">136</span>
+                  <span class="site-state-item-count">138</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
