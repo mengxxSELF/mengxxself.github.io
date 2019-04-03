@@ -1,7 +1,8 @@
 ---
-title: electron折腾记录
+title: electron开发笔记
 date: 2019-02-12 16:16:11
-tags:
+categories: javascript
+tags: [electron]
 ---
 
 ![electron](https://user-gold-cdn.xitu.io/2019/2/12/168e0ca57656a566?w=1556&h=732&f=png&s=242686)
