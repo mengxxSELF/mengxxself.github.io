@@ -1,5 +1,5 @@
 ---
-title: GraphQL初探
+title: GraphQL 初探
 date: 2019-03-26 14:50:22
 tags:
 ---
