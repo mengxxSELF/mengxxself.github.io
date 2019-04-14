@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="第七章 网络编程">
+<meta name="description" content="第二章 模块规则  commomjs 模板规范 模块标识  1require(&apos;xxx&apos;) 模块标识 就是传递给require的参数 它必须是符合小驼峰命名的字符串 可以没有后缀js node的模块实现node 引入模块的步骤 路径分析 -&amp;gt; 文件定位 -&amp;gt; 编译执行  node的模块分类： 核心模块  文件模块  核心模块 在node进程启动的时候 部分核心代码就被加载在内存中，">
 <meta name="keywords" content="node,编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络编程">
 <meta property="og:url" content="http://yoursite.com/2018/12/21/读书笔记-node深入浅出/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="第七章 网络编程">
+<meta property="og:description" content="第二章 模块规则  commomjs 模板规范 模块标识  1require(&apos;xxx&apos;) 模块标识 就是传递给require的参数 它必须是符合小驼峰命名的字符串 可以没有后缀js node的模块实现node 引入模块的步骤 路径分析 -&amp;gt; 文件定位 -&amp;gt; 编译执行  node的模块分类： 核心模块  文件模块  核心模块 在node进程启动的时候 部分核心代码就被加载在内存中，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/21/167ceda84509da96?w=920&h=450&f=png&s=122361">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/20/167cc05df95ccae3?w=982&h=532&f=png&s=68841">
@@ -93,10 +93,10 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/20/167cc24f5f4055e6?w=1464&h=531&f=png&s=79201">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/21/167cf60d3a3194f2?w=1736&h=596&f=png&s=151626">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/12/27/167ef852f76f0686?w=1040&h=636&f=png&s=88930">
-<meta property="og:updated_time" content="2019-01-16T06:09:40.470Z">
+<meta property="og:updated_time" content="2019-04-14T07:06:21.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络编程">
-<meta name="twitter:description" content="第七章 网络编程">
+<meta name="twitter:description" content="第二章 模块规则  commomjs 模板规范 模块标识  1require(&apos;xxx&apos;) 模块标识 就是传递给require的参数 它必须是符合小驼峰命名的字符串 可以没有后缀js node的模块实现node 引入模块的步骤 路径分析 -&amp;gt; 文件定位 -&amp;gt; 编译执行  node的模块分类： 核心模块  文件模块  核心模块 在node进程启动的时候 部分核心代码就被加载在内存中，">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/12/21/167ceda84509da96?w=920&h=450&f=png&s=122361">
 
 
@@ -398,6 +398,24 @@
       
         <p><img src="https://user-gold-cdn.xitu.io/2018/12/21/167ceda84509da96?w=920&amp;h=450&amp;f=png&amp;s=122361" alt="network"></p>
 <blockquote>
+<p>第二章 模块规则</p>
+</blockquote>
+<h4 id="commomjs-模板规范"><a href="#commomjs-模板规范" class="headerlink" title="commomjs 模板规范"></a>commomjs 模板规范</h4><ul>
+<li>模块标识</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'xxx'</span>)</span><br></pre></td></tr></table></figure>
+<p>模块标识 就是传递给require的参数 它必须是符合小驼峰命名的字符串 可以没有后缀js</p>
+<h4 id="node的模块实现"><a href="#node的模块实现" class="headerlink" title="node的模块实现"></a>node的模块实现</h4><p>node 引入模块的步骤</p>
+<p>路径分析 -&gt; 文件定位 -&gt; 编译执行</p>
+<ul>
+<li>node的模块分类： 核心模块  文件模块</li>
+</ul>
+<p>核心模块 在node进程启动的时候 部分核心代码就被加载在内存中，</p>
+<p>文件模块则是在运行动态加载， 需要进行完成的 以上三个步骤</p>
+<ul>
+<li>优先缓存</li>
+</ul>
+<blockquote>
 <p>第七章 网络编程</p>
 </blockquote>
 <a id="more"></a>
@@ -662,7 +680,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">144</span>
+                  <span class="site-state-item-count">148</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -673,7 +691,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -684,7 +702,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -717,7 +735,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number">1.</span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number">2.</span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number">3.</span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP协议-（Internet-Protocol）"><span class="nav-number">4.</span> <span class="nav-text">IP协议 （Internet Protocol）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp"><span class="nav-number">5.</span> <span class="nav-text">tcp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp"><span class="nav-number">6.</span> <span class="nav-text">udp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number">7.</span> <span class="nav-text">DNS (Domain Name System)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number">8.</span> <span class="nav-text">http</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#commomjs-模板规范"><span class="nav-number">1.</span> <span class="nav-text">commomjs 模板规范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#node的模块实现"><span class="nav-number">2.</span> <span class="nav-text">node的模块实现</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI-七层模型"><span class="nav-number"></span> <span class="nav-text">OSI 七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP协议族"><span class="nav-number"></span> <span class="nav-text">TCP/IP协议族</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#端口"><span class="nav-number"></span> <span class="nav-text">端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IP协议-（Internet-Protocol）"><span class="nav-number"></span> <span class="nav-text">IP协议 （Internet Protocol）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tcp"><span class="nav-number"></span> <span class="nav-text">tcp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#udp"><span class="nav-number"></span> <span class="nav-text">udp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number"></span> <span class="nav-text">DNS (Domain Name System)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http"><span class="nav-number"></span> <span class="nav-text">http</span></a></li></div>
             
 
           </div>
