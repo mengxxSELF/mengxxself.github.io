@@ -8,8 +8,24 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2019/04/14/koa%E4%BD%BF%E7%94%A8/</loc>
-        <lastmod>2019-04-14T11:40:31.619Z</lastmod>
+        <loc>http://yoursite.com/2019/04/14/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%87/</loc>
+        <lastmod>2019-04-17T02:44:15.505Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/16/%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%920415/</loc>
+        <lastmod>2019-04-17T02:18:10.626Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/14/koa%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+        <lastmod>2019-04-16T05:46:06.604Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,14 +50,6 @@
     <url>
         <loc>http://yoursite.com/2018/12/21/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-node%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BA/</loc>
         <lastmod>2019-04-14T07:06:21.850Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2019/04/14/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%87/</loc>
-        <lastmod>2019-04-14T06:16:42.759Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

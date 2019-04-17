@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
-<meta property="og:updated_time" content="2019-04-14T06:16:42.759Z">
+<meta property="og:updated_time" content="2019-04-17T02:44:15.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日英文">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
@@ -393,7 +393,7 @@
 <blockquote>
 <p>每日英文</p>
 </blockquote>
-<p><a href="https://stackoverflow.com/questions/55671383/how-to-give-a-function-to-an-image-while-in-a-website" target="_blank" rel="noopener">问题地址</a></p>
+<h4 id="0414"><a href="#0414" class="headerlink" title="0414"></a>0414</h4><p><a href="https://stackoverflow.com/questions/55671383/how-to-give-a-function-to-an-image-while-in-a-website" target="_blank" rel="noopener">问题地址</a></p>
 <ul>
 <li>有一个button按钮，点击展示图片。点击图片本身则消失, 代码如下，但是没有起作用</li>
 </ul>
@@ -404,6 +404,41 @@
 <p>其实没有看懂他的代码的含义, 看上面的img标签好像是动态生成的，但是并没有 append 到文档中</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"toggle_display('block')"</span> &gt;</span> show img <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">onclick</span>=<span class="string">"toggle_display('none')"</span> <span class="attr">src</span>=<span class="string">'./border.png'</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="keyword">const</span> img = <span class="built_in">document</span>.querySelector(<span class="string">'img'</span>)</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">toggle_display</span> (<span class="params">display</span>) </span>&#123;</span><br><span class="line">      img.style.display = display</span><br><span class="line">    &#125;</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="0415"><a href="#0415" class="headerlink" title="0415"></a>0415</h4><ul>
+<li><p><a href="https://stackoverflow.com/questions/55699614/set-and-delete-cookies-using-javascript" target="_blank" rel="noopener">问题地址</a></p>
+</li>
+<li><p>翻译</p>
+</li>
+</ul>
+<p>正在写作业，作业需要遵循以下标准：设计一个基本的html 表单，根据用户交互行为可以读写cookie</p>
+<p>1 包含一个 text 输入框 接受数据 （去写入cookie）<br>2 包含button 按钮 ， 将 text 数据 写入cookie<br>3 包含一个js 验证， 如果第二步点击了button，但是 text 输入框没有内容，则需要alert 一个提示<br>4 包含一个button按钮，用于从cooki中读取信息，并且以alert形式展示<br>5 包含一个button 去删除cookie 内容</p>
+<p>我尽我所能写了 function 函数，我也创建了button 按钮，但是到目前，没有出现一个 alert 提示。 我不了解js，一直在这里思考</p>
+<p>这是我写的function</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveCookies</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.userData.field1.value == <span class="string">""</span>) &#123;</span><br><span class="line">    alert(<span class="string">"Please Fill In All Form Values!"</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    cookievalue1 = <span class="built_in">escape</span>(<span class="built_in">document</span>.userData.field1.value);</span><br><span class="line">    <span class="built_in">document</span>.cookie = cookievalue1;</span><br><span class="line">    alert(<span class="string">"The Following Data Has Been Saved To a Cookie:\n"</span> + <span class="string">"\nFirst Name = "</span> + cookievalue1);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">showCookies</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert(<span class="string">"First Name: "</span> + cookievalue1)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">clearCookies</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">document</span>.cookie = <span class="string">"username=; expires=Thu, 01 Jan 1970 00:00:00 GMT"</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="0416"><a href="#0416" class="headerlink" title="0416"></a>0416</h4><ul>
+<li><p><a href="https://stackoverflow.com/questions/55718967/how-to-connect-a-json-server-with-another-server-with-different-port" target="_blank" rel="noopener">Address</a></p>
+</li>
+<li><p>个人理解</p>
+</li>
+</ul>
+<p>怎么用一个不同端口的服务器去链接本服务器</p>
+<p>我正在用数据库写一个简单的站点，它使用json-server启动，有点类似于我在YouTube上发现的这个</p>
+<p>我出现的问题是，我不知道在两台服务器之间如何交流，在node方面我是一个新手，希望有人可以帮助我，不胜感激</p>
+<p>这个json-server启动并且运行在 <a href="http://localhost:3000/posts" target="_blank" rel="noopener">http://localhost:3000/posts</a> 而另一个站点运行在 <a href="http://localhost:5000" target="_blank" rel="noopener">http://localhost:5000</a></p>
+<p>。。。。是一堆代码，这里不做展示</p>
+<p>我希望可以使用 <a href="http://localhost:5000/api/posts" target="_blank" rel="noopener">http://localhost:5000/api/posts</a> 预览到db.json  的数据，而不是通过”<a href="http://localhost:3000/posts&quot;。请问有什么解决方案吗" target="_blank" rel="noopener">http://localhost:3000/posts&quot;。请问有什么解决方案吗</a></p>
+<ul>
+<li>分析</li>
+</ul>
+<p>他这里可以在 5000的服务器上，直接请求3000的数据接口，然后展示，所以只需要调整 post.js 就可以了</p>
+<ul>
+<li>给予回复</li>
+</ul>
+<p>You can fix the post.js  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">const</span> router = express.Router();</span><br><span class="line"><span class="keyword">const</span> urllib = <span class="built_in">require</span>(<span class="string">'urllib'</span>)</span><br><span class="line"><span class="keyword">const</span> endpoint = <span class="string">"http://localhost:3000/posts"</span>;</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, (req, res) =&gt; &#123;</span><br><span class="line">  urllib.request(endpoint, <span class="function"><span class="keyword">function</span> (<span class="params">err, data, res</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = data.toString()</span><br><span class="line">    res.send(result);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Urllib can help us get data from “<a href="http://localhost:3000/posts&quot;" target="_blank" rel="noopener">http://localhost:3000/posts&quot;</a> </p>
+<p>Actually you should console.log the data and change result according to the format you want</p>
+
       
     </div>
     
@@ -443,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/14/koa使用/" rel="prev" title="koa使用解析">
-                koa使用解析 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/14/koa源码解析/" rel="prev" title="koa源码解析">
+                koa源码解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -500,8 +535,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -518,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">148</span>
+                  <span class="site-state-item-count">149</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -563,6 +607,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0414"><span class="nav-number">1.</span> <span class="nav-text">0414</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0415"><span class="nav-number">2.</span> <span class="nav-text">0415</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0416"><span class="nav-number">3.</span> <span class="nav-text">0416</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
