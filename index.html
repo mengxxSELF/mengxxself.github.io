@@ -281,6 +281,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/上传文件到七牛/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="草木">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/18/上传文件到七牛/" itemprop="url">上传文件到七牛</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T17:40:00+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/18/上传文件到七牛/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/04/18/上传文件到七牛/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><img src="https://user-gold-cdn.xitu.io/2019/4/18/16a2c2031196dda2?w=1168&amp;h=364&amp;f=png&amp;s=218162" alt=""></p>
+<blockquote>
+<p>上传图片到七牛</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/04/18/上传文件到七牛/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/16/一周计划0415/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1297,35 +1434,17 @@
 
       
         
-          
-            <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="操作类型"><a href="#操作类型" class="headerlink" title="操作类型"></a>操作类型</h4><p>gql 有三种操作类型 query、mutation 或 subscription, 用于描述你打算做什么类型的操作</p>
-<p>GraphQL 的操作类型可以是 query、mutation 或 subscription，描述客户端希望进行什么样的操作</p>
-<p>query 查询：获取数据，比如查找，CRUD 中的 R<br>mutation 变更：对数据进行变更，比如增加、删除、修改，CRUD 中的 CUD<br>substription 订阅：当数据发生更改，进行消息推送</p>
-<h4 id="schema"><a href="#schema" class="headerlink" title="schema"></a>schema</h4><p>GraphQL 服务都会定义一套类型，用以描述你可能从那个服务查询到的数据。每当查询到来，服务器就会根据 schema 验证并执行查询</p>
-<p>GraphQL schema 中的最基本的组件是对象类型，它就表示你可以从服务上获取到什么类型的对象，以及这个对象有什么字段</p>
-<p>比如获取一个用户信息</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">type Person &#123;</span><br><span class="line">  id: Int!,</span><br><span class="line">  name: <span class="built_in">String</span>!,</span><br><span class="line">  friends: [<span class="built_in">String</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>Person 是一个普通对象</p>
-</li>
-<li><p>id  name friends 是 Person 类型上的字段, 那么再使用 Person 的时候 只能返回这三个字段值</p>
-</li>
-<li><p>String!  这个值这里，添加叹号  表示这个字段是非空的</p>
-</li>
-</ul>
-<h5 id="schema-的特殊类型"><a href="#schema-的特殊类型" class="headerlink" title="schema 的特殊类型"></a>schema 的特殊类型</h5><p>一个 schema 内有两个特殊类型： Query 与  Mutation</p>
-<p>Query 定义了每一个 GraphQL 查询的入口</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Query &#123;</span><br><span class="line">  getName (id: Int) : <span class="built_in">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="变量类型"><a href="#变量类型" class="headerlink" title="变量类型"></a>变量类型</h5><p>gql 有几种自带的变量类型 </p>
-<p>Int String Float Boolean </p>
-<p>ID - -ID 标量类型表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键</p>
-<p>枚举 enum </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">enum Teachers &#123;</span><br><span class="line">  MAN,</span><br><span class="line">  WOMAN</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个就表示 Teachers 的两种类型是 MAN 或者 WOMAN </p>
-<h5 id="接口-Interfaces"><a href="#接口-Interfaces" class="headerlink" title="接口 Interfaces"></a>接口 Interfaces</h5><p>接口的存在用于给另外的对象使用 【感觉这个和ts中的接口含义类似】</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">interface Teachers &#123;</span><br><span class="line">  book: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type LiTeaches implements Teachers &#123;</span><br><span class="line">  book: <span class="built_in">String</span>,</span><br><span class="line">  school: <span class="built_in">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="resolver"><a href="#resolver" class="headerlink" title="resolver"></a>resolver</h4>
-          
+          <p><img src="https://user-gold-cdn.xitu.io/2019/4/18/16a2ffd532723a77?w=756&amp;h=237&amp;f=png&amp;s=64652" alt="gql"></p>
+<blockquote>
+<p>gql</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/26/GraphQL初探/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1673,167 +1792,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/19/一周计划0318/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="草木">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/20737114?v=4&u=2569dd145b519f0bacc3874665e9dde45129c346&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/19/一周计划0318/" itemprop="url">一周计划0318</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T10:34:37+08:00">
-                2019-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/一周计划/" itemprop="url" rel="index">
-                    <span itemprop="name">一周计划</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/03/19/一周计划0318/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/19/一周计划0318/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="https://user-gold-cdn.xitu.io/2018/9/3/1659f1969e015231?w=1424&amp;h=698&amp;f=png&amp;s=1887559" alt="plan"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/19/一周计划0318/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1881,7 +1844,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">149</span>
+                  <span class="site-state-item-count">151</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1903,7 +1866,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
