@@ -1,8 +1,14 @@
 ---
 title: GraphQL 初探
 date: 2019-03-26 14:50:22
-tags:
+tags: gql
 ---
+
+![gql](https://user-gold-cdn.xitu.io/2019/4/18/16a2ffd532723a77?w=756&h=237&f=png&s=64652)
+
+> gql
+
+<!-- More -->
 
 ### 基本概念
 

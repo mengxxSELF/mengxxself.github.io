@@ -1,11 +1,11 @@
 ---
-title: koa使用解析
+title: koa源码解析
 date: 2019-04-14 15:29:04
 categories: koa
 tags: [node, koa]
 ---
 
-![](https://user-gold-cdn.xitu.io/2019/4/14/16a1ba1d363f328f?w=781&h=317&f=png&s=162897)
+![koa](https://user-gold-cdn.xitu.io/2019/4/14/16a1ba1d363f328f?w=781&h=317&f=png&s=162897)
 
 <!-- More -->
 
@@ -31,7 +31,7 @@ app.listen(port, () => {
 
 #### 分析
 
-koa 是一个类， 开启服务，并且执行中间件函数
+koa 是一个类，创建其示例后， listen方法 开启一个http服务，并且执行中间件函数
 
 #### 实现
 

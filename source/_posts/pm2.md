@@ -33,6 +33,8 @@ npm install -g pm2 --registry=https://registry.npm.taobao.org
 
 * pm2 start app.js 开始进程
 
+-- watch 监控变化并自动重启
+
 * pm2 stop 停止进程
 
 pm2 stop 0             # 停止指定的进程
@@ -57,3 +59,4 @@ pm2 delete all  杀死全部进程
 * pm2 logs  查看日志
 
 比如某个node服务突然异常重启了，那么可以通过pm2提供的日志工具来查看实时日志，看是不是脚本出错之类导致的异常重启
+
