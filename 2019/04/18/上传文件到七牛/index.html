@@ -93,7 +93,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/18/16a2c18b6ee09296?w=1194&h=280&f=png&s=77757">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/18/16a2c18deaf558fc?w=1172&h=158&f=png&s=58091">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/18/16a2c4a9d9d480f4?w=1694&h=284&f=png&s=64360">
-<meta property="og:updated_time" content="2019-04-18T13:25:04.466Z">
+<meta property="og:updated_time" content="2019-04-19T03:25:06.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="上传文件到七牛">
 <meta name="twitter:description" content="上传图片到七牛">
@@ -475,8 +475,29 @@
 <ul>
 <li>图片上传之后却无法读取，显示已损坏</li>
 </ul>
-<p>是因为第一次的时候，直接将 input的files[0] 值上传，但其实这个的格式是base64，而文档里对这个参数的要求是blob，所以记得这里需要转化一下文件格式</p>
+<p>是因为第一次的时候，直接将 input的files[0] 值上传, 这里与文档要求的参数格式不一致 文档里对这个参数的要求是blob，所以记得这里需要转化一下文件格式</p>
 <p>以前的demo写的一直失败就搁置了，今天重新跑了一次，再次吐槽七牛的文档，写的真是让人头大</p>
+<h3 id="编写-webpack-上传七牛的插件"><a href="#编写-webpack-上传七牛的插件" class="headerlink" title="编写 webpack 上传七牛的插件"></a>编写 webpack 上传七牛的插件</h3><p>在开发中，有使用一个webpack的配置， <a href="https://www.npmjs.com/package/qiniu-webpack-plugin" target="_blank" rel="noopener">qiniu-webpack-plugin</a></p>
+<p>参照这个的使用方式，另外写一个上传plugin</p>
+<p>涉及到的一些文档</p>
+<ul>
+<li><p><a href="https://www.webpackjs.com/concepts/plugins/" target="_blank" rel="noopener">webpack plugin API</a></p>
+</li>
+<li><p><a href="https://www.webpackjs.com/api/compiler-hooks/" target="_blank" rel="noopener">webpack plugin config</a></p>
+</li>
+</ul>
+<h4 id="plugin-使用"><a href="#plugin-使用" class="headerlink" title="plugin 使用"></a>plugin 使用</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这个是编译文件编译到的文件夹</span></span><br><span class="line"><span class="keyword">const</span> filePath = path.resolve(__dirname, <span class="string">'public'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> QiuniuUploadPlugin(&#123;</span><br><span class="line">  bucket,</span><br><span class="line">  accessKey,</span><br><span class="line">  secretKey,</span><br><span class="line">  domain,</span><br><span class="line">  path: filePath</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="类的实现"><a href="#类的实现" class="headerlink" title="类的实现"></a>类的实现</h4><p>这个的逻辑大部分和从后端直接上传到七牛有重合，这里只把另一部分写出来</p>
+<ul>
+<li>大致实现</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QiuniuUploadPlugin</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> () &#123;...&#125;</span><br><span class="line">  </span><br><span class="line">  uploadQn (filename) &#123;...&#125;</span><br><span class="line">  </span><br><span class="line">  apply (compiler) &#123;</span><br><span class="line">    <span class="keyword">const</span> pluginName = <span class="string">'QiuniuUploadPlugin'</span></span><br><span class="line">    <span class="comment">// 事件钩子</span></span><br><span class="line">    compiler.hooks.run.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"webpack 构建过程开始！"</span>)</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// afterEmit - 生成资源到 output 目录之后将触发  异步钩子 - tapPromise</span></span><br><span class="line">    compiler.hooks.afterEmit.tapPromise(pluginName, (compilation) =&gt; &#123;</span><br><span class="line">      <span class="keyword">let</span> &#123; assets &#125; = compilation</span><br><span class="line">      <span class="comment">// assets 这里拿到的assets是一个对象 key是文件名 value是相关关参数 我们只需要key</span></span><br><span class="line">      <span class="comment">// assets --&gt;&gt;&gt;  &#123; 'index.js' : xxxx &#125;</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 遍历所有的文件名 进行七牛的上传</span></span><br><span class="line">      <span class="keyword">const</span> allUplaod = <span class="built_in">Object</span>.keys(assets).map(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.uplaodQn(item)</span><br><span class="line">      &#125;)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Promise</span>.all(allUplaod)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><a href="https://github.com/mengxxSELF/qiniu-/blob/master/webpack.config.js" target="_blank" rel="noopener">git - webpack</a></p>
+</li>
+<li><p><a href="https://github.com/mengxxSELF/qiniu-/blob/master/qiniu-webpack-plugin.js" target="_blank" rel="noopener">git - plugin具体实现</a></p>
+</li>
+</ul>
 
       
     </div>
@@ -652,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端进行上传"><span class="nav-number">1.</span> <span class="nav-text">服务端进行上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端"><span class="nav-number">1.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server-接口部分"><span class="nav-number">1.2.</span> <span class="nav-text">server 接口部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.3.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端直接上传"><span class="nav-number">2.</span> <span class="nav-text">前端直接上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取上传凭证-token"><span class="nav-number">2.1.</span> <span class="nav-text">获取上传凭证 token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端上传代码"><span class="nav-number">2.2.</span> <span class="nav-text">前端上传代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的问题-1"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端进行上传"><span class="nav-number">1.</span> <span class="nav-text">服务端进行上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#前端"><span class="nav-number">1.1.</span> <span class="nav-text">前端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#server-接口部分"><span class="nav-number">1.2.</span> <span class="nav-text">server 接口部分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.3.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前端直接上传"><span class="nav-number">2.</span> <span class="nav-text">前端直接上传</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取上传凭证-token"><span class="nav-number">2.1.</span> <span class="nav-text">获取上传凭证 token</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前端上传代码"><span class="nav-number">2.2.</span> <span class="nav-text">前端上传代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#遇到的问题-1"><span class="nav-number">2.3.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写-webpack-上传七牛的插件"><span class="nav-number">3.</span> <span class="nav-text">编写 webpack 上传七牛的插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#plugin-使用"><span class="nav-number">3.1.</span> <span class="nav-text">plugin 使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类的实现"><span class="nav-number">3.2.</span> <span class="nav-text">类的实现</span></a></li></ol></li></ol></div>
             
 
           </div>
