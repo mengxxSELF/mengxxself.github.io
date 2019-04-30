@@ -8,6 +8,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite.com/2019/04/25/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-CleanCode/</loc>
+        <lastmod>2019-04-30T06:46:46.392Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite.com/2019/04/21/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8704-3/</loc>
         <lastmod>2019-04-30T06:44:15.898Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -34,14 +42,6 @@
     <url>
         <loc>http://yoursite.com/2017/08/30/canvas-blob-file-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%BD%AC%E6%8D%A2/</loc>
         <lastmod>2019-04-25T03:12:36.894Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2019/04/25/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-CleanCode/</loc>
-        <lastmod>2019-04-25T03:11:00.531Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
