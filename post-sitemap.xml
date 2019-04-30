@@ -8,8 +8,48 @@
     </url>
 
     <url>
-        <loc>http://yoursite.com/2019/04/14/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%87/</loc>
-        <lastmod>2019-04-19T12:41:16.477Z</lastmod>
+        <loc>http://yoursite.com/2019/04/21/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8704-3/</loc>
+        <lastmod>2019-04-30T06:44:15.898Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/30/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8704-4/</loc>
+        <lastmod>2019-04-30T05:53:42.492Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/24/%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%920422/</loc>
+        <lastmod>2019-04-26T06:20:40.014Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2017/08/30/canvas-blob-file-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%BD%AC%E6%8D%A2/</loc>
+        <lastmod>2019-04-25T03:12:36.894Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/25/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-CleanCode/</loc>
+        <lastmod>2019-04-25T03:11:00.531Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://yoursite.com/2019/04/14/%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8704_2/</loc>
+        <lastmod>2019-04-25T02:44:33.034Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -1162,14 +1202,6 @@
     <url>
         <loc>http://yoursite.com/2017/09/04/%E5%85%B3%E4%BA%8E%E5%91%8A%E5%88%AB/</loc>
         <lastmod>2017-09-27T11:56:33.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://yoursite.com/2017/08/30/canvas-blob-file-base64%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%BD%AC%E6%8D%A2/</loc>
-        <lastmod>2017-09-27T09:40:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
