@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
-<meta property="og:updated_time" content="2019-04-30T06:44:15.898Z">
+<meta property="og:updated_time" content="2019-05-09T03:45:17.254Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日英文04_3">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
@@ -423,12 +423,17 @@
 <p>The Query component</p>
 <p>Query 组件是 构建 Apollo application 中最重要的元素</p>
 <p>创建 Query 组件 的方式是</p>
-<p>将查询参数 使用gql 函数进行包裹 然后 传递给 GraphQL 的  this.props.query</p>
-<p>并且 给 this.props.children 提供一个函数告诉 react 用什么渲染组件</p>
-<p>下面的QUery组件是一个 使用了 render 属性的 React 组件例子</p>
+<p>将查询参数 使用gql 函数进行包裹 然后 传递给 Query组件 的 query 属性</p>
+<p>并且在组件内部 提供一个函数告诉 react 用什么渲染组件</p>
+<p>下面的Query组件是一个 使用了 render 属性的 React 组件例子</p>
 <p>react 可以使用 从  Apollo Client 提供的一个 render 属性函数 包含参数对象 比如 loading， error， 以及 你可以用来渲染UI的 data 属性对象</p>
 <h4 id="0427-Apollo-Docs"><a href="#0427-Apollo-Docs" class="headerlink" title="0427 Apollo Docs"></a>0427 Apollo Docs</h4><p><a href="https://www.apollographql.com/docs/react/essentials/queries" target="_blank" rel="noopener">Query</a></p>
-<h4 id="0428-Apollo-Docs"><a href="#0428-Apollo-Docs" class="headerlink" title="0428 Apollo Docs"></a>0428 Apollo Docs</h4><p><a href="https://www.apollographql.com/docs/react/essentials/queries" target="_blank" rel="noopener">Query</a></p>
+<p>如果你使用我们的APP组件去渲染 Dogs 组件， 当apollo client 从服务器接受到数据后 ，你将首先看到一个 loading的状态，然后是一个包含 数据列表的 form 对象。 当form数据变化的时候，我们通过 on函数给父级组件发送 这个value值 ，他将最终传递到父级组件 DogPhoto中</p>
+<p>下一步，我们将 通过创建DogPhoto组件， 用更复杂的变量构建更复杂的query </p>
+<h4 id="0428-Apollo-Docs"><a href="#0428-Apollo-Docs" class="headerlink" title="0428 Apollo Docs"></a>0428 Apollo Docs</h4><p>Receiving data</p>
+<p>数据接受</p>
+<p>我们已经看到了 ，当我们通过 query 接受到参数之后，是如何 在 rendef 函数中 进行组件的渲染的。现在让我们更深图的了解一下，<br>当通过query组件请求数据之后， Apollo client 具体会发生什么</p>
+<p><a href="https://www.apollographql.com/docs/react/essentials/queries" target="_blank" rel="noopener">Query</a></p>
 
       
     </div>
@@ -553,7 +558,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">155</span>
+                  <span class="site-state-item-count">157</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
