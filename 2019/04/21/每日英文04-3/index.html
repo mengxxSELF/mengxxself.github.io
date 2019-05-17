@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
-<meta property="og:updated_time" content="2019-05-09T03:45:17.254Z">
+<meta property="og:updated_time" content="2019-05-14T03:38:18.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日英文04_3">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
@@ -433,6 +433,12 @@
 <h4 id="0428-Apollo-Docs"><a href="#0428-Apollo-Docs" class="headerlink" title="0428 Apollo Docs"></a>0428 Apollo Docs</h4><p>Receiving data</p>
 <p>数据接受</p>
 <p>我们已经看到了 ，当我们通过 query 接受到参数之后，是如何 在 rendef 函数中 进行组件的渲染的。现在让我们更深图的了解一下，<br>当通过query组件请求数据之后， Apollo client 具体会发生什么</p>
+<ol>
+<li>当Query组件加载的时候，Apollo Client 创造一个 query的观察者，我们的组件从  Apollo Client 的缓存中订阅这个query</li>
+</ol>
+<ol start="2">
+<li>首先，我们试图 从 Apollo 缓存中去加载 query 结果，如果缓存中没有，我们就给服务器发送请求</li>
+</ol>
 <p><a href="https://www.apollographql.com/docs/react/essentials/queries" target="_blank" rel="noopener">Query</a></p>
 
       
@@ -558,7 +564,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-count">158</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
