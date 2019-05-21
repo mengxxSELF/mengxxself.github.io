@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一周计划0520]]></title>
+    <url>%2F2019%2F05%2F21%2F%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%920520%2F</url>
+    <content type="text"><![CDATA[work upload 组件上传完成封装 附近banner1 form表单 #### 本周浏览 promise 迷你书 react资料]]></content>
+      <categories>
+        <category>一周计划</category>
+      </categories>
+      <tags>
+        <tag>work</tag>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[每日英文05-13]]></title>
     <url>%2F2019%2F05%2F14%2F%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8705-13%2F</url>
     <content type="text"><![CDATA[每日英文 0430 gqlquestion个人理解当尝试使用两个不同的query的时候，会报错，我如何修复它 报错信息如下1Error: query option is required. You must specify your GraphQL document in the query option. answer应该是 query 对象的处理有问题 1client.query(&#123; query2 &#125;) 这里写的不对，属性名是 query]]></content>
@@ -1450,8 +1462,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>canvas</tag>
         <tag>file</tag>
+        <tag>canvas</tag>
       </tags>
   </entry>
   <entry>
