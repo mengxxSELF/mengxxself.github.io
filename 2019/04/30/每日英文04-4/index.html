@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
-<meta property="og:updated_time" content="2019-04-30T05:53:42.492Z">
+<meta property="og:updated_time" content="2019-05-25T06:39:16.928Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日英文04-4">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
@@ -393,6 +393,10 @@
 <blockquote>
 <p>每日英文</p>
 </blockquote>
+<h4 id="0429-Apollo-Docs"><a href="#0429-Apollo-Docs" class="headerlink" title="0429 Apollo Docs"></a>0429 Apollo Docs</h4><p>你可能注意到在Query组件这里有一些新的属性配置，属性 variables 是一个对象，它是我们想通过 GraphQl query 传递的那些变量参数</p>
+<p>在这种情况下，我们想去传递 breed ， 从 form表单到 我们的query请求</p>
+<p>从列表中选择 ’bulldog‘ ，用以查看图片展示，然后，更换一种选择，然后再次选回 ’bulldog‘。你将会看到，第二次的时候bulldog的图片会瞬间加载，这是因为 Apollo 缓存的作用</p>
+<p>下一步，我们将学习一些技为了失信我们的数据刷新，例如使用 polling 和 refetching </p>
 <h4 id="0430-es6"><a href="#0430-es6" class="headerlink" title="0430 es6"></a>0430 es6</h4><h4 id="question"><a href="#question" class="headerlink" title="question"></a><a href="https://stackoverflow.com/questions/55841574/how-to-implement-a-named-constructor-in-es6" target="_blank" rel="noopener">question</a></h4><h5 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h5><p>我尝试在es6中实现属性的重新命名。这么做的原因是，我认为避免尽量去使用 new 关键字 或者 使用一个简单的方法去替代（实例生成）</p>
 <p>我认识使用一个 类的static函数方法可以代理创建构造函数的实例</p>
 <p>然后写了xxx 但是得到的结果是</p>
@@ -400,6 +404,11 @@
 <h5 id="answer"><a href="#answer" class="headerlink" title="answer"></a>answer</h5><p>很显然是参数到传递错误，这里对于 使用扩展运算符的理解有误</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params">...props</span>) </span>&#123; </span><br><span class="line">  <span class="keyword">const</span> &#123; name, age &#125; = props</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个 props 是一个数组，所以 name age 按照对象去做解构是不对的</p>
+<h4 id="0501-Apollo-Docs"><a href="#0501-Apollo-Docs" class="headerlink" title="0501 Apollo Docs"></a>0501 Apollo Docs</h4><p>Polling and Refetching</p>
+<p>Apollo 缓存你的数据是非常好的做法，但是当我们想刷新数据的时候该如何做呢，这里有两种方式是，polling 和 refetching</p>
+<p>Polling 可以帮助我们获取实时的数据通过 在指定的间隔 创建一个 query 去重新获取数据。为了实现 polling ，可以在Query组件中 使用</p>
+<p>一个 pollInterval 属性，他的时间间隔是 ms。如果你写的是 0， 那么Query组件将不会进行 poll操作。</p>
+<p>你也可以使用 动态的 polling 操作，通过使用传递给 render props 的 result 对象 中的 startPolling 和 stopPolling 函数</p>
 
       
     </div>
@@ -524,7 +533,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">159</span>
+                  <span class="site-state-item-count">160</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -579,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0430-es6"><span class="nav-number">1.</span> <span class="nav-text">0430 es6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question"><span class="nav-number">2.</span> <span class="nav-text">question</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#个人理解"><span class="nav-number">2.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#answer"><span class="nav-number">2.2.</span> <span class="nav-text">answer</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#0429-Apollo-Docs"><span class="nav-number">1.</span> <span class="nav-text">0429 Apollo Docs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0430-es6"><span class="nav-number">2.</span> <span class="nav-text">0430 es6</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#question"><span class="nav-number">3.</span> <span class="nav-text">question</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#个人理解"><span class="nav-number">3.1.</span> <span class="nav-text">个人理解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#answer"><span class="nav-number">3.2.</span> <span class="nav-text">answer</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0501-Apollo-Docs"><span class="nav-number">4.</span> <span class="nav-text">0501 Apollo Docs</span></a></li></ol></div>
             
 
           </div>
