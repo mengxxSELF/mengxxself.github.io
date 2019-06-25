@@ -1155,6 +1155,37 @@ tab 键
 
 可以看到 cd 这个命令是bash的内置命令
 
+#### 修改默认shell
+
+我们可以看到在mac默认的使用shell的是bash 但是一般比较常用的是 zsh, 可配合安装 [ohmyzsh](https://ohmyz.sh/)
+
+zsh的配置文件是  ~/.zshrc
+
+那如何切换为 zsh 
+
+```
+chsh -s /bin/zsh 
+```
+
+第一次设置的时候返回
+
+```js
+chsh: no changes made
+```
+
+上面那个命令应该使用sudo 
+
+```
+sudo chsh -s /bin/zsh 
+```
+
+
+恢复为默认
+
+```
+chsh -s /bin/bash
+```
+
 ### shell 的变量功能
 
 Linux是多用户，多任务的环境，每个人在登录之后都会有一个bash。
