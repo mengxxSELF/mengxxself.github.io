@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[每日英文07-01]]></title>
+    <url>%2F2019%2F07%2F02%2F%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8707-01%2F</url>
+    <content type="text"><![CDATA[每日英文 本周目标，翻译文章 Webpack 5新特性 article author New features in Webpack 5 Dennis Gaebel 如果你在使用工具打包前端资源，这个工具很可能是webpack。在这篇文章中，我分享一些即将到来的webpack5的新特性，以及在日常工作中你应该意识到的特性 新版本有大量的好东西，我不会详细介绍每一个特性，我将分享几个核心的重要特性]]></content>
+      <categories>
+        <category>练习</category>
+      </categories>
+      <tags>
+        <tag>练习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一周计划0701]]></title>
+    <url>%2F2019%2F07%2F02%2F%E4%B8%80%E5%91%A8%E8%AE%A1%E5%88%920701%2F</url>
+    <content type="text"><![CDATA[work定时直播脚本 other接口优化 将 React 作为 UI 运行时 useEffect 完整指南 React Hooks 深入系列 DevTools 更新点 (Chrome 59) React16：Hooks总览]]></content>
+      <categories>
+        <category>一周计划</category>
+      </categories>
+      <tags>
+        <tag>work</tag>
+        <tag>study</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[每日英文0624]]></title>
     <url>%2F2019%2F06%2F25%2F%E6%AF%8F%E6%97%A5%E8%8B%B1%E6%96%8706-24%2F</url>
-    <content type="text"><![CDATA[每日英文 本周目标，翻译文章 Apollo Client 2.6 新增特性 article author What’s new in Apollo Client 2.6 Ben Newman Apollo 2.6 是一个向后兼容的更新，它修复了一些bug，为了更快更顺畅的渲染组件，它提供了一些新的参数， 比如 assumeImmutableResults, freezeResults, 和 returnPartialData 以上这些变化奠定了Apollo Client的下一正式版本，有一些更加引人注目的特点： 缓存结果不变性，必要的时候会启动 === 相等 可选择，可配置的缓存规范 清除缓存、处理失效、缓存删除和垃圾回收 使用异步 iterators 代替 Observables 更小的bundle 体积 继续阅读去查找以上这些意味着什么，2.6如何实现到这些，以及为了保持与未来的一致你今天可以做些什么 奖励不变性 当底层数据没有变化的时候，Apollo’s 官方属性 InMemoryCache 可以通过直接返回相同的数据结果 （包括嵌套在很大的结果数中的一部分对象）来优化缓存的读取 这个优化的工作非常令人惊讶，不仅仅是因为提升了缓存读取的速度，更因为像react一样的前端框架可以利用 === 的优势 去避免重复渲染未改变的数据，不用必须去验证数据对象 为了充分发挥这个优点，保持数据对象不被应用中的代码变动非常重要。当在更新缓存的时候如果你破坏性的更改缓存数据，你有可能会出现篡改缓存数据或者修改其余消费者依赖的缓存数据这样的风险。你可能会认为，可以通过立即写回缓存来避免篡改缓存结果， 123456789const data = client.readQuery(&#123; query: CommentQuery,&#125;);// Destructive!data.comments.push(newComment);client.writeQuery(&#123; query: CommentQuery, data,&#125;); Apollo 支持使用这种方式通过记录当前的数据快照，因此可以决定新的结果是否真的和之前到数据不同。 快照保护这种突变的错误并且之后不去更新本地缓存，它会造成新结果 === 之前的结果对象，即使包含了有意义的变化]]></content>
+    <content type="text"><![CDATA[每日英文 本周目标，翻译文章 Apollo Client 2.6 新增特性 article author What’s new in Apollo Client 2.6 Ben Newman Apollo 2.6 是一个向后兼容的更新，它修复了一些bug，为了更快更顺畅的渲染组件，它提供了一些新的参数， 比如 assumeImmutableResults, freezeResults, 和 returnPartialData 以上这些变化奠定了Apollo Client的下一正式版本，有一些更加引人注目的特点： 缓存结果不变性，必要的时候会启动 === 相等 可选择，可配置的缓存规范 清除缓存、处理失效、缓存删除和垃圾回收 使用异步 iterators 代替 Observables 更小的bundle 体积 继续阅读去查找以上这些意味着什么，2.6如何实现到这些，以及为了保持与未来的一致你今天可以做些什么 奖励不变性 当底层数据没有变化的时候，Apollo’s 官方属性 InMemoryCache 可以通过直接返回相同的数据结果 （包括嵌套在很大的结果数中的一部分对象）来优化缓存的读取 这个优化的工作非常令人惊讶，不仅仅是因为提升了缓存读取的速度，更因为像react一样的前端框架可以利用 === 的优势 去避免重复渲染未改变的数据，不用必须去验证数据对象 为了充分发挥这个优点，保持数据对象不被应用中的代码变动非常重要。当在更新缓存的时候如果你破坏性的更改缓存数据，你有可能会出现篡改缓存数据或者修改其余消费者依赖的缓存数据这样的风险。你可能会认为，可以通过立即写回缓存来避免篡改缓存结果， 123456789const data = client.readQuery(&#123; query: CommentQuery,&#125;);// Destructive!data.comments.push(newComment);client.writeQuery(&#123; query: CommentQuery, data,&#125;); Apollo 支持使用这种方式通过记录当前的数据快照，因此可以决定新的结果是否真的和之前到数据不同。 快照保护这种突变的错误并且之后不去更新本地缓存，它会造成新结果 === 之前的结果对象，即使包含了有意义的变化 如果你听过不变性，那么你应该知道有一个更好的办法来更新缓存： 通过创建一个新的数据对象，它共享了大部分原有的数据对象，而不是更新旧的数据对象 12345678910111213const data = client.readQuery(&#123; query: CommentQuery&#125;);client.writeQuery(&#123; query: CommentQuery, data: &#123; ...data, comments: [ ...data.comments, newComment, ], &#125;,&#125;); Apollo 无法为所有消费者的程序中的缓存进行强制的不变处理，但是我们可以帮助你去保持代码不变化。在Apollo 2。6版本，如果你确信你的应用代码不会更新缓存结果，你可以通过设置参数去进行实质性的性能提升 12345const client = new ApolloClient(&#123; link: ..., cache: ..., assumeImmutableResults: true,&#125;) 简单的说，这个 assumeImmutableResults 参数允许服务器去避免记录过去数据的防御性快照 这种优化的优势有多重要？这个取决于你的queries 请求的大小以及他们的返回结果，但是激励我们去解决这个问题的原因是这个名为 Huge performance regressions in recent versions 的issue 。 换句话说，你的进度不同，但是性能的提升可能很大 强制执行不变性 assumeImmutableResults 参数是一个闪亮的新工具，但是你如何确信自己的应用在缓存中不会被破坏性的修改？即使今天你规避了这种违反不变性的行为，但是你可以确保将来不会有意外吗？ 如果你想要执行某些事情（例如不变性）你最好可以强制执行， 并且这里有一个新的参数可以使用 1234567const client = new ApolloClient(&#123; link: ..., cache: new InMemoryCache(&#123; freezeResults: true, &#125;), assumeImmutableResults: true,&#125;)]]></content>
       <categories>
         <category>练习</category>
       </categories>
@@ -1554,8 +1577,8 @@
         <category>javascript</category>
       </categories>
       <tags>
-        <tag>canvas</tag>
         <tag>file</tag>
+        <tag>canvas</tag>
       </tags>
   </entry>
   <entry>

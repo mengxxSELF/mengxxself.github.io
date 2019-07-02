@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
-<meta property="og:updated_time" content="2019-06-25T03:31:12.623Z">
+<meta property="og:updated_time" content="2019-06-26T03:34:42.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="每日英文0624">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/4/14/16a1a7b12456ae60?w=752&h=282&f=png&s=484541">
@@ -424,6 +424,16 @@
 <p>为了充分发挥这个优点，保持数据对象不被应用中的代码变动非常重要。当在更新缓存的时候如果你破坏性的更改缓存数据，你有可能会出现篡改缓存数据或者修改其余消费者依赖的缓存数据这样的风险。你可能会认为，可以通过立即写回缓存来避免篡改缓存结果，</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = client.readQuery(&#123;</span><br><span class="line">  query: CommentQuery,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// Destructive!</span></span><br><span class="line">data.comments.push(newComment);</span><br><span class="line">client.writeQuery(&#123;</span><br><span class="line">  query: CommentQuery,</span><br><span class="line">  data,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>Apollo 支持使用这种方式通过记录当前的数据快照，因此可以决定新的结果是否真的和之前到数据不同。 快照保护这种突变的错误并且之后不去更新本地缓存，它会造成新结果 === 之前的结果对象，即使包含了有意义的变化</p>
+<p>如果你听过不变性，那么你应该知道有一个更好的办法来更新缓存： 通过创建一个新的数据对象，它共享了大部分原有的数据对象，而不是更新旧的数据对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = client.readQuery(&#123;</span><br><span class="line">  query: CommentQuery</span><br><span class="line">&#125;);</span><br><span class="line">client.writeQuery(&#123;</span><br><span class="line">  query: CommentQuery,</span><br><span class="line">  data: &#123;</span><br><span class="line">    ...data,</span><br><span class="line">    comments: [</span><br><span class="line">      ...data.comments,</span><br><span class="line">      newComment,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Apollo 无法为所有消费者的程序中的缓存进行强制的不变处理，但是我们可以帮助你去保持代码不变化。在Apollo 2。6版本，如果你确信你的应用代码不会更新缓存结果，你可以通过设置参数去进行实质性的性能提升</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</span><br><span class="line">  link: ...,</span><br><span class="line">  cache: ...,</span><br><span class="line">  assumeImmutableResults: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>简单的说，这个 assumeImmutableResults 参数允许服务器去避免记录过去数据的防御性快照</p>
+<p>这种优化的优势有多重要？这个取决于你的queries 请求的大小以及他们的返回结果，但是激励我们去解决这个问题的原因是这个名为 <a href="https://github.com/apollographql/apollo-client/issues/4464" target="_blank" rel="noopener"> Huge performance regressions in recent versions</a> 的issue 。 换句话说，你的进度不同，但是性能的提升可能很大</p>
+<p><strong>强制执行不变性</strong></p>
+<p>assumeImmutableResults 参数是一个闪亮的新工具，但是你如何确信自己的应用在缓存中不会被破坏性的修改？即使今天你规避了这种违反不变性的行为，但是你可以确保将来不会有意外吗？</p>
+<p>如果你想要执行某些事情（例如不变性）你最好可以强制执行， 并且这里有一个新的参数可以使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> client = <span class="keyword">new</span> ApolloClient(&#123;</span><br><span class="line">  link: ...,</span><br><span class="line">  cache: <span class="keyword">new</span> InMemoryCache(&#123;</span><br><span class="line">    freezeResults: <span class="literal">true</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  assumeImmutableResults: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -463,6 +473,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/02/一周计划0701/" rel="prev" title="一周计划0701">
+                一周计划0701 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -535,7 +549,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">167</span>
+                  <span class="site-state-item-count">169</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
